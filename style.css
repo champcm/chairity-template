@@ -1,4 +1,14 @@
 /* style.css ("Lady Wheeler" Logo Inspired - Blue & White - Final Consolidation) */
+@font-face {
+  font-family: "TCS Dango"; /* You can name this whatever you like, e.g., 'LadyWheelerCustomFont' */
+  src: url("fonts/BaiJamjuree-Regular.ttf") format("truetype");
+  /* Adjust the url() path if your font file is located elsewhere.
+     If it's in the same directory as your style.css, it would be:
+     src: url('TCS-4Dango-PersonalOnly.ttf') format('truetype');
+  */
+  font-weight: normal; /* Assuming this font file is for normal weight */
+  font-style: normal; /* Assuming this font file is for normal style */
+}
 
 /* --- Color Palette Variables (Approximation from Logo) --- */
 :root {
@@ -17,7 +27,7 @@
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Clean, approachable sans-serif */
+  /* font-family will be inherited from body or set on specific elements */
 }
 
 html {
@@ -25,6 +35,7 @@ html {
 }
 
 body {
+  font-family: "TCS Dango", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Added 'TCS Dango' as the primary font */
   line-height: 1.7;
   color: var(--text-dark);
   background-color: var(--bg-white);
@@ -131,7 +142,7 @@ section > h2 {
 
 .btn-secondary {
   /* Outline style */
-  background-color: transparent;
+  background-color: rgba(255, 255, 255, 0.904);
   color: var(--primary-blue);
   border: 2px solid var(--primary-blue);
 }
@@ -257,18 +268,19 @@ header nav ul li a:hover::after {
 }
 
 /* --- Hero Section --- */
+/* --- Hero Section --- */
 .hero {
   background: linear-gradient(
-      rgba(103, 128, 159, 0.65),
-      rgba(103, 128, 159, 0.45)
+      rgba(103, 128, 159, 0.75),
+      rgba(103, 128, 159, 0.65)
     ),
-    url("https://picsum.photos/1920/1080") no-repeat center center/cover; /* Primary blue overlay, adjust URL */
+    url("assest/banner.jpg") no-repeat center center/cover; /* Primary blue overlay, adjust URL */
   min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: var(--text-light);
+  color: var(--text-light); /* This is #FFFFFF */
   padding: 100px 20px 20px 20px;
   position: relative;
 }
@@ -279,9 +291,63 @@ header nav ul li a:hover::after {
   max-width: 750px;
 }
 
+/* In your style.css file */
+
+/* Make sure this is placed after your :root variables if you use them for the highlight color,
+   or just use a direct hex/rgba value here. */
+
+.hero-content h1,
+.hero-content h2,
+.hero-content h3,
+.hero-content p {
+  /* Glow effect for readability */
+  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6); /* Existing glow effect */
+}
+
+/* Styles for the main H3 text in the hero section */
+/* Assuming your H3 is inside .hero-content based on the previous CSS rule */
+.hero-content h3 {
+  font-size: 1.3em;
+  color: rgba(255, 255, 255, 0.95);
+  margin-bottom: 0.75rem;
+  font-weight: 400;
+  text-transform: none;
+  letter-spacing: 0.5px;
+  line-height: 1.8;
+  white-space: nowrap; /* This prevents the text from wrapping */
+}
+
+/* NEW: Styles for the highlighted words */
+.hero-content h3 .hero-highlight {
+  color: #fffacd; /* LemonChiffon - a soft, light gold/yellow. Adjust as needed. */
+  /* Alternatively, try a very light cyan for a cooler highlight: */
+  /* color: #E0FFFF; */ /* LightCyan */
+  /* Or make it pure white if the rest of the h3 is slightly dimmer, and add more weight: */
+  /* color: #FFFFFF; */
+  /* font-weight: 600; */ /* Optional: make highlighted text bolder */
+}
+
+.hero-content h3 .hero-highlight-bold {
+  color: #fffacd; /* LemonChiffon - a soft, light gold/yellow. Adjust as needed. */
+  font-weight: 600;
+  /* Alternatively, try a very light cyan for a cooler highlight: */
+  /* color: #E0FFFF; */ /* LightCyan */
+  /* Or make it pure white if the rest of the h3 is slightly dimmer, and add more weight: */
+  /* color: #FFFFFF; */
+  /* font-weight: 600; */ /* Optional: make highlighted text bolder */
+}
+
+/* ... rest of your CSS ... */
+
 .hero h2 {
+  /* Tagline above main heading */
   font-size: 1.4em;
-  color: rgba(255, 255, 255, 0.9);
+  color: rgba(
+    255,
+    255,
+    255,
+    0.95
+  ); /* Increased opacity slightly for better base readability */
   margin-bottom: 0.75rem;
   font-weight: 400;
   text-transform: none;
@@ -289,8 +355,9 @@ header nav ul li a:hover::after {
 }
 
 .hero h1 {
+  /* Main Slogan */
   font-size: 3.2em;
-  color: var(--text-light);
+  color: var(--text-light); /* Pure White */
   margin-bottom: 1.5rem;
   font-weight: 600;
   line-height: 1.25;
@@ -298,19 +365,24 @@ header nav ul li a:hover::after {
 }
 
 .hero p {
+  /* Tagline */
   font-size: 1.15em;
   margin-bottom: 2.5rem;
-  color: rgba(255, 255, 255, 0.85);
+  color: rgba(255, 255, 255, 0.9); /* Increased opacity slightly */
   line-height: 1.8;
   max-width: 600px;
   margin-left: auto;
   margin-right: auto;
 }
 
+/* Buttons within .hero-content should not inherit this text-shadow
+   if it looks odd, or have their own text-shadow set to 'none'.
+   However, .btn styles usually don't have text-shadow by default. */
 .hero .btn {
   margin: 10px;
   padding: 14px 30px;
   font-size: 0.95em;
+  /* text-shadow: none; /* Uncomment if buttons are undesirably inheriting the glow */
 }
 
 /* --- About Us Section --- */
@@ -343,12 +415,31 @@ header nav ul li a:hover::after {
   margin-top: 25px;
 }
 
+/* In your style.css file */
+
 .about-image {
   flex: 1;
   text-align: center;
 }
+
 .about-image img {
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.08);
+  display: block;
+  max-width: 100%;
+  height: auto;
+  object-fit: cover; /* Good for maintaining aspect ratio with border-radius */
+
+  /* Bordering blur effect (from previous step) */
+  box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.15);
+  /* You can adjust the shadow color to match your theme, e.g.: */
+  /* box-shadow: 0 0 15px 5px rgba(103, 128, 159, 0.2); */
+
+  /* NEW: Add roundness to the corners */
+  border-radius: 10px; /* Adjust this value for more or less roundness */
+  /* Common values:
+     - 4px to 8px for slightly rounded corners
+     - 15px to 25px for more noticeably rounded corners
+     - 50% for a circle/ellipse (will be a circle if the image's rendered width and height are equal)
+  */
 }
 
 /* --- Services / What We Do Section --- */
@@ -378,7 +469,7 @@ header nav ul li a:hover::after {
   display: inline-block;
   width: 55px;
   height: 55px;
-  margin-bottom: 20px;
+  margin-bottom: 5px;
   /* If using Font Awesome icons: color: var(--primary-blue); font-size: 2.2em; */
 }
 
@@ -400,7 +491,7 @@ header nav ul li a:hover::after {
   /* background: var(--primary-blue); /* REMOVE Solid blue background */
 
   /* Parallax Background Image Properties */
-  background-image: url("https://picsum.photos/1920/1080?grayscale&blur=1"); /* REPLACE with your image URL */
+  background-image: url("assest/background.jpg"); /* REPLACE with your image URL */
   background-attachment: fixed; /* This creates the parallax effect */
   background-position: center; /* Center the image */
   background-repeat: no-repeat; /* Do not repeat the image */
