@@ -12,14 +12,16 @@
 
 /* --- Color Palette Variables (Approximation from Logo) --- */
 :root {
-  --primary-blue: #67809f; /* Main blue from logo - adjust if a more precise hex is available */
-  --primary-blue-darker: #506680; /* A darker shade for hovers/accents */
-  --primary-blue-lighter: #8d9db5; /* A lighter shade for subtle elements */
-  --text-dark: #333a40; /* Dark grey for body text on white */
-  --text-light: #ffffff; /* White text for on-blue backgrounds */
+  --primary-blue: #67809f;
+  --primary-blue-rgb: 103, 128, 159; /* Added RGB version for easy use in rgba */
+  --primary-blue-darker: #506680;
+  --primary-blue-lighter: #8d9db5;
+  --text-dark: #333a40;
+  --text-light: #ffffff;
   --bg-white: #ffffff;
-  --bg-off-white: #f8f9fa; /* Very light grey for subtle section differentiation */
-  --border-light: #dde2e7; /* Light border color */
+  --bg-off-white: #f8f9fa;
+  --border-light: #dde2e7;
+  --text-light-secondary: #d9f1eb;
 }
 
 /* --- General Styles --- */
@@ -133,7 +135,9 @@ section > h2 {
   color: var(--text-light);
   border-color: var(--primary-blue);
 }
+
 .btn-primary:hover {
+  color: var(--text-light-secondary);
   background-color: var(--primary-blue-darker);
   border-color: var(--primary-blue-darker);
   transform: translateY(-2px); /* Subtle lift */
@@ -165,17 +169,22 @@ section > h2 {
 }
 
 /* --- Header --- */
+/* --- Header --- */
 header {
-  background: var(--primary-blue);
-  /* padding: 15px 0; */ /* Will be controlled by initial/scrolled state */
+  /* background: var(--primary-blue); */ /* REMOVE THIS or comment out */
+  background-color: rgba(
+    var(--primary-blue-rgb),
+    0.3
+  ); /* MODIFIED: Initial background with 0.3 opacity */
   padding-top: 25px; /* Initial larger padding */
   padding-bottom: 25px; /* Initial larger padding */
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.15);
-  transition: padding 0.3s ease-in-out; /* Smooth transition for padding */
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0); /* Initial shadow can be very subtle or none if bg is semi-transparent */
+  transition: padding 0.3s ease-in-out, background-color 0.3s ease-in-out,
+    box-shadow 0.3s ease-in-out; /* MODIFIED: Added background-color and box-shadow to transition */
 }
 
 header .container {
@@ -203,7 +212,11 @@ header .logo img {
 header.scrolled {
   padding-top: 15px; /* Normal/smaller padding */
   padding-bottom: 15px; /* Normal/smaller padding */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Slightly stronger shadow when scrolled */
+  background-color: rgba(
+    var(--primary-blue-rgb),
+    0.95
+  ); /* MODIFIED: Background becomes fully transparent */
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Shadow to define header when bg is transparent */
 }
 
 header.scrolled .logo img {
@@ -236,20 +249,20 @@ header nav ul li a:hover {
 }
 
 header nav ul li a::after {
-  /* Underline for nav links */
   content: "";
   position: absolute;
   width: 0;
   height: 1px;
-  bottom: -4px;
-  left: 0;
-  background-color: var(--text-light); /* Underline is now white */
+  bottom: 5px;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: var(--text-light);
   transition: width 0.3s ease;
 }
 
 header nav ul li a.active::after,
 header nav ul li a:hover::after {
-  width: 100%;
+  width: calc(100% - 10px);
 }
 
 .menu-toggle {
@@ -1028,17 +1041,21 @@ header nav ul li a:hover::after {
   /* Any background-color or specific text styling for address details will no longer apply here */
 }
 
+/* In your style.css file */
+
 /* --- Footer --- */
 footer {
-  position: relative; /* Needed for absolute positioning of the pseudo-element /
-color: var(--text-light); / Or your desired text color /
-padding-top: 60px; / Adjust top padding to accommodate potential background overlap /
-padding-bottom: 20px; / Adjust bottom padding as needed /
-/ Other existing footer styles can remain /
-overflow: hidden; / To contain the blurred background */
+  position: relative; /* Needed for absolute positioning of the ::before pseudo-element */
+  color: var(
+    --text-light
+  ); /* Default text color for elements directly in footer, if any */
+  padding-top: 60px;
+  padding-bottom: 20px;
+  overflow: hidden; /* To contain the blurred ::before background */
 }
 
 footer::before {
+  /* This is your existing blurred background image + gradient */
   content: "";
   position: absolute;
   top: 0;
@@ -1046,29 +1063,112 @@ footer::before {
   width: 100%;
   height: 100%;
   background: linear-gradient(
-      rgba(236, 236, 236, 0.95),
-      rgba(103, 128, 159, 0.65)
+      rgba(236, 236, 236, 0.85),
+      /* Slightly less opaque white start */ rgba(103, 128, 159, 0.75)
+        /* Primary blue transparent end */
     ),
-    url("assest/footer.jpg") no-repeat center center/cover; /* Primary blue overlay, adjust URL */
-  z-index: -1;
-  filter: blur(1px);
+    url("assest/footer.jpg") no-repeat center center/cover; /* Ensure this path is correct */
+  z-index: -1; /* Behind all footer content */
+  filter: blur(3px); /* Adjusted blur, change as needed */
 }
 
 .footer-content {
+  /* This is the grid container for your columns */
   position: relative;
-  z-index: 1;
-  display: flex;
-  justify-content: space-around;
-  padding: 20px 0;
-  max-width: 1200px;
-  margin: 0 auto;
+  z-index: 1; /* Content above the ::before pseudo-element */
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 1fr)
+  ); /* Adjust minmax as needed */
+  gap: 30px; /* Space between the content boxes */
+  /* max-width and margin: 0 auto; are good if these are inside .container */
+  /* If .footer-content is directly inside footer, and footer > .container has the max-width, that's also fine */
 }
 
+/* NEW STYLES FOR THE BOXES */
+/* In your style.css file */
+
+/* --- Footer --- */
+footer {
+  position: relative;
+  color: var(--text-light);
+  padding-top: 40px;
+  padding-bottom: 40px;
+  overflow: hidden;
+}
+
+footer::before {
+  /* Your existing blurred background image + gradient */
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      rgba(236, 236, 236, 0.85),
+      /* Light start */ rgba(103, 128, 159, 0.75)
+        /* Primary blue transparent end */
+    ),
+    url("assest/footer.jpg") no-repeat center center/cover; /* MAKE SURE THIS PATH IS CORRECT */
+  z-index: -1;
+  filter: blur(3px); /* Adjust blur as needed */
+}
+
+/* MODIFIED: Styles for the main footer content box */
+.footer-content {
+  position: relative;
+  z-index: 1; /* Content above the ::before pseudo-element */
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(280px, 1fr)
+  ); /* Adjust minmax for column width */
+  gap: 30px; /* Space between the columns inside the box */
+
+  /* NEW: Styling for the single encompassing box */
+  background-color: rgba(
+    255,
+    255,
+    255,
+    0.55
+  ); /* Semi-transparent white background */
+  padding: 30px; /* Padding inside the main box */
+  border-radius: 10px; /* Rounded corners for the main box */
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2); /* Shadow for the main box */
+  /* max-width: 1140px; /* This is handled by the parent .container usually */
+  /* margin: 0 auto; /* This is handled by the parent .container usually */
+}
+
+/* REMOVE/RESET individual box styling from these columns */
 .footer-about,
-.footer-links,
+.footer-links, /* Apply to .footer-links if you add it back with content */
 .footer-contact {
-  flex: 1;
-  margin: 0 15px;
+  /* background-color: transparent; /* No individual background */
+  /* padding: 0; /* Padding is now on .footer-content, or add specific inner padding if needed */
+  /* border-radius: 0; */
+  /* box-shadow: none; */
+  /* flex: 1; /* Not needed if .footer-content is grid */
+  /* margin: 0; /* Not needed if .footer-content has gap */
+}
+
+/* Text color adjustments for content INSIDE the .footer-content box
+   (these should remain as they are good for the light semi-transparent background) */
+.footer-about h3,
+.footer-links h4, /* Or h3 if consistent */
+.footer-contact h3 {
+  color: var(--primary-blue-darker);
+  margin-bottom: 15px;
+}
+
+.footer-about p,
+.footer-links ul li a,
+.footer-contact p {
+  color: var(--text-dark); /* Dark grey for paragraph text inside the box */
+  opacity: 0.9;
+  font-size: 0.9em;
+  line-height: 1.7; /* Added for better readability */
 }
 
 .footer-links ul {
@@ -1077,32 +1177,31 @@ footer::before {
 }
 
 .footer-links ul li {
-  margin-bottom: 8px;
+  margin-bottom: 10px;
 }
 
-.footer-links a {
-  color: var(--text-dark);
+.footer-links ul li a {
   text-decoration: none;
+  transition: color 0.3s ease;
+}
+.footer-links ul li a:hover {
+  color: var(--primary-blue);
 }
 
-.footer-contact p {
-  margin-bottom: 8px;
+/* Copyright text (inside .footer-about in your provided HTML) styling */
+.footer-about p:last-child {
+  color: var(--text-dark);
+  opacity: 0.75; /* Make copyright text a bit more subtle */
+  font-size: 0.85em;
+  margin-top: 20px; /* Space above copyright if it's the last element in .footer-about */
 }
 
-.copyright {
-  text-align: center;
-  padding: 15px 0;
-  color: var(
-    --text-light-secondary
-  ); /* You might want a slightly lighter shade for copyright /
-}
-.container {
-/ You might need to adjust container styles if they interfere with the full-width background /
-/ If container has a background color, you might need to make it transparent or remove it for the footer /
-position: relative; / Ensure copyright text is above the background */
-  z-index: 1;
-}
-.copyright p {
+/* The main .copyright div styling from your full CSS would apply
+   if you had a separate .copyright div outside .footer-content.
+   Since it's inside .footer-about, the rules above handle it. */
+
+footer > .container {
+  /* Ensure the .container itself stacks correctly */
   position: relative;
   z-index: 1;
 }
@@ -1159,9 +1258,54 @@ position: relative; / Ensure copyright text is above the background */
     width: 100%;
     text-align: center;
   }
+
+  header nav ul li a {
+    color: var(--text-light);
+    padding: 10px 15px; /* MODIFIED: Increased padding for a better block effect */
+    position: relative;
+    font-weight: 500;
+    text-transform: none;
+    font-size: 0.95em;
+    letter-spacing: 0.2px;
+    transition: opacity 0.3s ease, background-color 0.3s ease; /* Keep transitions */
+    /* border-radius: 3px; /* Optional: very slight rounding for the button block, if desired */
+    /* Remove if strict no-rounded-corners is preferred here too */
+  }
+
+  header nav ul li a.active,
+  header nav ul li a:hover {
+    color: var(--text-light);
+    background-color: rgba(
+      0,
+      0,
+      0,
+      0.15
+    ); /* ADDED: Subtle dark overlay for active/hover background */
+    /* Or a lighter overlay: background-color: rgba(255, 255, 255, 0.1); */
+    opacity: 1; /* Ensure full opacity when background is active */
+  }
+
   header nav ul li a::after {
-    bottom: -2px;
-  } /* Adjust underline for mobile */
+    /* Underline for nav links */
+    content: "";
+    position: absolute;
+    width: 0;
+    height: 1px;
+    bottom: 5px; /* ADJUSTED: To be inside the new padding */
+    left: 15px; /* ADJUSTED: To align with text inside new padding */
+    right: 15px; /* Ensure underline doesn't go into padding if centered */
+    background-color: var(--text-light);
+    transition: width 0.3s ease;
+    /* To make underline only cover text width instead of full padding block width:
+     bottom: 5px; left: 50%; transform: translateX(-50%);
+     Adjust width on hover/active to be like: width: calc(100% - 30px); if you want it to fill text area
+  */
+  }
+  header nav ul li a.active::after,
+  header nav ul li a:hover::after {
+    width: calc(100% - 30px); /* Underline spans the area within padding */
+    left: 15px; /* Ensure it starts after left padding */
+  }
 
   .menu-toggle {
     display: block;
