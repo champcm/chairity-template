@@ -919,7 +919,52 @@ header nav ul li a:hover::after {
 
 /* --- Testimonials Section (2-column layout) --- */
 .testimonials {
-  background-color: var(--bg-white);
+  background: rgba(12, 101, 184, 0.15);
+  padding: 70px 0; /* Your existing section padding */
+  position: relative; /* Essential for positioning the ::before pseudo-element */
+  overflow: hidden; /* Recommended to contain the blurred edges of the pseudo-element */
+  /* You might want a fallback background color for the section itself
+     if the image doesn't load or while it's loading,
+     though the ::before element will be the primary visual background. */
+  /* background-color: var(--bg-off-white); */ /* Example fallback */
+}
+
+.testimonials::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-image: url("assest/testimonial-bg.jpg"); /* Path to your image */
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll; /* Or 'fixed' if you prefer parallax here */
+
+  /* --- NEW: Apply blur and opacity --- */
+  filter: blur(5px); /* Adjust the 5px value for more or less blur */
+  opacity: 0.6; /* Adjust between 0 (fully transparent) and 1 (fully opaque) */
+  /* e.g., 0.3 for more transparency, 0.7 for less */
+
+  z-index: -1; /* Places the blurred image behind the content */
+}
+
+/* Ensure the .container (and thus its children like h2, sub-heading, testimonial items)
+   sits above the ::before pseudo-element.
+   These styles should already be in place from previous steps. */
+.testimonials > .container {
+  position: relative;
+  z-index: 1; /* Content is above the pseudo-element */
+}
+
+.testimonials > .container > h2,
+.testimonials > .container > .sub-heading {
+  color: var(
+    --primary-blue-darker
+  ); /* Assuming you want light text on this new background */
+  position: relative; /* Not strictly needed if parent .container handles z-index */
+  z-index: 1; /* Ensures it's above the ::before if it were a direct child of .testimonials */
 }
 
 .testimonial-item {
