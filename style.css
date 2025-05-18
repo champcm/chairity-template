@@ -886,60 +886,81 @@ header nav ul li a:hover::after {
 
 /* --- Footer --- */
 footer {
-  background-color: var(--primary-blue-darker);
-  color: rgba(255, 255, 255, 0.8);
-  padding: 60px 0 20px 0;
+  position: relative; /* Needed for absolute positioning of the pseudo-element /
+color: var(--text-light); / Or your desired text color /
+padding-top: 60px; / Adjust top padding to accommodate potential background overlap /
+padding-bottom: 20px; / Adjust bottom padding as needed /
+/ Other existing footer styles can remain /
+overflow: hidden; / To contain the blurred background */
+}
+
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(
+      rgba(236, 236, 236, 0.95),
+      rgba(103, 128, 159, 0.65)
+    ),
+    url("assest/footer.jpg") no-repeat center center/cover; /* Primary blue overlay, adjust URL */
+  z-index: -1;
+  filter: blur(1px);
 }
 
 .footer-content {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
-  gap: 35px;
-  margin-bottom: 40px;
+  position: relative;
+  z-index: 1;
+  display: flex;
+  justify-content: space-around;
+  padding: 20px 0;
+  max-width: 1200px;
+  margin: 0 auto;
 }
 
-.footer-content h3,
-.footer-content h4 {
-  color: var(--text-light);
-  margin-bottom: 20px;
-  font-size: 1.3em;
-  font-weight: 600;
-  text-transform: none;
+.footer-about,
+.footer-links,
+.footer-contact {
+  flex: 1;
+  margin: 0 15px;
 }
-.footer-content p,
-.footer-content li {
-  margin-bottom: 10px;
-  font-size: 0.9em;
-  line-height: 1.7;
+
+.footer-links ul {
+  list-style: none;
+  padding: 0;
 }
-.footer-content a {
-  color: rgba(255, 255, 255, 0.8);
+
+.footer-links ul li {
+  margin-bottom: 8px;
 }
-.footer-content a:hover {
-  color: var(--text-light);
+
+.footer-links a {
+  color: var(--text-dark);
+  text-decoration: none;
 }
-.footer-socials a {
-  margin-right: 10px;
-  font-size: 1.5em;
-  color: rgba(255, 255, 255, 0.8);
-}
-.footer-socials a:hover {
-  color: var(--text-light);
+
+.footer-contact p {
+  margin-bottom: 8px;
 }
 
 .copyright {
   text-align: center;
-  padding-top: 25px;
-  border-top: 1px solid rgba(255, 255, 255, 0.15);
-  font-size: 0.85em;
-  color: rgba(255, 255, 255, 0.7);
+  padding: 15px 0;
+  color: var(
+    --text-light-secondary
+  ); /* You might want a slightly lighter shade for copyright /
 }
-.copyright a {
-  color: rgba(255, 255, 255, 0.9);
-  font-weight: 500;
+.container {
+/ You might need to adjust container styles if they interfere with the full-width background /
+/ If container has a background color, you might need to make it transparent or remove it for the footer /
+position: relative; / Ensure copyright text is above the background */
+  z-index: 1;
 }
-.copyright a:hover {
-  color: var(--text-light);
+.copyright p {
+  position: relative;
+  z-index: 1;
 }
 
 /* --- Responsive Styles --- */
