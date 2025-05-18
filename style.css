@@ -1241,3 +1241,10 @@ position: relative; / Ensure copyright text is above the background */
     padding: 12px 0;
   }
 }
+
+.facebook-plugin {
+  width: 100%; /* This will make the container take the full width of its parent */
+  max-width: 500px; /* Optional: Set a maximum width if you don't want it to be too wide on large screens */
+  /* Add any other styling like margin, padding, etc. */
+  margin: 0 auto; /* Example: to center the container if it has a max-width */
+}
