@@ -527,7 +527,7 @@ header nav ul li a:hover::after {
   background-size: cover; /* Cover the entire area, maintain aspect ratio */
 
   color: var(--text-light); /* Text color remains white */
-  padding: 80px 0; /* Increased padding for better parallax visibility */
+  padding: 180px 0; /* Increased padding for better parallax visibility */
   text-align: center;
   position: relative; /* Crucial for the overlay pseudo-element */
   overflow: hidden; /* Good practice with full-cover pseudo-elements */
