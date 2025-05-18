@@ -107,24 +107,26 @@
       <div class="container">
         <h2>ช่องทางสื่อสารของเรา</h2>
         <div class="services-grid">
-          <div class="service-item">
+          <div class="service-item animate-on-scroll from-left">
             <img
               src="assest/facebook.png"
-              alt="Service Icon"
+              alt="Facebook Icon"
               class="service-icon" />
             <p>@Lady Wheeler</p>
           </div>
-          <div class="service-item">
+
+          <div class="service-item animate-on-scroll from-bottom">
             <img
               src="assest/youtube.png"
-              alt="Service Icon"
+              alt="YouTube Icon"
               class="service-icon" />
             <p>@Lady Wheeler Channel</p>
           </div>
-          <div class="service-item">
+
+          <div class="service-item animate-on-scroll from-right">
             <img
               src="assest/fcd-logo.png"
-              alt="Service Icon"
+              alt="FCD Logo Icon"
               class="service-icon" />
             <p>Oh I see : ห้องสมุดมีชีวิต</p>
           </div>
@@ -301,7 +303,7 @@
       <div class="container">
         <h2>เสียงจากพวกเรา</h2>
         <div class="testimonial-slider">
-          <div class="testimonial-item">
+          <div class="testimonial-item animate-testimonial-on-scroll">
             <div class="testimonial-text-content">
               <p class="quote">
                 "ความพิการอาจเป็นเพียงส่วนหนึ่งที่มองเห็นได้จากภายนอก แต่ลึกลงไป
@@ -322,6 +324,100 @@
               <span class="client-info">ผู้พิการขาตั้งแต่กำเนิด</span>
             </div>
           </div>
+        </div>
+      </div>
+    </section>
+
+    <section
+      id="image-gallery"
+      class="image-gallery-section">
+      <div class="container">
+        <h2>คลังรูปภาพ</h2>
+        <div class="portfolio-slider-container">
+          <button
+            class="scroll-arrow prev-arrow"
+            id="galleryPrevArrow"
+            aria-label="Previous Images">
+            &lt;
+          </button>
+          <div class="gallery-scroll-container">
+            <div class="gallery-item">
+              <img
+                src="https://picsum.photos/seed/gallery1/400/300"
+                alt="Scenic view of mountains" />
+              <div class="image-description-overlay">
+                <p>
+                  A breathtaking mountain landscape under a clear blue sky.
+                  Perfect for nature lovers.
+                </p>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <img
+                src="https://picsum.photos/seed/gallery2/400/300"
+                alt="Close-up of a vibrant flower" />
+              <div class="image-description-overlay">
+                <p>
+                  Vibrant colors of a blooming flower, showcasing intricate
+                  details of its petals.
+                </p>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <img
+                src="https://picsum.photos/seed/gallery3/400/300"
+                alt="Abstract architectural design" />
+              <div class="image-description-overlay">
+                <p>
+                  Modern architectural lines creating an abstract and intriguing
+                  pattern.
+                </p>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <img
+                src="https://picsum.photos/seed/gallery4/400/300"
+                alt="Wildlife animal in its habitat" />
+              <div class="image-description-overlay">
+                <p>
+                  A candid shot of wildlife, capturing a serene moment in its
+                  natural habitat.
+                </p>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <img
+                src="https://picsum.photos/seed/gallery5/400/300"
+                alt="Cityscape at night" />
+              <div class="image-description-overlay">
+                <p>
+                  The dazzling lights of a city skyline illuminating the night.
+                </p>
+              </div>
+            </div>
+
+            <div class="gallery-item">
+              <img
+                src="https://picsum.photos/seed/gallery6/400/300"
+                alt="Artistic food presentation" />
+              <div class="image-description-overlay">
+                <p>
+                  An artistic and colorful presentation of a delicious gourmet
+                  dish.
+                </p>
+              </div>
+            </div>
+          </div>
+          <button
+            class="scroll-arrow next-arrow"
+            id="galleryNextArrow"
+            aria-label="Next Images">
+            &gt;
+          </button>
         </div>
       </div>
     </section>
@@ -655,6 +751,212 @@
 
         featPrevArrow.addEventListener("click", () => {
           featScrollContainer.scrollLeft -= featScrollAmount;
+        });
+      }
+
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- Image Gallery: Click Arrows, Autoplay, and Loop ---
+        const galleryScrollContainer = document.querySelector(
+          "#image-gallery .gallery-scroll-container"
+        );
+        const galleryPrevArrow = document.getElementById("galleryPrevArrow");
+        const galleryNextArrow = document.getElementById("galleryNextArrow");
+        const gallerySliderWrapper = galleryScrollContainer
+          ? galleryScrollContainer.closest(".portfolio-slider-container")
+          : null;
+
+        let galleryAutoplayInterval = null;
+        const GALLERY_AUTOPLAY_INTERVAL_TIME = 10; // Milliseconds: smaller = faster/smoother continuous scroll
+        const GALLERY_SCROLL_STEP = 1; // Pixels to scroll each interval
+        const USER_INTERACTION_PAUSE_DURATION = 0; // 5 seconds before resuming autoplay
+        let galleryAutoplayResumeTimer = null;
+
+        if (
+          galleryPrevArrow &&
+          galleryNextArrow &&
+          galleryScrollContainer &&
+          gallerySliderWrapper
+        ) {
+          // --- Autoplay Functions ---
+          function stopGalleryAutoplay() {
+            clearInterval(galleryAutoplayInterval);
+            galleryAutoplayInterval = null;
+          }
+
+          function startGalleryAutoplay() {
+            stopGalleryAutoplay(); // Clear any existing interval
+
+            // Only start if the mouse isn't currently over the slider wrapper
+            if (!gallerySliderWrapper.matches(":hover")) {
+              galleryAutoplayInterval = setInterval(() => {
+                // Check if we are at the very end of the scroll
+                // (scrollLeft + clientWidth) can sometimes be slightly off from scrollWidth due to subpixels
+                if (
+                  galleryScrollContainer.scrollLeft +
+                    galleryScrollContainer.clientWidth >=
+                  galleryScrollContainer.scrollWidth - GALLERY_SCROLL_STEP - 1
+                ) {
+                  // Loop back to the beginning smoothly
+                  galleryScrollContainer.scrollTo({
+                    left: 0,
+                    behavior: "smooth",
+                  });
+                } else {
+                  galleryScrollContainer.scrollLeft += GALLERY_SCROLL_STEP;
+                }
+              }, GALLERY_AUTOPLAY_INTERVAL_TIME);
+            }
+          }
+
+          function resetGalleryAutoplayTimer(immediateStart = false) {
+            stopGalleryAutoplay();
+            clearTimeout(galleryAutoplayResumeTimer);
+            if (immediateStart) {
+              startGalleryAutoplay();
+            } else {
+              galleryAutoplayResumeTimer = setTimeout(
+                startGalleryAutoplay,
+                USER_INTERACTION_PAUSE_DURATION
+              );
+            }
+          }
+
+          // --- Arrow Click Functionality (No Hover Scroll) ---
+          const galleryItemReference =
+            galleryScrollContainer.querySelector(".gallery-item");
+          const galleryClickScrollAmount = galleryItemReference
+            ? galleryItemReference.offsetWidth +
+              parseFloat(getComputedStyle(galleryItemReference).marginRight)
+            : 300; // Fallback scroll amount
+
+          galleryNextArrow.addEventListener("click", () => {
+            galleryScrollContainer.scrollBy({
+              left: galleryClickScrollAmount,
+              behavior: "smooth",
+            });
+            resetGalleryAutoplayTimer(); // Pause autoplay and schedule resume
+          });
+
+          galleryPrevArrow.addEventListener("click", () => {
+            galleryScrollContainer.scrollBy({
+              left: -galleryClickScrollAmount,
+              behavior: "smooth",
+            });
+            resetGalleryAutoplayTimer(); // Pause autoplay and schedule resume
+          });
+
+          // --- Pause Autoplay on Hovering over the Slider Area ---
+          gallerySliderWrapper.addEventListener("mouseenter", () => {
+            stopGalleryAutoplay();
+            clearTimeout(galleryAutoplayResumeTimer); // Clear any pending resume
+          });
+
+          gallerySliderWrapper.addEventListener("mouseleave", () => {
+            resetGalleryAutoplayTimer(); // Schedule autoplay to resume
+          });
+
+          // --- Pause Autoplay on manual scroll attempt (e.g. mouse wheel, touch drag) ---
+          let manualScrollTimeout;
+          galleryScrollContainer.addEventListener(
+            "scroll",
+            () => {
+              if (!galleryAutoplayInterval) return; // Do nothing if autoplay is already stopped (e.g., by mouseenter)
+
+              // If a scroll event happens and it wasn't triggered by autoplay stepping,
+              // assume it's user interaction. This is a heuristic.
+              // A more robust way involves checking if a click/touch event is active.
+              stopGalleryAutoplay();
+              clearTimeout(galleryAutoplayResumeTimer);
+              galleryAutoplayResumeTimer = setTimeout(
+                startGalleryAutoplay,
+                USER_INTERACTION_PAUSE_DURATION
+              );
+            },
+            { passive: true }
+          );
+
+          // Start autoplay initially when the section might become visible
+          const galleryObserver = new IntersectionObserver(
+            (entries) => {
+              entries.forEach((entry) => {
+                if (entry.isIntersecting) {
+                  resetGalleryAutoplayTimer(true); // Start autoplay immediately when visible
+                } else {
+                  stopGalleryAutoplay(); // Stop autoplay when not visible
+                }
+              });
+            },
+            { threshold: 0.1 }
+          ); // Trigger when 10% visible
+
+          galleryObserver.observe(galleryScrollContainer);
+        } else {
+          if (!galleryScrollContainer)
+            console.error("Gallery scroll container not found for autoplay.");
+          if (!galleryPrevArrow)
+            console.error("Gallery previous arrow not found.");
+          if (!galleryNextArrow) console.error("Gallery next arrow not found.");
+          if (!gallerySliderWrapper)
+            console.error("Gallery slider wrapper not found.");
+        }
+        // ... (your other JavaScript for menu, header scroll, other sliders, etc.)
+      });
+
+      document.addEventListener("DOMContentLoaded", () => {
+        const animatedElements =
+          document.querySelectorAll(".animate-on-scroll");
+
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("in-view");
+                // Optional: Stop observing once it's visible if you only want the animation once
+                // observer.unobserve(entry.target);
+              } else {
+                // Optional: Remove 'in-view' if you want the animation to replay if it scrolls out and back in
+                // entry.target.classList.remove("in-view");
+              }
+            });
+          },
+          {
+            threshold: 0.1, // Trigger when 10% of the element is visible
+          }
+        );
+
+        animatedElements.forEach((element) => {
+          observer.observe(element);
+        });
+      });
+
+      const testimonialItemsToAnimate = document.querySelectorAll(
+        ".animate-testimonial-on-scroll"
+      );
+
+      if (testimonialItemsToAnimate.length > 0) {
+        const testimonialObserver = new IntersectionObserver(
+          (entries, observer) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                entry.target.classList.add("in-view");
+                // Optional: Stop observing the element after it has animated in once
+                observer.unobserve(entry.target);
+              }
+              // Optional: If you want the animation to replay if the user scrolls out and back in
+              // else {
+              //   entry.target.classList.remove("in-view");
+              // }
+            });
+          },
+          {
+            root: null, // Use the viewport as the root
+            threshold: 0.2, // Trigger when 20% of the element is visible
+            // rootMargin: "0px 0px -50px 0px" // Optional: Adjust when the trigger happens (e.g. 50px before it's fully in view from bottom)
+          }
+        );
+
+        testimonialItemsToAnimate.forEach((item) => {
+          testimonialObserver.observe(item);
         });
       }
     </script>

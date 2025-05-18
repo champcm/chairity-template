@@ -515,6 +515,29 @@ header nav ul li a:hover::after {
   line-height: 1.7;
 }
 
+.service-item.animate-on-scroll {
+  opacity: 0;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+.service-item.animate-on-scroll.from-left {
+  transform: translateX(-100px);
+}
+
+.service-item.animate-on-scroll.from-bottom {
+  transform: translateY(100px);
+}
+
+.service-item.animate-on-scroll.from-right {
+  transform: translateX(100px);
+}
+
+.service-item.animate-on-scroll.in-view {
+  /* This class is added by JavaScript */
+  opacity: 1;
+  transform: translateX(0) translateY(0);
+}
+
 /* --- Impact/Stats Section (With Parallax Background) --- */
 .stats {
   /* background: var(--primary-blue); /* REMOVE Solid blue background */
@@ -956,6 +979,25 @@ header nav ul li a:hover::after {
   text-align: center;
 }
 
+/* Initial state for items to be animated */
+.testimonial-item.animate-testimonial-on-scroll {
+  opacity: 0;
+  transform: translateY(100px); /* Start 100px below final position */
+  transition: opacity 0.7s ease-out,
+    transform 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  /*
+    cubic-bezier(0.68, -0.55, 0.265, 1.55) is a common "back" easing function
+    that creates a bounce effect (overshoots and settles).
+    Adjust duration (0.7s) and timing function as needed.
+  */
+}
+
+/* State when the element is in view (class added by JavaScript) */
+.testimonial-item.animate-testimonial-on-scroll.in-view {
+  opacity: 1;
+  transform: translateY(0); /* Move to final position */
+}
+
 .client-photo {
   width: 90px;
   height: 90px;
@@ -1041,6 +1083,141 @@ header nav ul li a:hover::after {
 }
 
 /* In your style.css file */
+
+/* --- Image Gallery Section Styling --- */
+.image-gallery-section {
+  background-color: var(--bg-white); /* Or var(--bg-off-white) */
+  padding: 70px 0;
+}
+
+/* Section heading styles (h2, .sub-heading) are inherited from general rules */
+
+/* Wrapper for arrows and scroll container - uses existing .portfolio-slider-container styles
+   Ensure .portfolio-slider-container has position: relative; if you are reusing it.
+   If you use a new class, like .gallery-slider-wrapper, define it:
+*/
+/*
+.gallery-slider-wrapper {
+  position: relative;
+  display: flex;
+  align-items: center;
+}
+*/
+
+.gallery-scroll-container {
+  display: flex;
+  overflow-x: auto;
+  overflow-y: hidden;
+  padding: 10px 5px;
+  margin: 0 10px;
+  scroll-behavior: smooth; /* Ensures programmatic scrolls are smooth */
+  flex-grow: 1;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.gallery-scroll-container::-webkit-scrollbar {
+  display: none;
+}
+
+.gallery-item {
+  flex: 0 0 auto; /* Prevent items from shrinking or growing */
+  width: 290px; /* Width of each gallery item/image */
+  height: 220px; /* Height of each item (creates roughly 4:3 with 290px width) */
+  margin-right: 18px; /* Space between gallery items */
+  position: relative; /* For positioning the overlay absolutely */
+  overflow: hidden; /* To clip the overlay and image neatly to the item's bounds */
+  background-color: #e9e9e9; /* Placeholder if image is missing */
+  border: 1px solid var(--border-light);
+  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.06); /* Subtle shadow */
+  /* No border-radius for sharp corners */
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added transition for item hover */
+}
+.gallery-item:last-child {
+  margin-right: 0;
+}
+
+.gallery-item:hover {
+  transform: translateY(-5px); /* Lift effect on hover */
+  box-shadow: 0 6px 12px rgba(103, 128, 159, 0.15); /* Themed shadow on hover */
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover; /* Ensures image covers the item area, may crop */
+  display: block;
+  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother zoom transition */
+}
+
+.gallery-item:hover img {
+  transform: scale(1.12); /* Subtle zoom effect on the image itself on hover */
+}
+
+.image-description-overlay {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  background-color: rgba(
+    var(--primary-blue-rgb),
+    0.88
+  ); /* Theme blue with good opacity */
+  color: var(--text-light);
+  padding: 10px 15px; /* Padding for the description text */
+  box-sizing: border-box;
+
+  opacity: 0;
+  visibility: hidden;
+  transform: translateY(100%); /* Start slid down */
+  transition: opacity 0.3s ease-out, visibility 0s ease 0.3s,
+    transform 0.3s ease-out;
+}
+
+.gallery-item:hover .image-description-overlay {
+  opacity: 1;
+  visibility: visible;
+  transform: translateY(0); /* Slide into view */
+  transition-delay: 0.05s; /* Slight delay for overlay to appear after image zoom starts */
+}
+
+.image-description-overlay p {
+  margin: 0;
+  font-size: 0.88em;
+  line-height: 1.45;
+  /* Simple text styling, you can add more (e.g., max lines with ellipsis) */
+}
+
+/* Ensure your .scroll-arrow, .prev-arrow, .next-arrow styles are defined.
+   They should be similar to what you have for .portfolio-slider-container for consistency.
+   Example (if you haven't centralized them):
+.portfolio-slider-container .scroll-arrow { // Or .gallery-slider-wrapper .scroll-arrow
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  background-color: rgba(80, 102, 128, 0.7);
+  color: var(--text-light);
+  border: none;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
+  font-size: 1.4em;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 10;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  padding: 0;
+  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  transition: background-color 0.3s ease, transform 0.2s ease;
+}
+.portfolio-slider-container .scroll-arrow:hover {
+  background-color: var(--primary-blue-darker);
+  transform: translateY(-50%) scale(1.1);
+}
+.portfolio-slider-container .prev-arrow { left: 10px; }
+.portfolio-slider-container .next-arrow { right: 10px; }
+*/
 
 /* --- Footer --- */
 footer {
