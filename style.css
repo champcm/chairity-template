@@ -726,6 +726,9 @@ header nav ul li a:hover::after {
 
 /* Responsive for video showcase */
 @media (max-width: 768px) {
+  .hero-content h3 {
+    white-space: normal; /* Allow text to wrap on smaller screens */
+  }
   .portfolio-slider-container {
     margin: 0; /* Reset negative margin if container has no padding on mobile */
   }
