@@ -202,10 +202,20 @@ header .logo {
 
 header .logo img {
   /* max-height: 45px; */ /* This will be the smaller size */
-  max-height: 80px; /* Initial ENLARGED size */
+  max-height: 120px; /* Initial ENLARGED size */
   width: auto;
   display: block;
   transition: max-height 0.3s ease-in-out; /* Smooth transition for logo size */
+  /* NEW: Glow effect for the logo image */
+  filter: drop-shadow(0 0 7px rgba(255, 242, 170, 0.5));
+  /*
+    Explanation of drop-shadow values:
+    - 0 (horizontal offset): No shift left/right.
+    - 0 (vertical offset): No shift up/down.
+    - 7px (blur radius): How soft and spread out the glow is. Adjust for desired intensity.
+    - rgba(255, 255, 255, 0.5): Glow color. This is white (rgb(255,255,255)) with 50% opacity.
+                                 Adjust opacity (0.5) for more or less subtlety.
+  */
 }
 
 /* Styles for when the header is scrolled */
@@ -221,6 +231,7 @@ header.scrolled {
 
 header.scrolled .logo img {
   max-height: 45px; /* Normal/SMALLER logo size when scrolled */
+  filter: none;
 }
 
 header nav ul {
