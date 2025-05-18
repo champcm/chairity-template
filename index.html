@@ -443,7 +443,7 @@
       }
 
       // --- Existing Header Shrink on Scroll ---
-      const scrollThreshold = 50; // Shrink after scrolling this many pixels
+      const scrollThreshold = 300; // Shrink after scrolling this many pixels
       window.addEventListener("scroll", function () {
         if (window.scrollY > scrollThreshold) {
           header.classList.add("scrolled");
