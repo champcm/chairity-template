@@ -354,14 +354,14 @@ header nav ul li a:hover::after {
   letter-spacing: 0.5px;
 }
 
-.hero h1 {
-  /* Main Slogan */
+.hero-content h1 {
   font-size: 3.2em;
   color: var(--text-light); /* Pure White */
   margin-bottom: 1.5rem;
   font-weight: 600;
-  line-height: 1.25;
+  line-height: 1.25; /* Default line height for single line */
   text-transform: none;
+  /* text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6); /* Existing glow effect */
 }
 
 .hero p {
@@ -383,6 +383,10 @@ header nav ul li a:hover::after {
   padding: 14px 30px;
   font-size: 0.95em;
   /* text-shadow: none; /* Uncomment if buttons are undesirably inheriting the glow */
+}
+
+.mobile-break {
+  display: none;
 }
 
 /* --- About Us Section --- */
@@ -726,6 +730,15 @@ header nav ul li a:hover::after {
 
 /* Responsive for video showcase */
 @media (max-width: 768px) {
+  .hero-content h1 {
+    font-size: 2.2em; /* Example: Slightly smaller font size for H1 on mobile */
+    line-height: 1.3; /* Adjust line height for multi-line H1 on mobile */
+  }
+
+  .mobile-break {
+    display: block; /* Make the <br> tag active on mobile, forcing a line break */
+  }
+
   .hero-content h3 {
     white-space: normal; /* Allow text to wrap on smaller screens */
   }
@@ -743,6 +756,11 @@ header nav ul li a:hover::after {
 }
 
 @media (max-width: 480px) {
+  .hero-content h1 {
+    font-size: 1.9em; /* Further adjust font size if needed */
+    line-height: 1.4;
+  }
+
   .video-item {
     width: 200px; /* Even smaller on very small screens */
   }
