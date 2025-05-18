@@ -5,7 +5,7 @@
     <meta
       name="viewport"
       content="width=device-width, initial-scale=1.0" />
-    <title>Your Website Title</title>
+    <title>Lady Wheeler</title>
     <link
       rel="stylesheet"
       href="style.css" />
@@ -13,7 +13,11 @@
   <body>
     <header>
       <div class="container">
-        <h1 class="logo">Website Logo</h1>
+        <h1 class="logo">
+          <img
+            src="logo.png"
+            alt="Lady Wheeler Logo" />
+        </h1>
         <nav>
           <ul>
             <li>
@@ -142,37 +146,21 @@
 
     <section
       id="portfolio"
-      class="portfolio">
+      class="portfolio video-showcase">
       <div class="container">
-        <h2>Recent Works</h2>
-        <div class="portfolio-grid">
-          <div class="portfolio-item">
-            <img
-              src="https://picsum.photos/seed/picsum3/600/450"
-              alt="Portfolio Item 1" />
-            <div class="portfolio-overlay">
-              <h4>Project Title 1</h4>
-              <p>Category</p>
-            </div>
-          </div>
-          <div class="portfolio-item">
-            <img
-              src="https://picsum.photos/seed/picsum4/600/450"
-              alt="Portfolio Item 2" />
-            <div class="portfolio-overlay">
-              <h4>Project Title 2</h4>
-              <p>Category</p>
-            </div>
-          </div>
-          <div class="portfolio-item">
-            <img
-              src="https://picsum.photos/seed/picsum5/600/450"
-              alt="Portfolio Item 3" />
-            <div class="portfolio-overlay">
-              <h4>Project Title 3</h4>
-              <p>Category</p>
-            </div>
-          </div>
+        <h2>Latest Videos</h2>
+        <div class="portfolio-slider-container">
+          <button
+            class="scroll-arrow prev-arrow"
+            aria-label="Previous Videos">
+            &lt;
+          </button>
+          <div class="video-scroll-container"></div>
+          <button
+            class="scroll-arrow next-arrow"
+            aria-label="Next Videos">
+            &gt;
+          </button>
         </div>
       </div>
     </section>
@@ -289,13 +277,228 @@
     </footer>
 
     <script>
+      // --- Existing Mobile Menu Toggle ---
       const menuToggle = document.querySelector(".menu-toggle");
-      const nav = document.querySelector("header nav");
+      const nav = document.querySelector("header nav"); // Mobile navigation container
+      const header = document.querySelector("header");
+
+      // --- YouTube Video Showcase Logic ---
+      const videoScrollContainer = document.querySelector(
+        ".video-scroll-container"
+      );
+      const prevArrow = document.querySelector(".prev-arrow");
+      const nextArrow = document.querySelector(".next-arrow");
+
+      // Replace with your actual YouTube Data API v3 Key and Channel ID
+      const YOUTUBE_API_KEY = "AIzaSyAY1JTyafrC4ebpfTxVjG8RfsnbZ0AIaFE"; // <-- REPLACE THIS
+      const YOUTUBE_CHANNEL_ID = "UCFBdaMNlTBUNWfXRxSMGJvA"; // <-- REPLACE THIS
+      const MAX_RESULTS = 10; // Number of videos to fetch
 
       if (menuToggle && nav) {
         menuToggle.addEventListener("click", () => {
           nav.classList.toggle("active");
           menuToggle.classList.toggle("active");
+        });
+      }
+
+      // --- Existing Header Shrink on Scroll ---
+      const scrollThreshold = 50; // Shrink after scrolling this many pixels
+      window.addEventListener("scroll", function () {
+        if (window.scrollY > scrollThreshold) {
+          header.classList.add("scrolled");
+        } else {
+          header.classList.remove("scrolled");
+        }
+        // Call function to update active link on scroll (defined below)
+        updateActiveLinkOnScroll();
+      });
+
+      // --- NEW: Active Menu Item Logic ---
+      const navLinks = document.querySelectorAll("header nav ul li a");
+      const sections = document.querySelectorAll("section[id]"); // Get all sections with an ID
+
+      // Function to remove .active class from all nav links
+      function removeActiveClasses() {
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+        });
+      }
+
+      // 1. Handle click on navigation links
+      navLinks.forEach((link) => {
+        link.addEventListener("click", function (event) {
+          removeActiveClasses();
+          this.classList.add("active");
+
+          // Close mobile menu if active and it's a link click
+          if (nav.classList.contains("active")) {
+            nav.classList.remove("active");
+            menuToggle.classList.remove("active");
+          }
+          // Smooth scroll is handled by CSS (html { scroll-behavior: smooth; })
+          // If you were using JS for smooth scroll, it would go here.
+        });
+      });
+
+      // 2. Handle scroll to update active menu item (Scrollspy)
+      function updateActiveLinkOnScroll() {
+        let currentSectionId = "";
+        const headerHeight = header.offsetHeight; // Get current header height for offset
+
+        sections.forEach((section) => {
+          const sectionTop = section.offsetTop - headerHeight - 20; // Adjusted for header and a small buffer
+          const sectionBottom = sectionTop + section.offsetHeight;
+
+          // Check if current scroll position is within this section
+          if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
+            currentSectionId = section.getAttribute("id");
+          }
+        });
+
+        // If no section is "active" (e.g., at the very top or very bottom beyond section content)
+        // you might want to default to "home" or the last known section.
+        // For the very top, let's ensure "home" is active if above the first actual section's trigger point.
+        if (
+          window.scrollY <
+          document.getElementById(sections[0].id)?.offsetTop - headerHeight - 20
+        ) {
+          currentSectionId = "home"; // Assuming your first link's href is #home
+        }
+
+        // Now update the active class on links
+        navLinks.forEach((link) => {
+          link.classList.remove("active");
+          // Check if the link's href matches the current section ID
+          // Or if it's the "home" link and currentSectionId is "home"
+          if (link.getAttribute("href") === "#" + currentSectionId) {
+            link.classList.add("active");
+          }
+        });
+
+        // Special case for when scrolled to the very bottom of the page
+        // If the bottom is reached, activate the last section's link
+        if (
+          window.innerHeight + window.scrollY + 5 >=
+          document.body.offsetHeight
+        ) {
+          // +5px buffer
+          const lastSectionId = sections[sections.length - 1].id;
+          removeActiveClasses();
+          document
+            .querySelector(`header nav ul li a[href="#${lastSectionId}"]`)
+            ?.classList.add("active");
+        }
+      }
+
+      // Initial call to set active link on page load (in case the page loads on a scrolled position)
+      updateActiveLinkOnScroll();
+
+      async function fetchYouTubeChannelVideos(apiKey, channelId, maxResults) {
+        if (!videoScrollContainer) return;
+        videoScrollContainer.innerHTML =
+          '<p style="padding: 20px; color: var(--text-dark);">Loading videos...</p>'; // Loading message
+
+        try {
+          // Step 1: Get the uploads playlist ID from the channel ID
+          const channelResponse = await fetch(
+            `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${channelId}&key=${apiKey}`
+          );
+          if (!channelResponse.ok) {
+            const errorData = await channelResponse.json();
+            throw new Error(
+              `YouTube API Error (Channel): ${errorData.error.message}`
+            );
+          }
+          const channelData = await channelResponse.json();
+
+          if (!channelData.items || channelData.items.length === 0) {
+            throw new Error(
+              "YouTube channel not found or has no content details."
+            );
+          }
+          const uploadsPlaylistId =
+            channelData.items[0].contentDetails.relatedPlaylists.uploads;
+
+          // Step 2: Get videos from the uploads playlist
+          const playlistResponse = await fetch(
+            `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=${maxResults}&key=${apiKey}`
+          );
+          if (!playlistResponse.ok) {
+            const errorData = await playlistResponse.json();
+            throw new Error(
+              `YouTube API Error (Playlist): ${errorData.error.message}`
+            );
+          }
+          const playlistData = await playlistResponse.json();
+
+          displayVideos(playlistData.items);
+        } catch (error) {
+          console.error("Error fetching YouTube videos:", error);
+          if (videoScrollContainer) {
+            videoScrollContainer.innerHTML = `<p style="padding: 20px; color: red;">Failed to load videos: ${error.message}. Please check your API key and Channel ID.</p>`;
+          }
+        }
+      }
+
+      function displayVideos(videos) {
+        if (!videoScrollContainer) return;
+        videoScrollContainer.innerHTML = ""; // Clear loading message or previous videos
+
+        if (!videos || videos.length === 0) {
+          videoScrollContainer.innerHTML =
+            '<p style="padding: 20px; color: var(--text-dark);">No videos found.</p>';
+          return;
+        }
+
+        videos.forEach((video) => {
+          const snippet = video.snippet;
+          const videoId = snippet.resourceId.videoId;
+          const title = snippet.title;
+          // Using mqdefault (320x180) for decent quality and size. Others: default, hqdefault, sddefault, maxresdefault
+          const thumbnailUrl = snippet.thumbnails.medium
+            ? snippet.thumbnails.medium.url
+            : "https://via.placeholder.com/320x180?text=No+Thumbnail";
+
+          const videoItemHTML = `
+            <div class="video-item">
+                <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener noreferrer" title="${title}">
+                    <img src="${thumbnailUrl}" alt="${title}">
+                    <div class="video-info">
+                        <h4>${title}</h4>
+                    </div>
+                </a>
+            </div>
+        `;
+          videoScrollContainer.innerHTML += videoItemHTML;
+        });
+      }
+
+      // Call the function to fetch videos when the page loads
+      // Ensure API Key and Channel ID are set before calling
+      if (
+        YOUTUBE_API_KEY !== "YOUR_YOUTUBE_API_KEY" &&
+        YOUTUBE_CHANNEL_ID !== "YOUR_YOUTUBE_CHANNEL_ID"
+      ) {
+        fetchYouTubeChannelVideos(
+          YOUTUBE_API_KEY,
+          YOUTUBE_CHANNEL_ID,
+          MAX_RESULTS
+        );
+      } else if (videoScrollContainer) {
+        videoScrollContainer.innerHTML =
+          '<p style="padding: 20px; color: var(--text-dark);">Please configure YouTube API Key and Channel ID in the script.</p>';
+      }
+
+      // Scroll Arrow Functionality
+      if (prevArrow && nextArrow && videoScrollContainer) {
+        const scrollAmount = 300; // Amount to scroll in pixels, adjust as needed (e.g., video item width + margin)
+
+        nextArrow.addEventListener("click", () => {
+          videoScrollContainer.scrollLeft += scrollAmount;
+        });
+
+        prevArrow.addEventListener("click", () => {
+          videoScrollContainer.scrollLeft -= scrollAmount;
         });
       }
     </script>
