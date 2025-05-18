@@ -1003,27 +1003,8 @@ header nav ul li a:hover::after {
 .contact-info {
   flex: 1;
   min-width: 280px;
-}
-.contact-info h3 {
-  margin-bottom: 20px;
-  font-size: 1.7em;
-  color: var(--primary-blue-darker);
-}
-.contact-info p {
-  margin-bottom: 12px;
-  font-size: 1em;
-  color: var(--text-dark);
-  opacity: 0.9;
-  display: flex;
-  align-items: flex-start;
-}
-.contact-info p i {
-  /* For Font Awesome icons */
-  color: var(--primary-blue);
-  margin-right: 12px;
-  font-size: 1.2em;
-  width: 22px;
-  margin-top: 2px;
+  padding-top: 0; /* This might be okay or you might want some padding */
+  /* Any background-color or specific text styling for address details will no longer apply here */
 }
 
 /* --- Footer --- */
