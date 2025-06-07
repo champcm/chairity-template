@@ -47,12 +47,14 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
+  /* font-family will be inherited from body or set on specific elements */
 }
 
 .container {
   width: 90%;
   max-width: 1140px;
-  margin: 0 auto;
+  margin: auto;
+  overflow: hidden;
 }
 
 h1, h2, h3, h4, h5, h6 {
@@ -146,7 +148,6 @@ section > .container > h2 {
   background-color: var(--primary-blue);
 }
 
-
 /* ==========================================================================
    3. HEADER
    ========================================================================== */
@@ -232,7 +233,7 @@ header nav ul li a::after {
 
 header nav ul li a.active::after,
 header nav ul li a:hover::after {
-  width: calc(100% - 30px);
+  width: calc(100% - 10px);
 }
 
 .menu-toggle {
@@ -344,6 +345,7 @@ header nav ul li a:hover::after {
   align-items: center;
   gap: 50px;
 }
+
 .about-us .about-text h2 {
   text-align: left;
 }
@@ -711,7 +713,6 @@ footer .container {
 .join-us-actions .delay-3.in-view { transition-delay: 0.6s; }
 
 
-/* --- Media Queries --- */
 @media (max-width: 992px) {
   h1 { font-size: 2.2em; }
   h2 { font-size: 1.9em; }
@@ -733,15 +734,13 @@ footer .container {
 @media (max-width: 768px) {
   section[id] { scroll-margin-top: 70px; }
 
-  header .container {
-    overflow: visible; /* Allow mobile nav to drop down */
-  }
   header nav {
     display: none;
     position: absolute;
-    top: 100%;
+    top: 100%; /* Positioned relative to the header */
     left: 0;
-    width: 100%;
+    right: 0; /* Ensures full viewport width */
+    width: auto; /* Let left/right define width */
     background-color: var(--primary-blue);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 8px 0;
@@ -751,6 +750,42 @@ footer .container {
   header nav.active { display: block; }
   header nav ul { flex-direction: column; align-items: center; }
   header nav ul li { margin: 10px 0; width: 100%; text-align: center; }
+
+  header nav ul li a {
+    color: var(--text-light);
+    padding: 10px 15px; /* Your current padding */
+    position: relative;
+    font-weight: 500;
+    text-transform: none;
+    font-size: 0.95em;
+    letter-spacing: 0.2px;
+    transition: opacity 0.3s ease, background-color 0.3s ease;
+    /* border-radius: 3px; /* Optional for block effect */
+  }
+
+  header nav ul li a.active,
+  header nav ul li a:hover {
+    color: var(--text-light);
+    opacity: 1;
+  }
+
+  /* MODIFIED Underline Styles */
+  header nav ul li a::after {
+    content: "";
+    position: absolute;
+    width: 0; /* Initial width: 0, expands on hover/active */
+    height: 1px;
+    bottom: 5px; /* Distance from the bottom of the <a> tag's padding box */
+    left: 50%;
+    transform: translateX(-50%); /* Centers the underline */
+    background-color: var(--text-light);
+    transition: width 0.3s ease;
+  }
+
+  header nav ul li a.active::after,
+  header nav ul li a:hover::after {
+    width: calc(100% - 10px); /* Spans the content area within the padding */
+  }
 
   .menu-toggle { display: block; }
   .menu-toggle.active span:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
@@ -776,6 +811,14 @@ footer .container {
   .hero { min-height: 75vh; }
   .hero h1 { font-size: 1.9em; }
   .hero h2 { font-size: 1em; }
-  header .logo img { max-height: 40px; }
-  header, header.scrolled { padding: 12px 0; }
+  header .logo img {
+    max-height: 45px;
+  } /* Slightly smaller logo on very small screens */
+  .container {
+    width: 95%;
+  }
+  header {
+    padding-top: 25px; /* Initial larger padding */
+    padding-bottom: 25px; /* Initial larger padding */
+  }
 }
