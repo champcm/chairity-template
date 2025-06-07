@@ -1,108 +1,79 @@
-/* style.css ("Lady Wheeler" Logo Inspired - Blue & White - Final Consolidation) */
+/* ==========================================================================
+   1. FONT & VARIABLES
+   ========================================================================== */
+
+/* NOTE: Ensure the font name in `font-family` matches the font file you intend to use. */
 @font-face {
-  font-family: "TCS Dango"; /* You can name this whatever you like, e.g., 'LadyWheelerCustomFont' */
+  font-family: "Bai Jamjuree"; /* Changed name for clarity */
   src: url("fonts/BaiJamjuree-Regular.ttf") format("truetype");
-  /* Adjust the url() path if your font file is located elsewhere.
-     If it's in the same directory as your style.css, it would be:
-     src: url('TCS-4Dango-PersonalOnly.ttf') format('truetype');
-  */
-  font-weight: normal; /* Assuming this font file is for normal weight */
-  font-style: normal; /* Assuming this font file is for normal style */
+  font-weight: normal;
+  font-style: normal;
+  font-display: swap; /* Improves font loading performance */
 }
 
-/* --- Color Palette Variables (Approximation from Logo) --- */
+/* Color Palette */
 :root {
   --primary-blue: #67809f;
-  --primary-blue-rgb: 103, 128, 159; /* Added RGB version for easy use in rgba */
   --primary-blue-darker: #506680;
   --primary-blue-lighter: #8d9db5;
+  --primary-blue-rgb: 103, 128, 159; /* RGB version for use in rgba() */
+  --highlight-gold: #fffacd;
   --text-dark: #333a40;
   --text-light: #ffffff;
   --bg-white: #ffffff;
   --bg-off-white: #f8f9fa;
   --border-light: #dde2e7;
-  --text-light-secondary: #d9f1eb;
 }
 
-/* --- General Styles --- */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-  /* font-family will be inherited from body or set on specific elements */
-}
+/* ==========================================================================
+   2. GENERAL & BASE STYLES
+   ========================================================================== */
 
 html {
   scroll-behavior: smooth;
 }
 
 body {
-  font-family: "TCS Dango", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif; /* Added 'TCS Dango' as the primary font */
+  font-family: "Bai Jamjuree", "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
   line-height: 1.7;
   color: var(--text-dark);
   background-color: var(--bg-white);
   font-size: 16px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 
-/* --- Custom Scrollbar Styling --- */
-/* Works on Chrome, Edge, and Safari */
-::-webkit-scrollbar {
-  width: 12px;
-  height: 12px;
-}
-
-::-webkit-scrollbar-track {
-  background: var(--bg-off-white);
-}
-
-::-webkit-scrollbar-thumb {
-  background-color: var(--primary-blue-lighter);
-  border: 3px solid var(--bg-off-white);
-  /* No border-radius for sharp corners */
-}
-
-::-webkit-scrollbar-thumb:hover {
-  background-color: var(--primary-blue);
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
 }
 
 .container {
   width: 90%;
   max-width: 1140px;
-  margin: auto;
-  overflow: hidden;
+  margin: 0 auto;
 }
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
-  color: var(
-    --primary-blue-darker
-  ); /* Darker blue for headings for strong presence */
+h1, h2, h3, h4, h5, h6 {
+  color: var(--primary-blue-darker);
   margin-bottom: 1rem;
   font-weight: 600;
   line-height: 1.3;
 }
 
-h1 {
-  font-size: 2.6em;
-}
-h2 {
-  font-size: 2.2em;
-}
-h3 {
-  font-size: 1.7em;
-}
+h1 { font-size: 2.6em; }
+h2 { font-size: 2.2em; }
+h3 { font-size: 1.7em; }
 
 a {
   text-decoration: none;
-  color: var(--primary-blue); /* Primary blue for links */
+  color: var(--primary-blue);
   transition: color 0.3s ease;
 }
+
 a:hover {
-  color: var(--primary-blue-darker); /* Darker blue on hover */
+  color: var(--primary-blue-darker);
 }
 
 ul {
@@ -115,32 +86,29 @@ img {
   display: block;
 }
 
+main {
+  display: block; /* For older browsers */
+}
+
 section {
-  padding: 70px 0; /* Consistent padding */
+  padding: 70px 0;
 }
 
-.sub-heading {
-  display: block;
-  text-align: center;
-  color: var(--primary-blue-lighter); /* Lighter blue for sub-headings */
-  margin-bottom: 10px;
-  font-weight: 500; /* Less aggressive weight */
-  text-transform: uppercase;
-  font-size: 0.9em;
-  letter-spacing: 1px;
+/* Set scroll margin for all sections with an ID to offset the fixed header */
+section[id] {
+  scroll-margin-top: 180px; /* Adjust this value to match your header height */
 }
 
-section > h2 {
-  /* Main section heading */
+section > .container > h2 {
   text-align: center;
   margin-bottom: 50px;
-  font-weight: 600; /* Still strong, but not overly bold */
-  color: var(--primary-blue-darker);
+  font-weight: 600;
 }
 
+/* --- Buttons --- */
 .btn {
   display: inline-block;
-  padding: 12px 28px; /* Adjusted padding */
+  padding: 12px 28px;
   text-transform: uppercase;
   font-weight: 600;
   font-size: 0.9em;
@@ -151,61 +119,53 @@ section > h2 {
 }
 
 .btn-primary {
-  /* Main action - Blue */
   background-color: var(--primary-blue);
   color: var(--text-light);
   border-color: var(--primary-blue);
 }
-
 .btn-primary:hover {
-  color: var(--text-light-secondary);
   background-color: var(--primary-blue-darker);
   border-color: var(--primary-blue-darker);
-  transform: translateY(-2px); /* Subtle lift */
-  box-shadow: 0 3px 8px rgba(103, 128, 159, 0.2); /* Softer shadow with blue tint */
+  transform: translateY(-2px);
+  box-shadow: 0 3px 8px rgba(var(--primary-blue-rgb), 0.2);
 }
 
-.btn-secondary {
-  /* Outline style */
-  background-color: rgba(255, 255, 255, 0.904);
-  color: var(--primary-blue);
-  border: 2px solid var(--primary-blue);
+/* --- Custom Scrollbar --- */
+::-webkit-scrollbar {
+  width: 12px;
+  height: 12px;
 }
-.btn-secondary:hover {
+::-webkit-scrollbar-track {
+  background: var(--bg-off-white);
+}
+::-webkit-scrollbar-thumb {
+  background-color: var(--primary-blue-lighter);
+  border: 3px solid var(--bg-off-white);
+}
+::-webkit-scrollbar-thumb:hover {
   background-color: var(--primary-blue);
-  color: var(--text-light);
-  transform: translateY(-2px);
 }
 
-.btn-white-outline {
-  /* For use on dark backgrounds */
-  background-color: transparent;
-  color: var(--text-light);
-  border: 2px solid var(--text-light);
-}
-.btn-white-outline:hover {
-  background-color: var(--text-light);
-  color: var(--primary-blue-darker); /* Dark blue text on white hover */
-  transform: translateY(-2px);
-}
 
-/* --- Header --- */
-/* --- Header --- */
+/* ==========================================================================
+   3. HEADER
+   ========================================================================== */
+
 header {
-  /* background: var(--primary-blue); */ /* REMOVE THIS or comment out */
-  background-color: rgba(
-    var(--primary-blue-rgb),
-    0.3
-  ); /* MODIFIED: Initial background with 0.3 opacity */
-  padding-top: 25px; /* Initial larger padding */
-  padding-bottom: 25px; /* Initial larger padding */
+  background: rgba(var(--primary-blue-rgb), 0.3);
+  padding: 25px 0;
   position: fixed;
   width: 100%;
   top: 0;
   z-index: 1000;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0); /* Initial shadow can be very subtle or none if bg is semi-transparent */
-  transition: padding 0.3s ease-in-out, background-color 0.3s ease-in-out,
-    box-shadow 0.3s ease-in-out; /* MODIFIED: Added background-color and box-shadow to transition */
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0); /* Initially no shadow */
+  transition: padding 0.3s ease-in-out, background-color 0.3s ease-in-out, box-shadow 0.3s ease-in-out;
+}
+
+header.scrolled {
+  padding: 15px 0;
+  background-color: rgba(var(--primary-blue-rgb), 0.95);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 header .container {
@@ -215,44 +175,22 @@ header .container {
 }
 
 header .logo {
-  /* This is the H1 wrapping the image */
   margin: 0;
   padding: 0;
-  line-height: 0; /* Prevent h1 from adding extra space */
+  line-height: 0;
 }
 
 header .logo img {
-  /* max-height: 45px; */ /* This will be the smaller size */
-  max-height: 120px; /* Initial ENLARGED size */
+  max-height: 120px; 
   width: auto;
   display: block;
-  transition: max-height 0.3s ease-in-out; /* Smooth transition for logo size */
-  /* NEW: Glow effect for the logo image */
+  transition: max-height 0.3s ease-in-out; 
   filter: drop-shadow(0 0 3px rgba(255, 242, 170, 0.7))
     drop-shadow(0 0 8px rgba(255, 242, 170, 0.4));
-  /*
-    Explanation of drop-shadow values:
-    - 0 (horizontal offset): No shift left/right.
-    - 0 (vertical offset): No shift up/down.
-    - 7px (blur radius): How soft and spread out the glow is. Adjust for desired intensity.
-    - rgba(255, 255, 255, 0.5): Glow color. This is white (rgb(255,255,255)) with 50% opacity.
-                                 Adjust opacity (0.5) for more or less subtlety.
-  */
-}
-
-/* Styles for when the header is scrolled */
-header.scrolled {
-  padding-top: 15px; /* Normal/smaller padding */
-  padding-bottom: 15px; /* Normal/smaller padding */
-  background-color: rgba(
-    var(--primary-blue-rgb),
-    0.95
-  ); /* MODIFIED: Background becomes fully transparent */
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1); /* Shadow to define header when bg is transparent */
 }
 
 header.scrolled .logo img {
-  max-height: 45px; /* Normal/SMALLER logo size when scrolled */
+  max-height: 45px;
   filter: none;
 }
 
@@ -265,24 +203,23 @@ header nav ul li {
 }
 
 header nav ul li a {
-  color: var(--text-light); /* Nav links now white for contrast on blue bg */
-  padding: 8px 0;
+  color: var(--text-light);
+  padding: 10px 15px;
   position: relative;
   font-weight: 500;
-  text-transform: none;
   font-size: 0.95em;
-  letter-spacing: 0.2px;
-  transition: color 0.3s ease, opacity 0.3s ease;
+  transition: opacity 0.3s ease, background-color 0.3s ease;
 }
 
 header nav ul li a.active,
 header nav ul li a:hover {
   color: var(--text-light);
-  opacity: 0.8; /* Optional: Slightly dim on hover */
+  /* background-color: rgba(0, 0, 0, 0.15); */
+  opacity: 1;
 }
 
 header nav ul li a::after {
-  content: "";
+  content: '';
   position: absolute;
   width: 0;
   height: 1px;
@@ -295,7 +232,7 @@ header nav ul li a::after {
 
 header nav ul li a.active::after,
 header nav ul li a:hover::after {
-  width: calc(100% - 10px);
+  width: calc(100% - 30px);
 }
 
 .menu-toggle {
@@ -304,138 +241,54 @@ header nav ul li a:hover::after {
 }
 
 .menu-toggle span {
-  /* Hamburger icon lines */
   display: block;
   width: 25px;
   height: 2px;
-  background-color: var(--text-light); /* Hamburger lines now white */
+  background-color: var(--text-light);
   margin: 5px 0;
   transition: 0.3s;
 }
 
-/* --- Hero Section --- */
+/* ==========================================================================
+   4. SECTION-SPECIFIC STYLES
+   ========================================================================== */
+
 /* --- Hero Section --- */
 .hero {
-  background: linear-gradient(
-      rgba(103, 128, 159, 0.75),
-      rgba(103, 128, 159, 0.65)
-    ),
-    url("assest/banner.jpg") no-repeat center center/cover; /* Primary blue overlay, adjust URL */
+  background: linear-gradient(rgba(var(--primary-blue-rgb), 0.75), rgba(var(--primary-blue-rgb), 0.65)),
+    url("assets/banner.jpg") no-repeat center center/cover;
   min-height: 90vh;
   display: flex;
   align-items: center;
   justify-content: center;
   text-align: center;
-  color: var(--text-light); /* This is #FFFFFF */
-  padding: 100px 20px 20px 20px;
+  color: var(--text-light);
   position: relative;
-  position: relative; /* This is crucial for the absolute positioned overlay */
-  overflow: hidden; /* Recommended to contain any grid artifacts */
+  overflow: hidden;
 }
 
 .hero-content {
   position: relative;
   z-index: 1;
-  max-width: 750px;
 }
 
-/* In your style.css file */
-
-/* Make sure this is placed after your :root variables if you use them for the highlight color,
-   or just use a direct hex/rgba value here. */
-
-.hero-content h1,
-.hero-content h2,
-.hero-content h3,
-.hero-content p {
-  /* Glow effect for readability */
-  text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6); /* Existing glow effect */
-}
-
-/* Styles for the main H3 text in the hero section */
-/* Assuming your H3 is inside .hero-content based on the previous CSS rule */
-.hero-content h3 {
-  font-size: 1.3em;
+.hero-content h1, .hero-content h2 {
   color: rgba(255, 255, 255, 0.95);
-  margin-bottom: 0.75rem;
-  font-weight: 400;
-  text-transform: none;
-  letter-spacing: 0.5px;
-  line-height: 1.8;
-  white-space: nowrap; /* This prevents the text from wrapping */
-}
-
-/* NEW: Styles for the highlighted words */
-.hero-content h3 .hero-highlight {
-  color: #fffacd; /* LemonChiffon - a soft, light gold/yellow. Adjust as needed. */
-  /* Alternatively, try a very light cyan for a cooler highlight: */
-  /* color: #E0FFFF; */ /* LightCyan */
-  /* Or make it pure white if the rest of the h3 is slightly dimmer, and add more weight: */
-  /* color: #FFFFFF; */
-  /* font-weight: 600; */ /* Optional: make highlighted text bolder */
-}
-
-.hero-content h2 .hero-highlight-bold {
-  color: #fffacd; /* LemonChiffon - a soft, light gold/yellow. Adjust as needed. */
-  font-weight: 600;
-  /* Alternatively, try a very light cyan for a cooler highlight: */
-  /* color: #E0FFFF; */ /* LightCyan */
-  /* Or make it pure white if the rest of the h3 is slightly dimmer, and add more weight: */
-  /* color: #FFFFFF; */
-  /* font-weight: 600; */ /* Optional: make highlighted text bolder */
-}
-
-/* ... rest of your CSS ... */
-
-.hero h2 {
-  /* Tagline above main heading */
-  font-size: 1.4em;
-  color: rgba(
-    255,
-    255,
-    255,
-    0.95
-  ); /* Increased opacity slightly for better base readability */
-  margin-bottom: 0.75rem;
-  font-weight: 400;
-  text-transform: none;
-  letter-spacing: 0.5px;
+  text-shadow: 0 1px 3px rgba(0, 0, 0, 0.6);
 }
 
 .hero-content h1 {
   font-size: 3.2em;
-  color: var(--text-light); /* Pure White */
   margin-bottom: 1.5rem;
   font-weight: 600;
-  line-height: 1.25; /* Default line height for single line */
-  text-transform: none;
-  /* text-shadow: 0px 1px 3px rgba(0, 0, 0, 0.6); /* Existing glow effect */
 }
 
-.hero p {
-  /* Tagline */
-  font-size: 1.15em;
-  margin-bottom: 2.5rem;
-  color: rgba(255, 255, 255, 0.9); /* Increased opacity slightly */
-  line-height: 1.8;
-  max-width: 600px;
-  margin-left: auto;
-  margin-right: auto;
+.hero-content h2 {
+  font-size: 1.4em;
+  font-weight: 400;
 }
 
-/* Buttons within .hero-content should not inherit this text-shadow
-   if it looks odd, or have their own text-shadow set to 'none'.
-   However, .btn styles usually don't have text-shadow by default. */
-.hero .btn {
-  margin: 10px;
-  padding: 14px 30px;
-  font-size: 0.95em;
-  /* text-shadow: none; /* Uncomment if buttons are undesirably inheriting the glow */
-}
-
-/* --- Hero Section Grid Effect --- */
-
-/* The grid overlay container */
+/* Grid Overlay Effect */
 .hero-grid-overlay {
   position: absolute;
   top: 0;
@@ -443,267 +296,104 @@ header nav ul li a:hover::after {
   width: 100%;
   height: 100%;
   display: grid;
-  z-index: 0; /* Place it behind the .hero-content */
+  z-index: 0;
 }
 
-/* Individual cells within the grid */
 .grid-cell {
-  /* The background will be transparent by default */
-  transition: background-color 0.2s ease; /* Smooth transition for hover/active states */
+  background-color: rgba(255, 255, 255, 0); /* Start fully transparent */
+  transition: background-color 1.5s ease; /* Longer transition for a smoother fade */
   border: 1px solid rgba(60, 84, 114, 0.158); /* Semi-transparent white border */
 }
 
-/* The style for a highlighted cell (on hover or from the random animation) */
-.grid-cell:hover,
-.grid-cell.is-active {
-  background-color: rgba(
-    207,
-    207,
-    207,
-    0.502
-  ); /* White overlay with 50% opacity */
+.grid-cell:hover, .grid-cell.is-active {
+  background-color: rgba(255, 255, 255, 0.4); /* Semi-transparent white */
 }
 
-.mobile-break {
-  display: none;
-}
-
-/* This will be the container for the animated words */
+/* Text Animation: "ความต่างที่เท่าเทียม" */
 .animate-equality-text .hero-highlight-bold {
-  position: relative; /* Needed for the underline pseudo-element */
+  position: relative;
   display: inline-block;
-  white-space: nowrap; /* Prevent words from wrapping during animation */
+  white-space: nowrap;
+  color: var(--highlight-gold);
 }
-
-/* Initial state of the two parts of the text */
-.animate-equality-text .part1,
-.animate-equality-text .part2 {
-  opacity: 0; /* Start invisible */
-  display: inline-block; /* Ensure transform works correctly */
+.animate-equality-text .part1, .animate-equality-text .part2 {
+  opacity: 0;
+  display: inline-block;
 }
-
-/* Keyframe animations for fading in from left and right */
-@keyframes fadeInFromLeft {
-  from {
-    opacity: 0;
-    transform: translateX(-20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-@keyframes fadeInFromRight {
-  from {
-    opacity: 0;
-    transform: translateX(20px);
-  }
-  to {
-    opacity: 1;
-    transform: translateX(0);
-  }
-}
-
-/* Keyframe animation for the underline effect */
-@keyframes drawLine {
-  from {
-    width: 0%;
-  }
-  to {
-    width: 100%;
-  }
-}
-
-/* Apply animations when the parent h2 has the 'start-animation' class */
 .start-animation .part1 {
-  /* "ความต่าง" fades in from the left */
-  animation: fadeInFromLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+  animation: fadeInFromLeft 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
 }
-
 .start-animation .part2 {
-  /* "ที่เท่าเทียม" fades in from the right, with a delay */
-  animation: fadeInFromRight 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s
-    forwards;
+  animation: fadeInFromRight 0.8s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.5s forwards;
 }
-
-/* The uniting underline that appears after the words have animated in */
 .start-animation .hero-highlight-bold::after {
-  content: "";
+  content: '';
   position: absolute;
-  width: 0%; /* Starts with no width */
+  width: 0%;
   height: 2px;
-  background-color: #fffacd; /* Highlight color */
-  bottom: -5px; /* Position below the text */
+  background-color: var(--highlight-gold);
+  bottom: -5px;
   left: 0;
-  animation: drawLine 1.9s ease-out 1.5s forwards; /* Starts after both words appear */
+  animation: drawLine 0.7s ease-out 1.3s forwards;
 }
 
 /* --- About Us Section --- */
-.about-us {
-  background-color: var(--bg-white);
-}
-.about-content {
-  display: flex;
+.about-us .about-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
   align-items: center;
   gap: 50px;
 }
-
-.about-text {
-  flex: 1.2;
-}
-.about-text .sub-heading,
-.about-text > h2 {
+.about-us .about-text h2 {
   text-align: left;
 }
-.about-text > h2 {
-  margin-bottom: 20px;
-}
-.about-text p {
-  margin-bottom: 20px;
-  color: var(--text-dark);
-  font-size: 1.05em;
-}
-/* Assuming "Learn More" button uses class="btn btn-primary" in HTML */
-.about-text .btn {
-  margin-top: 25px;
-}
-
-/* In your style.css file */
-
-.about-image {
-  flex: 1;
-  text-align: center;
-}
-
 .about-image img {
-  display: block;
-  max-width: 100%;
-  height: auto;
-  object-fit: cover; /* Good for maintaining aspect ratio with border-radius */
-
-  /* Bordering blur effect (from previous step) */
   box-shadow: 0 0 15px 5px rgba(0, 0, 0, 0.15);
-  /* You can adjust the shadow color to match your theme, e.g.: */
-  /* box-shadow: 0 0 15px 5px rgba(103, 128, 159, 0.2); */
-
-  /* NEW: Add roundness to the corners */
-  border-radius: 10px; /* Adjust this value for more or less roundness */
-  /* Common values:
-     - 4px to 8px for slightly rounded corners
-     - 15px to 25px for more noticeably rounded corners
-     - 50% for a circle/ellipse (will be a circle if the image's rendered width and height are equal)
-  */
+  border-radius: 10px;
 }
-
-/* --- Styling for the updated About Us Section --- */
-
-/* Remove default list styling */
 .activities-list {
   list-style: none;
   padding: 0;
-  margin: 25px 0; /* Space above and below the list */
+  margin: 25px 0;
 }
-
-/* Style for each list item (icon + text) */
 .activities-list li {
-  display: flex; /* Use flexbox for alignment */
-  align-items: flex-start; /* Aligns icon to the top of the text block */
-  margin-bottom: 18px; /* Space between list items */
-  font-size: 1.05em; /* Slightly larger text for readability */
-  color: var(--text-dark);
+  display: flex;
+  align-items: flex-start;
+  margin-bottom: 18px;
+  font-size: 1.05em;
   line-height: 1.6;
 }
-
-/* Style for the checkmark icon */
 .activity-icon {
-  flex-shrink: 0; /* Prevents the icon from shrinking */
-  margin-right: 15px; /* Space between icon and text */
+  flex-shrink: 0;
+  margin-right: 15px;
   width: 22px;
   height: 22px;
-  color: var(--primary-blue); /* Use theme's primary blue for the icon */
-  margin-top: 3px; /* Fine-tune vertical alignment with the text */
+  color: var(--primary-blue);
+  margin-top: 3px;
 }
-
-/* Style for the blockquote at the end */
 .about-quote {
-  margin-top: 30px; /* Space above the quote */
+  margin-top: 40px;
   padding: 20px;
-  background-color: var(
-    --bg-off-white
-  ); /* Use the theme's off-white background */
-  border-left: 4px solid var(--primary-blue); /* A highlight bar using the theme's blue */
-  font-style: italic; /* Italicize the quote text */
+  background-color: var(--bg-off-white);
+  border-left: 4px solid var(--primary-blue);
+  font-style: italic;
 }
-
 .about-quote p {
   margin: 0;
-  color: var(--primary-blue-darker); /* Use a darker blue for emphasis */
-  font-size: 1.1em; /* Slightly larger font size for the quote */
+  color: var(--primary-blue-darker);
+  font-size: 1.1em;
   line-height: 1.7;
 }
 
-/* This class will be added by JavaScript to the <p> tag */
-.about-quote p.is-typing {
-  position: relative;
-  /* Ensures the blinking cursor pseudo-element is positioned correctly */
-}
-
-/* The blinking cursor effect */
+/* Typing Effect for Quote */
 .about-quote p.is-typing::after {
-  content: "|"; /* Using a pipe character as the cursor */
-  font-weight: 300; /* Make the cursor a bit thinner */
+  content: '|';
+  font-weight: 300;
   margin-left: 3px;
   animation: blink 1s infinite;
 }
 
-/* The animation that makes the cursor blink */
-@keyframes blink {
-  0%,
-  100% {
-    opacity: 1;
-  }
-  50% {
-    opacity: 0;
-  }
-}
-
-/* Target the individual list items inside the animated list */
-.animate-list-on-scroll > li {
-  /* Initial hidden state */
-  opacity: 0;
-  transform: translateX(50px); /* Start positioned 50px to the right */
-  /* You can also increase the transition duration for a slower individual animation */
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-/* When the parent <ul> gets the '.in-view' class from JavaScript,
-   this style will apply to the list items, triggering the animation. */
-.animate-list-on-scroll.in-view > li {
-  opacity: 1;
-  transform: translateX(0); /* Move to final position */
-}
-
-/* Staggered Delay: Each list item will start its animation slightly after the previous one.
-   The delay values have been increased for a slower effect. */
-.animate-list-on-scroll.in-view > li:nth-child(1) {
-  transition-delay: 0.2s; /* Was 0.1s */
-}
-.animate-list-on-scroll.in-view > li:nth-child(2) {
-  transition-delay: 1.4s; /* Was 0.2s */
-}
-.animate-list-on-scroll.in-view > li:nth-child(3) {
-  transition-delay: 2.6s; /* Was 0.3s */
-}
-.animate-list-on-scroll.in-view > li:nth-child(4) {
-  transition-delay: 3.8s; /* Was 0.4s */
-}
-/* If you add more list items, continue this pattern */
-.animate-list-on-scroll.in-view > li:nth-child(5) {
-  transition-delay: 4s; /* Was 0.5s */
-}
-
-/* --- Services / What We Do Section --- */
+/* --- Services Section --- */
 .services {
   background-color: var(--bg-off-white);
 }
@@ -712,7 +402,6 @@ header nav ul li a:hover::after {
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 25px;
 }
-
 .service-item {
   background-color: var(--bg-white);
   padding: 35px 30px;
@@ -720,805 +409,91 @@ header nav ul li a:hover::after {
   border: 1px solid var(--border-light);
   transition: transform 0.3s ease, box-shadow 0.3s ease;
 }
-
 .service-item:hover {
   transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(103, 128, 159, 0.1);
+  box-shadow: 0 8px 20px rgba(var(--primary-blue-rgb), 0.1);
 }
-
 .service-icon {
   display: inline-block;
   width: 55px;
   height: 55px;
   margin-bottom: 5px;
-  /* If using Font Awesome icons: color: var(--primary-blue); font-size: 2.2em; */
-}
-
-.service-item h3 {
-  font-size: 1.4em;
-  margin-bottom: 10px;
-  color: var(--primary-blue-darker);
-  font-weight: 600;
 }
 .service-item p {
   font-size: 0.95em;
-  color: var(--text-dark);
-  opacity: 0.9;
-  line-height: 1.7;
 }
 
-.service-item.animate-on-scroll {
-  opacity: 0;
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-}
-
-.service-item.animate-on-scroll.from-left {
-  transform: translateX(-100px);
-}
-
-.service-item.animate-on-scroll.from-bottom {
-  transform: translateY(100px);
-}
-
-.service-item.animate-on-scroll.from-right {
-  transform: translateX(100px);
-}
-
-.service-item.animate-on-scroll.in-view {
-  /* This class is added by JavaScript */
-  opacity: 1;
-  transform: translateX(0) translateY(0);
-}
-
-/* --- Impact/Stats Section (With Parallax Background) --- */
-.stats {
-  /* background: var(--primary-blue); /* REMOVE Solid blue background */
-
-  /* Parallax Background Image Properties */
-  background-image: url("assest/background.jpg"); /* REPLACE with your image URL */
-  background-attachment: fixed; /* This creates the parallax effect */
-  background-position: center; /* Center the image */
-  background-repeat: no-repeat; /* Do not repeat the image */
-  background-size: cover; /* Cover the entire area, maintain aspect ratio */
-
-  color: var(--text-light); /* Text color remains white */
-  padding: 180px 0; /* Increased padding for better parallax visibility */
-  text-align: center;
-  position: relative; /* Crucial for the overlay pseudo-element */
-  overflow: hidden; /* Good practice with full-cover pseudo-elements */
-}
-
-.stats::before {
-  /* Overlay to ensure text readability over the image */
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  /* Using a semi-transparent version of your theme's darker blue for the overlay */
-  background-color: rgba(
-    80,
-    102,
-    128,
-    0.75
-  ); /* This is var(--primary-blue-darker) #506680 with 75% opacity */
-  /* Alternative using your main primary blue: background-color: rgba(103, 128, 159, 0.75); */
-  z-index: 1; /* Overlay sits above the background image */
-}
-
-/* Ensure the actual content (container with grid) sits above the overlay */
-.stats .container {
-  position: relative;
-  z-index: 2;
-}
-
-/* Sub-heading like "Our Impact" above the main section title */
-.stats .sub-heading {
-  color: rgba(255, 255, 255, 0.9); /* Remains light */
-  position: relative; /* Ensure it's part of the z-index stack if container isn't direct parent */
-  z-index: 2;
-}
-
-/* Main section title like "Our Achievements" */
-.stats > h2 {
-  color: var(--text-light); /* Remains white */
-  margin-bottom: 40px;
-  position: relative; /* Ensure it's part of the z-index stack */
-  z-index: 2;
-}
-
-/* The .stats-grid and its children (.stat-item h3, .stat-item p)
-   are inside .stats .container, so they will automatically be above
-   the overlay due to .stats .container having z-index: 2.
-   Their text colors are already white, which is good. */
-
-/* .stats-grid, .stat-item h3, .stat-item p styles remain as they were: */
-.stats-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 25px;
-  /* position: relative; z-index: 2; /* Not needed here if .container handles it */
-}
-
-.stat-item h3 {
-  font-size: 2.8em;
-  color: var(--text-light);
-  margin-bottom: 5px;
-  font-weight: 700;
-}
-
-.stat-item p {
-  font-size: 1em;
-  color: var(--text-light);
-  opacity: 0.9;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  font-weight: 400;
-}
-
-/* --- Styling for Belief Section --- */
-
+/* --- Belief Section --- */
 .belief-section.parallax-bg {
-  position: relative;
-  padding: 100px 0; /* More padding for a spacious feel */
-  color: var(--text-light); /* White text for readability on dark background */
-
-  /* Parallax Background Image Properties */
-  /* ===> REPLACE THIS URL with your chosen background image <=== */
-  background-image: url("assest/background.jpg");
-  background-attachment: fixed; /* This creates the parallax effect */
-  background-position: center;
-  background-repeat: no-repeat;
-  background-size: cover;
+    position: relative;
+    padding: 100px 0;
+    color: var(--text-light);
+    background-image: url('assets/belief-bg.jpg');
+    background-attachment: fixed;
+    background-position: center;
+    background-size: cover;
 }
-
-/* Add a semi-transparent dark overlay to ensure text is always readable */
 .belief-section.parallax-bg::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(33, 52, 75, 0.75); /* Dark overlay with 55% opacity */
-  z-index: 1;
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(33, 52, 75, 0.75);
+    z-index: 1;
 }
-
 .belief-content {
-  position: relative;
-  z-index: 2; /* Ensure content is on top of the overlay */
-  text-align: center;
-  max-width: 900px; /* Constrain width for better readability */
-  margin: 0 auto; /* Center the content block */
+    position: relative;
+    z-index: 2;
+    text-align: center;
+    max-width: 800px;
+    margin: 0 auto;
 }
-
 .belief-content h2 {
-  color: rgb(246, 255, 205); /* Changed to a soft gold highlight color */
-  opacity: 1; /* Set to full opacity to make the color stand out */
-  font-size: 1.5em;
-  text-transform: uppercase;
-  letter-spacing: 2px;
-  margin-bottom: 30px;
-  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5); /* Add a subtle shadow for better readability */
+    color: var(--highlight-gold);
+    opacity: 1;
+    font-size: 1.5em;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    margin-bottom: 30px;
+    text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
 }
-
 .belief-content blockquote {
-  border: none; /* Remove any default blockquote styling */
-  padding: 0;
-  margin: 0;
-  font-size: 1.8em; /* Large, impactful font size */
-  line-height: 1.7;
-  font-weight: 500;
+    border: none;
+    padding: 0;
+    margin: 0;
+    font-size: 1.8em;
+    line-height: 1.7;
+    font-weight: 500;
 }
-
 .belief-content blockquote p {
-  margin-bottom: 1em;
-  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add shadow for better readability */
+    margin-bottom: 1em;
+    text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5);
 }
-
-/* Style for the final impactful line */
 .belief-content blockquote p.final-line {
-  font-weight: 600; /* Make it slightly bolder */
-  color: #fffacd; /* Use the same highlight color as hero section */
+    font-weight: 600;
+    color: var(--highlight-gold);
 }
-
-/* Style for the attribution line */
 .belief-content blockquote cite {
-  display: block;
-  margin-top: 30px;
-  font-size: 0.7em; /* Smaller font size */
-  font-style: normal;
-  opacity: 0.85;
+    display: block;
+    margin-top: 30px;
+    font-size: 0.7em;
+    font-style: normal;
+    opacity: 0.85;
 }
 
-/* Responsive adjustments for smaller screens */
-@media (max-width: 768px) {
-  .belief-section.parallax-bg {
-    background-attachment: scroll; /* Disable parallax on mobile for better performance */
-    padding: 80px 0;
-  }
-  .belief-content blockquote {
-    font-size: 1.5em; /* Adjust font size for mobile */
-  }
-}
-
-@media (max-width: 480px) {
-  .belief-content blockquote {
-    font-size: 1.2em;
-  }
-}
-
-/* --- How You Can Help / CTA Section (Optional) --- */
-.cta-section {
-  background-color: var(--bg-off-white);
-  padding: 70px 0;
-  text-align: center;
-}
-.cta-section .sub-heading {
-  color: var(--primary-blue-lighter);
-}
-.cta-section h2 {
-  color: var(--primary-blue-darker);
-  margin-bottom: 20px;
-}
-.cta-section p {
-  max-width: 650px;
-  margin: 0 auto 30px auto;
-  font-size: 1.1em;
-  color: var(--text-dark);
-  opacity: 0.9;
-}
-/* CTA button would use .btn-primary (Blue) or .btn-secondary (Outline Blue) */
-
-/* --- Portfolio/Video Showcase Section (Updated for YouTube Videos) --- */
-.portfolio.video-showcase {
-  /* Add video-showcase class to the section if needed */
-  background-color: var(--bg-off-white); /* Or var(--bg-off-white) */
-}
-
+/* --- Sliders (YouTube, Featured Content, Gallery) --- */
 .portfolio-slider-container {
-  position: relative; /* Crucial for absolute positioning of arrows */
-  display: flex; /* Keeps video container and allows for potential future non-absolute elements */
+  position: relative;
+  display: flex;
   align-items: center;
-  /* If you want arrows to be slightly inset from the very edges of the container: */
-  /* padding: 0 50px; /* Example: leaves space for arrows if they were in flow but pushing content */
-  /* However, for overlay, we'll position arrows absolutely */
 }
-
 .scroll-arrow {
-  position: absolute; /* Position arrows over the content */
-  top: 50%; /* Vertically center */
-  transform: translateY(-50%); /* Adjust for exact vertical centering */
-  background-color: rgba(
-    80,
-    102,
-    128,
-    0.7
-  ); /* var(--primary-blue-darker) with opacity */
-  color: var(--text-light);
-  border: none;
-  width: 44px; /* Define a specific width for the circle */
-  height: 44px; /* Define a specific height for the circle */
-  border-radius: 50%; /* Makes it a circle */
-  font-size: 1.4em; /* Adjust size of arrow character < or > */
-  font-weight: bold;
-  cursor: pointer;
-  z-index: 10; /* Ensure arrows are above the video items */
-  transition: background-color 0.3s ease, transform 0.2s ease;
-  display: flex; /* For centering the arrow character inside the circle */
-  align-items: center;
-  justify-content: center;
-  padding: 0; /* Remove previous padding that might interfere with circle shape */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Optional: subtle shadow for depth */
-}
-
-.scroll-feature {
-  top: 30%; /* Vertically center */
-}
-
-.scroll-arrow:hover {
-  background-color: var(--primary-blue-darker); /* Darker blue on hover */
-  transform: translateY(-50%) scale(1.1); /* Slight scale up on hover + keep centered */
-}
-
-.scroll-arrow:active {
-  transform: translateY(-50%) scale(1); /* Click effect */
-}
-
-.prev-arrow {
-  left: 10px; /* Position from the left edge of the container */
-}
-
-.next-arrow {
-  right: 10px; /* Position from the right edge of the container */
-}
-
-.video-scroll-container {
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  scroll-behavior: smooth;
-  padding: 10px 0; /* Keep padding for items unless arrows need more space */
-  /* If arrows are large, you might want padding to prevent content from being fully obscured
-     For example: padding: 10px 50px; if arrows are 44px wide and have 10px offset */
-  flex-grow: 1;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.video-scroll-container::-webkit-scrollbar {
-  display: none;
-}
-
-.video-item {
-  flex: 0 0 auto; /* Prevent items from shrinking or growing */
-  width: 280px; /* Adjust width as desired for each video item */
-  margin-right: 20px; /* Space between video items */
-  background-color: var(--bg-off-white);
-  border: 1px solid var(--border-light);
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  /* No border-radius */
-}
-.video-item:last-child {
-  margin-right: 0;
-}
-
-.video-item:hover {
-  transform: translateY(-4px);
-  box-shadow: 0 6px 12px rgba(103, 128, 159, 0.1);
-}
-
-.video-item a {
-  display: block;
-  text-decoration: none;
-  color: inherit; /* Inherit text color for info */
-}
-
-.video-item img {
-  width: 100%;
-  height: auto; /* Or a fixed height like 150px */
-  /* aspect-ratio: 16 / 9; /* Enforce aspect ratio if desired */
-  /* object-fit: cover; */
-  display: block;
-  border-bottom: 1px solid var(--border-light);
-}
-
-.video-info {
-  padding: 12px 15px;
-  text-align: left;
-}
-
-.video-info h4 {
-  font-size: 1.05em;
-  color: var(--primary-blue-darker);
-  margin-bottom: 0; /* Title is the only text here for now */
-  font-weight: 600;
-  /* Truncate long titles if necessary */
-  white-space: nowrap;
-  overflow: hidden;
-  text-overflow: ellipsis;
-}
-
-/* --- Content Cards Section Styling --- */
-.content-cards-section {
-  background-color: var(--bg-white);
-}
-
-/* MODIFIED: .cards-grid to be a horizontal scroll container */
-.cards-grid {
-  /* display: grid; */ /* Remove grid display */
-  /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */ /* Remove grid columns */
-  /* gap: 25px; */ /* Gap will be handled by card margins */
-
-  display: flex; /* Lays out cards in a row */
-  overflow-x: auto; /* Allows horizontal scrolling */
-  overflow-y: hidden; /* Hide vertical scrollbar if any */
-  scroll-behavior: smooth; /* Smooth scrolling for JS scrollLeft changes */
-  padding: 10px 0; /* Padding for items inside, adjust if needed */
-  margin-top: 40px; /* Space below section title */
-  flex-grow: 1; /* If inside a flex container like .portfolio-slider-container */
-
-  /* Hide scrollbar (cross-browser) */
-  -ms-overflow-style: none; /* IE and Edge */
-  scrollbar-width: none; /* Firefox */
-}
-.cards-grid::-webkit-scrollbar {
-  /* Chrome, Safari, Opera */
-  display: none;
-}
-
-/* MODIFIED: .content-card for horizontal layout */
-.content-card {
-  background-color: var(--bg-white);
-  border: 1px solid var(--border-light);
-  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.04);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  display: flex; /* Ensures <a> tag fills the card */
-
-  /* Horizontal layout properties */
-  flex: 0 0 auto; /* Prevent cards from shrinking or growing */
-  width: 310px; /* Define a fixed width for each card, adjust as needed */
-  margin-right: 20px; /* Space between cards */
-}
-.content-card:last-child {
-  margin-right: 0; /* No margin for the very last card */
-}
-
-.content-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 7px 14px rgba(103, 128, 159, 0.12);
-}
-
-.content-card a {
-  text-decoration: none;
-  color: inherit;
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-  height: 100%;
-}
-
-.card-image-container {
-  width: 100%;
-  height: 180px;
-  overflow: hidden;
-  background-color: #e0e0e0;
-}
-
-.card-image-container img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
-  transition: transform 0.35s ease;
-}
-
-.content-card:hover .card-image-container img {
-  transform: scale(1.07);
-}
-
-.card-text-content {
-  padding: 18px 20px 20px;
-  display: flex;
-  flex-direction: column;
-  flex-grow: 1;
-}
-
-.card-text-content h3 {
-  font-size: 1.2em;
-  color: var(--primary-blue-darker);
-  margin-bottom: 10px;
-  font-weight: 600;
-  line-height: 1.4;
-}
-
-.card-text-content p {
-  font-size: 0.9rem;
-  color: var(--text-dark);
-  opacity: 0.85;
-  line-height: 1.65;
-  margin-bottom: 15px;
-  flex-grow: 1;
-}
-
-.card-link-indicator {
-  display: inline-block;
-  color: var(--primary-blue);
-  font-weight: 600;
-  font-size: 0.85em;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  margin-top: auto;
-  align-self: flex-start;
-  padding: 5px 0;
-}
-
-.content-card a:hover .card-link-indicator {
-  color: var(--primary-blue-darker);
-  text-decoration: underline;
-}
-
-/* --- Testimonials Section (2-column layout) --- */
-.testimonials {
-  background: rgba(12, 101, 184, 0.15);
-  padding: 70px 0; /* Your existing section padding */
-  position: relative; /* Essential for positioning the ::before pseudo-element */
-  overflow: hidden; /* Recommended to contain the blurred edges of the pseudo-element */
-  /* You might want a fallback background color for the section itself
-     if the image doesn't load or while it's loading,
-     though the ::before element will be the primary visual background. */
-  /* background-color: var(--bg-off-white); */ /* Example fallback */
-}
-
-.testimonials::before {
-  content: "";
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-image: url("assest/testimonial-bg.jpg"); /* Path to your image */
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: scroll; /* Or 'fixed' if you prefer parallax here */
-
-  /* --- NEW: Apply blur and opacity --- */
-  filter: blur(5px); /* Adjust the 5px value for more or less blur */
-  opacity: 0.6; /* Adjust between 0 (fully transparent) and 1 (fully opaque) */
-  /* e.g., 0.3 for more transparency, 0.7 for less */
-
-  z-index: -1; /* Places the blurred image behind the content */
-}
-
-/* Ensure the .container (and thus its children like h2, sub-heading, testimonial items)
-   sits above the ::before pseudo-element.
-   These styles should already be in place from previous steps. */
-.testimonials > .container {
-  position: relative;
-  z-index: 1; /* Content is above the pseudo-element */
-}
-
-.testimonials > .container > h2,
-.testimonials > .container > .sub-heading {
-  color: var(
-    --primary-blue-darker
-  ); /* Assuming you want light text on this new background */
-  position: relative; /* Not strictly needed if parent .container handles z-index */
-  z-index: 1; /* Ensures it's above the ::before if it were a direct child of .testimonials */
-}
-
-.testimonial-item {
-  background-color: var(--bg-white);
-  padding: 30px 35px;
-  border: 1px solid var(--border-light);
-  margin-bottom: 25px;
-  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.06);
-  display: flex;
-  align-items: center;
-  gap: 35px;
-}
-
-.testimonial-text-content {
-  flex: 2;
-  text-align: left;
-}
-.testimonial-text-content h3 {
-  /* Optional heading inside testimonial */
-  font-size: 1.5em;
-  color: var(--primary-blue-darker);
-  margin-bottom: 10px;
-}
-.testimonial-item p.quote {
-  font-style: normal;
-  margin-bottom: 0;
-  font-size: 1.05em;
-  color: var(--text-dark);
-  opacity: 0.9;
-  line-height: 1.75;
-}
-
-.testimonial-client-profile {
-  flex: 1;
-  text-align: center;
-}
-
-/* Initial state for items to be animated */
-.testimonial-item.animate-testimonial-on-scroll {
-  opacity: 0;
-  transform: translateY(100px); /* Start 100px below final position */
-  transition: opacity 0.7s ease-out,
-    transform 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
-  /*
-    cubic-bezier(0.68, -0.55, 0.265, 1.55) is a common "back" easing function
-    that creates a bounce effect (overshoots and settles).
-    Adjust duration (0.7s) and timing function as needed.
-  */
-}
-
-/* State when the element is in view (class added by JavaScript) */
-.testimonial-item.animate-testimonial-on-scroll.in-view {
-  opacity: 1;
-  transform: translateY(0); /* Move to final position */
-}
-
-.client-photo {
-  width: 90px;
-  height: 90px;
-  object-fit: cover;
-  border-radius: 50%;
-  border: 3px solid var(--primary-blue-lighter); /* Lighter blue border */
-  margin: 0 auto 12px auto;
-  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.08);
-}
-
-.testimonial-item h4.client-name {
-  margin-bottom: 3px;
-  color: var(--primary-blue-darker); /* Darker blue for name */
-  font-size: 1.15em;
-  font-weight: 600;
-}
-
-.testimonial-item span.client-info {
-  color: var(--text-dark);
-  opacity: 0.8;
-  font-size: 0.9em;
-  font-weight: 400;
-}
-
-/* --- Contact Section --- */
-.contact {
-  background-color: var(--bg-off-white);
-  padding-bottom: 40px;
-}
-.contact-flex {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 40px;
-  margin-top: 30px;
-}
-
-.contact-form {
-  flex: 1.5;
-  min-width: 300px;
-  background-color: var(--bg-off-white);
-  padding: 35px;
-  border: 1px solid var(--border-light);
-}
-.contact-form h3 {
-  /* Optional heading for form area */
-  margin-bottom: 20px;
-  text-align: left;
-  font-size: 1.7em;
-  color: var(--primary-blue-darker);
-}
-
-.contact-form input[type="text"],
-.contact-form input[type="email"],
-.contact-form textarea {
-  width: 100%;
-  padding: 12px;
-  margin-bottom: 18px;
-  border: 1px solid var(--border-light);
-  font-size: 1em;
-  color: var(--text-dark);
-  background-color: var(--bg-white);
-  transition: border-color 0.3s ease;
-}
-.contact-form input[type="text"]:focus,
-.contact-form input[type="email"]:focus,
-.contact-form textarea:focus {
-  border-color: var(--primary-blue);
-  outline: none;
-  box-shadow: 0 0 4px rgba(103, 128, 159, 0.2);
-}
-
-.contact-form textarea {
-  resize: vertical;
-  min-height: 120px;
-}
-/* Contact form button will use .btn-primary (Blue) */
-
-.contact-info {
-  flex: 1;
-  min-width: 280px;
-  padding-top: 0; /* This might be okay or you might want some padding */
-  /* Any background-color or specific text styling for address details will no longer apply here */
-}
-
-/* In your style.css file */
-
-/* --- Image Gallery Section Styling --- */
-.image-gallery-section {
-  background-color: var(--bg-white); /* Or var(--bg-off-white) */
-  padding: 70px 0;
-}
-
-/* Section heading styles (h2, .sub-heading) are inherited from general rules */
-
-/* Wrapper for arrows and scroll container - uses existing .portfolio-slider-container styles
-   Ensure .portfolio-slider-container has position: relative; if you are reusing it.
-   If you use a new class, like .gallery-slider-wrapper, define it:
-*/
-/*
-.gallery-slider-wrapper {
-  position: relative;
-  display: flex;
-  align-items: center;
-}
-*/
-
-.gallery-scroll-container {
-  display: flex;
-  overflow-x: auto;
-  overflow-y: hidden;
-  padding: 10px 5px;
-  margin: 0 10px;
-  scroll-behavior: smooth; /* Ensures programmatic scrolls are smooth */
-  flex-grow: 1;
-  -ms-overflow-style: none;
-  scrollbar-width: none;
-}
-.gallery-scroll-container::-webkit-scrollbar {
-  display: none;
-}
-
-.gallery-item {
-  flex: 0 0 auto; /* Prevent items from shrinking or growing */
-  width: 290px; /* Width of each gallery item/image */
-  height: 220px; /* Height of each item (creates roughly 4:3 with 290px width) */
-  margin-right: 18px; /* Space between gallery items */
-  position: relative; /* For positioning the overlay absolutely */
-  overflow: hidden; /* To clip the overlay and image neatly to the item's bounds */
-  background-color: #e9e9e9; /* Placeholder if image is missing */
-  border: 1px solid var(--border-light);
-  box-shadow: 0 3px 7px rgba(0, 0, 0, 0.06); /* Subtle shadow */
-  /* No border-radius for sharp corners */
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Added transition for item hover */
-}
-.gallery-item:last-child {
-  margin-right: 0;
-}
-
-.gallery-item:hover {
-  transform: translateY(-5px); /* Lift effect on hover */
-  box-shadow: 0 6px 12px rgba(103, 128, 159, 0.15); /* Themed shadow on hover */
-}
-
-.gallery-item img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover; /* Ensures image covers the item area, may crop */
-  display: block;
-  transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94); /* Smoother zoom transition */
-}
-
-.gallery-item:hover img {
-  transform: scale(1.12); /* Subtle zoom effect on the image itself on hover */
-}
-
-.image-description-overlay {
-  position: absolute;
-  bottom: 0;
-  left: 0;
-  width: 100%;
-  background-color: rgba(
-    var(--primary-blue-rgb),
-    0.88
-  ); /* Theme blue with good opacity */
-  color: var(--text-light);
-  padding: 10px 15px; /* Padding for the description text */
-  box-sizing: border-box;
-
-  opacity: 0;
-  visibility: hidden;
-  transform: translateY(100%); /* Start slid down */
-  transition: opacity 0.3s ease-out, visibility 0s ease 0.3s,
-    transform 0.3s ease-out;
-}
-
-.gallery-item:hover .image-description-overlay {
-  opacity: 1;
-  visibility: visible;
-  transform: translateY(0); /* Slide into view */
-  transition-delay: 0.05s; /* Slight delay for overlay to appear after image zoom starts */
-}
-
-.image-description-overlay p {
-  margin: 0;
-  font-size: 0.88em;
-  line-height: 1.45;
-  /* Simple text styling, you can add more (e.g., max lines with ellipsis) */
-}
-
-/* Ensure your .scroll-arrow, .prev-arrow, .next-arrow styles are defined.
-   They should be similar to what you have for .portfolio-slider-container for consistency.
-   Example (if you haven't centralized them):
-.portfolio-slider-container .scroll-arrow { // Or .gallery-slider-wrapper .scroll-arrow
   position: absolute;
   top: 50%;
   transform: translateY(-50%);
-  background-color: rgba(80, 102, 128, 0.7);
+  background-color: rgba(80, 102, 128, 0.7); /* Darker blue with opacity */
   color: var(--text-light);
   border: none;
   width: 44px;
@@ -1532,537 +507,267 @@ header nav ul li a:hover::after {
   align-items: center;
   justify-content: center;
   padding: 0;
-  box-shadow: 0 2px 5px rgba(0,0,0,0.2);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
   transition: background-color 0.3s ease, transform 0.2s ease;
 }
-.portfolio-slider-container .scroll-arrow:hover {
+.scroll-arrow:hover {
   background-color: var(--primary-blue-darker);
   transform: translateY(-50%) scale(1.1);
 }
-.portfolio-slider-container .prev-arrow { left: 10px; }
-.portfolio-slider-container .next-arrow { right: 10px; }
-*/
-
-/* --- Styling for Join Us Section --- */
-
-.join-us-section {
-  background-color: var(
-    --bg-off-white
-  ); /* Light grey background to distinguish it */
-  padding: 80px 0;
+.scroll-arrow:active {
+  transform: translateY(-50%) scale(1);
 }
+.prev-arrow { left: 10px; }
+.next-arrow { right: 10px; }
+.portfolio-slider-container .scroll-arrow.scroll-feature { top: 30%; }
 
-.join-us-content {
-  display: grid;
-  grid-template-columns: 1fr 1fr; /* Two equal columns */
-  gap: 50px; /* Space between the two columns */
-  align-items: center;
-}
 
-/* --- Left Column: Text --- */
-.join-us-text {
-  /* Animation classes will handle initial state */
-}
-
-.join-us-text h2 {
-  text-align: left; /* Align section title to the left */
-  font-size: 2.4em;
-  margin-bottom: 20px;
-}
-
-.join-us-text p {
-  font-size: 1.1em;
-  line-height: 1.7;
-  color: var(--text-dark);
-  margin-bottom: 15px;
-}
-
-.join-us-text .join-us-subtext {
-  font-size: 1em;
-  opacity: 0.85;
-}
-
-/* --- Right Column: Action Cards --- */
-.join-us-actions {
+/* Horizontal Scroll Containers */
+.video-scroll-container, .cards-grid {
   display: flex;
-  flex-direction: column;
-  gap: 20px; /* Space between the cards */
+  overflow-x: auto;
+  overflow-y: hidden;
+  scroll-behavior: smooth;
+  padding: 10px 0;
+  flex-grow: 1;
+  -ms-overflow-style: none;
+  scrollbar-width: none;
+}
+.video-scroll-container::-webkit-scrollbar,
+.cards-grid::-webkit-scrollbar {
+  display: none;
 }
 
-.action-card {
-  display: flex;
-  align-items: center;
+/* Video Showcase Styles */
+.portfolio { background-color: var(--bg-off-white); }
+.video-item {
+  flex: 0 0 auto;
+  width: 280px;
+  margin-right: 20px;
   background-color: var(--bg-white);
-  padding: 20px;
   border: 1px solid var(--border-light);
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
-  text-decoration: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-  /* No border-radius for sharp corners */
 }
+.video-item a { text-decoration: none; color: inherit; }
+.video-item img { border-bottom: 1px solid var(--border-light); }
+.video-info { padding: 12px 15px; }
+.video-info h4 { font-size: 1.05em; margin: 0; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 
-.action-card:hover {
-  transform: translateY(-8px);
-  box-shadow: 0 8px 20px rgba(103, 128, 159, 0.15); /* Themed shadow */
+/* Testimonials Section */
+.testimonials { 
+  background: rgba(12, 101, 184, 0.15);
+  padding: 70px 0; /* Your existing section padding */
+  position: relative; /* Essential for positioning the ::before pseudo-element */
+  overflow: hidden; /* Recommended to contain the blurred edges of the pseudo-element */
 }
-
-.action-card-icon {
-  flex-shrink: 0;
-  width: 40px;
-  height: 40px;
-  margin-right: 20px;
-  color: var(--primary-blue);
-  /* Icon SVG size is set in HTML (width/height="24"), this container just holds it */
-}
-
-.action-card-text h3 {
-  margin: 0 0 5px 0;
-  color: var(--primary-blue-darker);
-  font-size: 1.25em;
-}
-
-.action-card-text p {
-  margin: 0;
-  color: var(--text-dark);
-  opacity: 0.8;
-  font-size: 0.9em;
-  line-height: 1.5;
-}
-
-/* --- Responsive adjustments for Join Us Section --- */
-@media (max-width: 992px) {
-  .join-us-content {
-    grid-template-columns: 1fr; /* Stack to a single column on tablets */
-    gap: 40px;
-  }
-
-  .join-us-text h2 {
-    text-align: center; /* Center title when stacked */
-  }
-}
-
-/* --- Footer --- */
-footer {
-  position: relative; /* Needed for absolute positioning of the ::before pseudo-element */
-  color: var(
-    --text-light
-  ); /* Default text color for elements directly in footer, if any */
-  padding-top: 60px;
-  padding-bottom: 20px;
-  overflow: hidden; /* To contain the blurred ::before background */
-}
-
-footer::before {
-  /* This is your existing blurred background image + gradient */
+.testimonials::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-      rgba(236, 236, 236, 0.85),
-      /* Slightly less opaque white start */ rgba(103, 128, 159, 0.75)
-        /* Primary blue transparent end */
-    ),
-    url("assest/footer.jpg") no-repeat center center/cover; /* Ensure this path is correct */
-  z-index: -1; /* Behind all footer content */
-  filter: blur(3px); /* Adjusted blur, change as needed */
+  background-image: url("assets/testimonial-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: scroll;
+  filter: blur(5px); 
+  opacity: 0.6; 
+  z-index: -1; 
 }
-
-.footer-content {
-  /* This is the grid container for your columns */
-  position: relative;
-  z-index: 1; /* Content above the ::before pseudo-element */
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(280px, 1fr)
-  ); /* Adjust minmax as needed */
-  gap: 30px; /* Space between the content boxes */
-  /* max-width and margin: 0 auto; are good if these are inside .container */
-  /* If .footer-content is directly inside footer, and footer > .container has the max-width, that's also fine */
+.testimonial-item {
+    background-color: var(--bg-white);
+    padding: 30px 35px;
+    border: 1px solid var(--border-light);
+    margin-bottom: 25px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.06);
+    display: flex;
+    align-items: center;
+    gap: 35px;
 }
+.testimonial-text-content { flex: 2; text-align: left; }
+.testimonial-item p.quote { font-style: normal; margin: 0; font-size: 1.05em; opacity: 0.9; line-height: 1.75; }
+.testimonial-client-profile { flex: 1; text-align: center; }
+.client-photo { width: 90px; height: 90px; object-fit: cover; border-radius: 50%; border: 3px solid var(--primary-blue-lighter); margin: 0 auto 12px auto; }
+.testimonial-item h4.client-name { margin-bottom: 3px; font-size: 1.15em; font-weight: 600; }
+.testimonial-item span.client-info { opacity: 0.8; font-size: 0.9em; font-weight: 400; }
 
-/* NEW STYLES FOR THE BOXES */
-/* In your style.css file */
+/* --- Contact Section --- */
+.contact { background-color: var(--bg-off-white); }
+.contact-flex { display: flex; flex-wrap: wrap; gap: 40px; margin-top: 30px; }
+.contact-form { flex: 1.5; min-width: 300px; }
+.contact-info { flex: 1; min-width: 280px; }
+.contact-form input, .contact-form textarea { width: 100%; padding: 12px; margin-bottom: 18px; border: 1px solid var(--border-light); font-size: 1em; }
+.contact-form input:focus, .contact-form textarea:focus { border-color: var(--primary-blue); outline: none; box-shadow: 0 0 4px rgba(var(--primary-blue-rgb), 0.2); }
 
-/* --- Footer --- */
+/* --- Join Us Section --- */
+.join-us-section { background-color: var(--bg-off-white); padding: 80px 0; }
+.join-us-content { display: grid; grid-template-columns: 1fr 1fr; gap: 50px; align-items: center; }
+.join-us-text h2 { text-align: left; font-size: 2.4em; margin-bottom: 20px; }
+.join-us-text p { font-size: 1.1em; line-height: 1.7; margin-bottom: 15px; }
+.join-us-actions { display: flex; flex-direction: column; gap: 20px; }
+.action-card { display: flex; align-items: center; background-color: var(--bg-white); padding: 20px; border: 1px solid var(--border-light); box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05); text-decoration: none; transition: transform 0.3s ease, box-shadow 0.3s ease; }
+.action-card:hover { transform: translateY(-8px); box-shadow: 0 8px 20px rgba(var(--primary-blue-rgb), 0.15); }
+.action-card-icon { flex-shrink: 0; width: 40px; height: 40px; margin-right: 20px; color: var(--primary-blue); }
+.action-card-text h3 { margin: 0 0 5px 0; font-size: 1.25em; }
+.action-card-text p { margin: 0; font-size: 0.9em; line-height: 1.5; opacity: 0.8; }
+
+
+/* ==========================================================================
+   5. FOOTER
+   ========================================================================== */
+
 footer {
   position: relative;
-  color: var(--text-light);
-  padding-top: 40px;
-  padding-bottom: 40px;
+  padding: 60px 0 0 0;
   overflow: hidden;
 }
-
 footer::before {
-  /* Your existing blurred background image + gradient */
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(
-      rgba(236, 236, 236, 0.85),
-      /* Light start */ rgba(103, 128, 159, 0.75)
-        /* Primary blue transparent end */
-    ),
-    url("assest/footer.jpg") no-repeat center center/cover; /* MAKE SURE THIS PATH IS CORRECT */
-  z-index: -1;
-  filter: blur(3px); /* Adjust blur as needed */
+  background: linear-gradient(rgba(236, 236, 236, 0.85), rgba(var(--primary-blue-rgb), 0.65)),
+    url("assets/footer.jpg") no-repeat center center/cover;
+  z-index: 0;
+  filter: blur(1px);
 }
-
-/* MODIFIED: Styles for the main footer content box */
+footer .container {
+    position: relative;
+    z-index: 1;
+}
 .footer-content {
-  position: relative;
-  z-index: 1; /* Content above the ::before pseudo-element */
   display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(280px, 1fr)
-  ); /* Adjust minmax for column width */
-  gap: 30px; /* Space between the columns inside the box */
-
-  /* NEW: Styling for the single encompassing box */
-  background-color: rgba(
-    255,
-    255,
-    255,
-    0.55
-  ); /* Semi-transparent white background */
-  padding: 30px; /* Padding inside the main box */
-  border-radius: 10px; /* Rounded corners for the main box */
-  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2); /* Shadow for the main box */
-  /* max-width: 1140px; /* This is handled by the parent .container usually */
-  /* margin: 0 auto; /* This is handled by the parent .container usually */
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: 30px;
+  background-color: rgba(255, 255, 255, 0.55);
+  padding: 30px;
+  border-radius: 10px;
+  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.2);
 }
-
-/* REMOVE/RESET individual box styling from these columns */
-.footer-about,
-.footer-links, /* Apply to .footer-links if you add it back with content */
-.footer-contact {
-  /* background-color: transparent; /* No individual background */
-  /* padding: 0; /* Padding is now on .footer-content, or add specific inner padding if needed */
-  /* border-radius: 0; */
-  /* box-shadow: none; */
-  /* flex: 1; /* Not needed if .footer-content is grid */
-  /* margin: 0; /* Not needed if .footer-content has gap */
-}
-
-/* Text color adjustments for content INSIDE the .footer-content box
-   (these should remain as they are good for the light semi-transparent background) */
-.footer-about h3,
-.footer-links h4, /* Or h3 if consistent */
-.footer-contact h3 {
+.footer-about h3, .footer-contact h3 {
   color: var(--primary-blue-darker);
-  margin-bottom: 15px;
 }
-
-.footer-about p,
-.footer-links ul li a,
-.footer-contact p {
-  color: var(--text-dark); /* Dark grey for paragraph text inside the box */
-  opacity: 0.9;
-  font-size: 0.9em;
-  line-height: 1.7; /* Added for better readability */
-}
-
-.footer-links ul {
-  list-style: none;
-  padding: 0;
-}
-
-.footer-links ul li {
-  margin-bottom: 10px;
-}
-
-.footer-links ul li a {
-  text-decoration: none;
-  transition: color 0.3s ease;
-}
-.footer-links ul li a:hover {
-  color: var(--primary-blue);
-}
-
-/* Copyright text (inside .footer-about in your provided HTML) styling */
-.footer-about p:last-child {
+.footer-about p, .footer-contact p {
   color: var(--text-dark);
-  opacity: 0.75; /* Make copyright text a bit more subtle */
-  font-size: 0.85em;
-  margin-top: 20px; /* Space above copyright if it's the last element in .footer-about */
+  font-size: 0.9em;
+  line-height: 1.7;
+}
+.copyright {
+  text-align: center;
+  padding: 25px 0;
+  color: var(--text-dark);
+  font-size: 0.9em;
 }
 
-/* The main .copyright div styling from your full CSS would apply
-   if you had a separate .copyright div outside .footer-content.
-   Since it's inside .footer-about, the rules above handle it. */
 
-footer > .container {
-  /* Ensure the .container itself stacks correctly */
-  position: relative;
-  z-index: 1;
+/* ==========================================================================
+   6. ANIMATIONS & RESPONSIVE
+   ========================================================================== */
+
+/* --- Keyframes --- */
+@keyframes fadeInFromLeft { from { opacity: 0; transform: translateX(-20px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes fadeInFromRight { from { opacity: 0; transform: translateX(20px); } to { opacity: 1; transform: translateX(0); } }
+@keyframes drawLine { from { width: 0%; } to { width: 100%; } }
+@keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* --- Scroll Animation Triggers --- */
+.animate-on-scroll,
+.animate-list-on-scroll > li,
+.animate-testimonial-on-scroll {
+  opacity: 0;
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+.animate-on-scroll.from-left { transform: translateX(-50px); }
+.animate-on-scroll.from-bottom { transform: translateY(50px); }
+.animate-on-scroll.from-right { transform: translateX(50px); }
+
+.animate-on-scroll.in-view,
+.animate-list-on-scroll.in-view > li,
+.animate-testimonial-on-scroll.in-view {
+  opacity: 1;
+  transform: translateX(0) translateY(0);
 }
 
-/* --- Responsive Styles --- */
+/* Staggered Delay for lists */
+.animate-list-on-scroll.in-view > li:nth-child(1) { transition-delay: 1.2s; }
+.animate-list-on-scroll.in-view > li:nth-child(2) { transition-delay: 2.4s; }
+.animate-list-on-scroll.in-view > li:nth-child(3) { transition-delay: 3.6s; }
+.animate-list-on-scroll.in-view > li:nth-child(4) { transition-delay: 4.8s; }
+
+.join-us-actions .delay-1.in-view { transition-delay: 0.2s; }
+.join-us-actions .delay-2.in-view { transition-delay: 0.4s; }
+.join-us-actions .delay-3.in-view { transition-delay: 0.6s; }
+
+
+/* --- Media Queries --- */
 @media (max-width: 992px) {
-  h1 {
-    font-size: 2.2em;
-  }
-  h2 {
-    font-size: 1.9em;
-  }
-  .hero h1 {
-    font-size: 2.8em;
-  }
+  h1 { font-size: 2.2em; }
+  h2 { font-size: 1.9em; }
+  .hero h1 { font-size: 2.8em; }
 
-  .about-content {
-    flex-direction: column;
-    text-align: center;
+  .about-us .about-content, .join-us-content {
+    grid-template-columns: 1fr;
+    gap: 40px;
   }
-  .about-text .sub-heading,
-  .about-text > h2 {
+  .about-us .about-text h2, .join-us-text h2 {
     text-align: center;
   }
   .about-image {
     margin-top: 30px;
+    order: -1; /* Move image above text on smaller screens */
   }
 }
 
 @media (max-width: 768px) {
-  header .container {
-  }
+  section[id] { scroll-margin-top: 70px; }
 
+  header .container {
+    overflow: visible; /* Allow mobile nav to drop down */
+  }
   header nav {
     display: none;
     position: absolute;
-    top: 100%; /* NOW this should be 100% of the HEADER's height */
-    /* because header is position:fixed and .container is no longer relatively positioned */
+    top: 100%;
     left: 0;
-    width: 100%; /* Full width of the header */
+    width: 100%;
     background-color: var(--primary-blue);
     box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
     padding: 8px 0;
     border-top: 1px solid var(--primary-blue-lighter);
-    z-index: 1100; /* ADD/ADJUST: Ensure menu is above other header content and page content */
-    /* Needs to be higher than the header's own z-index if it could conflict,
-                      but primarily to be above other sections. Since header is 1000,
-                      this should ensure it's above sibling elements within header and also
-                      above page content. */
+    z-index: 1100;
   }
+  header nav.active { display: block; }
+  header nav ul { flex-direction: column; align-items: center; }
+  header nav ul li { margin: 10px 0; width: 100%; text-align: center; }
 
-  header nav.active {
-    display: block;
-  }
-  header nav.active {
-    display: block;
-  }
-  header nav ul {
-    flex-direction: column;
-    align-items: center;
-  }
-  header nav ul li {
-    margin: 10px 0;
-    width: 100%;
-    text-align: center;
-  }
+  .menu-toggle { display: block; }
+  .menu-toggle.active span:nth-child(1) { transform: rotate(-45deg) translate(-5px, 6px); }
+  .menu-toggle.active span:nth-child(2) { opacity: 0; }
+  .menu-toggle.active span:nth-child(3) { transform: rotate(45deg) translate(-4px, -5px); }
 
-  header nav ul li a {
-    color: var(--text-light);
-    padding: 10px 15px; /* Your current padding */
-    position: relative;
-    font-weight: 500;
-    text-transform: none;
-    font-size: 0.95em;
-    letter-spacing: 0.2px;
-    transition: opacity 0.3s ease, background-color 0.3s ease;
-    /* border-radius: 3px; /* Optional for block effect */
-  }
+  .hero h1 { font-size: 2.2em; }
+  .hero h2 { font-size: 1.1em; white-space: normal; }
 
-  header nav ul li a.active,
-  header nav ul li a:hover {
-    color: var(--text-light);
-    background-color: rgba(0, 0, 0, 0.15);
-    opacity: 1;
-  }
+  .testimonial-item { flex-direction: column; gap: 20px; padding: 25px 20px; }
+  .testimonial-text-content { text-align: center; }
 
-  /* MODIFIED Underline Styles */
-  header nav ul li a::after {
-    content: "";
-    position: absolute;
-    width: 0; /* Initial width: 0, expands on hover/active */
-    height: 1px;
-    bottom: 5px; /* Distance from the bottom of the <a> tag's padding box */
-    left: 50%;
-    transform: translateX(-50%); /* Centers the underline */
-    background-color: var(--text-light);
-    transition: width 0.3s ease;
-  }
-
-  header nav ul li a.active::after,
-  header nav ul li a:hover::after {
-    /* Make the underline cover the approximate width of the text.
-     This assumes text doesn't quite fill the entire padding box.
-     You might need to adjust '70%' or '80%' based on your text length vs padding.
-     Or, if you want it to match the inner content area (like before): calc(100% - 30px)
-     Let's stick to the previous logic for width for consistency first.
-  */
-    width: calc(100% - 30px); /* Spans the content area within the padding */
-  }
-
-  .menu-toggle {
-    display: block;
-  }
-  .menu-toggle.active span:nth-child(1) {
-    transform: rotate(-45deg) translate(-5px, 6px);
-  }
-  .menu-toggle.active span:nth-child(2) {
-    opacity: 0;
-  }
-  .menu-toggle.active span:nth-child(3) {
-    transform: rotate(45deg) translate(-4px, -5px);
-  }
-
-  .hero h1 {
-    font-size: 2.2em;
-  }
-  .hero h2 {
-    font-size: 1.1em;
-  }
-  .hero p {
-    font-size: 1em;
-  }
-  .hero .btn {
-    padding: 12px 24px;
-    font-size: 0.9em;
-  }
-
-  .testimonial-item {
-    flex-direction: column;
-    gap: 20px;
-    padding: 25px 20px;
-  }
-  .testimonial-text-content {
-    text-align: center;
-  }
-
-  .contact-flex {
-    flex-direction: column;
-  }
-  .contact-info {
-    margin-top: 25px;
-  }
-
-  .stats-grid {
-    grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
-  }
-  .stat-item h3 {
-    font-size: 2.2em;
-  }
-
-  .footer-content {
-    grid-template-columns: 1fr;
-    text-align: center;
-  }
-
-  .content-card {
-    width: 270px; /* Adjust card width for tablets */
-    margin-right: 15px;
-  }
-
-  .hero-content h1 {
-    font-size: 2.2em; /* Example: Slightly smaller font size for H1 on mobile */
-    line-height: 1.3; /* Adjust line height for multi-line H1 on mobile */
-  }
-
-  .mobile-break {
-    display: block; /* Make the <br> tag active on mobile, forcing a line break */
-  }
-
-  .hero-content h3 {
-    white-space: normal; /* Allow text to wrap on smaller screens */
-  }
-  .portfolio-slider-container {
-    margin: 0; /* Reset negative margin if container has no padding on mobile */
-  }
-  .video-item {
-    width: 240px; /* Smaller items on tablets/mobile */
-    margin-right: 15px;
-  }
-  .scroll-arrow {
-    padding: 8px 12px;
-    font-size: 1.2em;
-  }
+  .contact-flex { flex-direction: column; }
+  .contact-info { margin-top: 25px; }
 }
 
 @media (max-width: 480px) {
-  body {
-    font-size: 15px;
-  }
-  h1 {
-    font-size: 1.8em;
-  }
-  h2 {
-    font-size: 1.6em;
-  }
-  section {
-    padding: 50px 0;
-  }
-  section > h2 {
-    margin-bottom: 30px;
-  }
-  .hero {
-    min-height: 75vh; /* Adjusted for smaller screens */
-  }
-  .hero h1 {
-    font-size: 1.9em;
-  }
-  .hero h2 {
-    font-size: 1em;
-  }
-  .container {
-    width: 95%;
-  }
-  .services-grid,
-  .portfolio-grid {
-    grid-template-columns: 1fr;
-  }
-  .contact-form,
-  .contact-info {
-    padding: 20px;
-  }
-  header .logo img {
-    max-height: 45px;
-  } /* Slightly smaller logo on very small screens */
-
-  header {
-    padding-top: 25px; /* Initial larger padding */
-    padding-bottom: 25px; /* Initial larger padding */
-  }
-
-  .hero-content h1 {
-    font-size: 1.9em; /* Further adjust font size if needed */
-    line-height: 1.4;
-  }
-
-  .video-item {
-    width: 200px; /* Even smaller on very small screens */
-  }
-
-  .content-card {
-    width: 220px; /* Adjust card width for smaller mobile screens */
-  }
-  .cards-grid {
-    /* Optional: Add some padding on the sides of the scroll container
-       if arrows feel too close or content is clipped on small screens */
-    /* padding-left: 10px; */
-    /* padding-right: 10px; */
-  }
-}
-
-.facebook-plugin {
-  width: 100%; /* This will make the container take the full width of its parent */
-  max-width: 500px; /* Optional: Set a maximum width if you don't want it to be too wide on large screens */
-  /* Add any other styling like margin, padding, etc. */
-  margin: 0 auto; /* Example: to center the container if it has a max-width */
+  body { font-size: 15px; }
+  h1 { font-size: 1.8em; }
+  h2 { font-size: 1.6em; }
+  section { padding: 50px 0; }
+  section > .container > h2 { margin-bottom: 30px; }
+  .hero { min-height: 75vh; }
+  .hero h1 { font-size: 1.9em; }
+  .hero h2 { font-size: 1em; }
+  header .logo img { max-height: 40px; }
+  header, header.scrolled { padding: 12px 0; }
 }

@@ -93,7 +93,7 @@ document.addEventListener("DOMContentLoaded", () => {
         // Grid Animation
         const heroGridContainer = document.querySelector(".hero-grid-overlay");
         if (heroGridContainer) {
-            const cellSize = 250;
+            const cellSize = 250; // Smaller cells can look nice with more highlights
             let cells = [];
             let randomHighlightInterval = null;
 
@@ -111,25 +111,70 @@ document.addEventListener("DOMContentLoaded", () => {
                     cells.push(cell);
                 }
             };
-            // const stopRandomHighlight = () => clearInterval(randomHighlightInterval);
-            // const startRandomHighlight = () => {
-            //     stopRandomHighlight();
-            //     randomHighlightInterval = setInterval(() => {
-            //         const currentActive = document.querySelector(".grid-cell.is-active");
-            //         if (currentActive) currentActive.classList.remove("is-active");
-            //         const randomIndex = Math.floor(Math.random() * cells.length);
-            //         if (cells[randomIndex]) cells[randomIndex].classList.add("is-active");
-            //     }, 400);
-            // };
+            
+            const stopRandomHighlight = () => {
+                clearInterval(randomHighlightInterval);
+                // Clear all active cells when stopping
+                document.querySelectorAll(".grid-cell.is-active").forEach(cell => cell.classList.remove("is-active"));
+            };
 
-            // heroGridContainer.addEventListener('mouseenter', stopRandomHighlight);
-            // heroGridContainer.addEventListener('mouseleave', startRandomHighlight);
+            // --- MODIFIED HIGHLIGHT LOGIC ---
+            const startRandomHighlight = () => {
+                stopRandomHighlight();
+                randomHighlightInterval = setInterval(() => {
+                    // Remove previous active classes
+                    const currentActiveCells = document.querySelectorAll(".grid-cell.is-active");
+                    currentActiveCells.forEach(cell => cell.classList.remove("is-active"));
+
+                    // Select 3 unique random cells to highlight
+                    const numberOfHighlights = 5;
+                    const activeIndices = new Set(); // Use a Set to store unique indices
+
+                    // Ensure we don't get into an infinite loop if there are fewer cells than highlights
+                    if (cells.length > numberOfHighlights) {
+                        while (activeIndices.size < numberOfHighlights) {
+                            const randomIndex = Math.floor(Math.random() * cells.length);
+                            activeIndices.add(randomIndex);
+                        }
+                    }
+
+                    // Add the 'is-active' class to the new set of cells
+                    activeIndices.forEach(index => {
+                        if (cells[index]) {
+                            cells[index].classList.add("is-active");
+                        }
+                    });
+
+                }, 2000); // Adjusted interval time for a slightly slower twinkle
+            };
+
+            heroGridContainer.addEventListener('mouseenter', stopRandomHighlight);
+            heroGridContainer.addEventListener('mouseleave', startRandomHighlight);
+            
+            const heroObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        startRandomHighlight();
+                    } else {
+                        stopRandomHighlight();
+                    }
+                });
+            }, { threshold: 0 });
+
             createGrid();
-            //startRandomHighlight();
-            window.addEventListener('resize', () => { clearTimeout(window.resizeTimeout); window.resizeTimeout = setTimeout(createGrid, 250); });
+            heroObserver.observe(heroGridContainer);
+            
+            let resizeTimeout;
+            window.addEventListener('resize', () => {
+                clearTimeout(resizeTimeout);
+                resizeTimeout = setTimeout(() => {
+                    createGrid();
+                    startRandomHighlight();
+                }, 250);
+            });
         }
 
-        // "Equality" Text Animation
+        // "Equality" Text Animation (This part remains the same)
         const heroEqualityText = document.querySelector(".animate-equality-text");
         if (heroEqualityText) {
             setTimeout(() => heroEqualityText.classList.add("start-animation"), 500);
@@ -142,7 +187,7 @@ document.addEventListener("DOMContentLoaded", () => {
         const quoteElement = document.querySelector(".about-quote");
 
         // Ensure all necessary elements exist before proceeding
-        if (animatedList && quoteElement) {
+        if (animatedList) {
           // --- 1. Prepare a function to start the list animation ---
           function startListAnimation() {
             if (animatedList) {
