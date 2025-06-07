@@ -129,9 +129,6 @@ document.addEventListener("DOMContentLoaded", () => {
                 
                 // OPTIMIZATION: On mobile, we won't run the complex JS animation.
                 // The hover effect via CSS will still work.
-                if (isMobile) {
-                    return;
-                }
                 
                 const trailLength = 8;
                 let activeCellsQueue = [];
