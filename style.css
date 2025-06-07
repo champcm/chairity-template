@@ -306,7 +306,7 @@ header nav ul li a:hover::after {
 }
 
 .grid-cell:hover, .grid-cell.is-active {
-  background-color: rgba(255, 255, 255, 0.4); /* Semi-transparent white */
+  background-color: rgba(255, 255, 255, 0.25); /* Semi-transparent white */
 }
 
 /* Text Animation: "ความต่างที่เท่าเทียม" */

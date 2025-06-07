@@ -93,7 +93,10 @@ document.addEventListener("DOMContentLoaded", () => {
         // Grid Animation
         const heroGridContainer = document.querySelector(".hero-grid-overlay");
         if (heroGridContainer) {
-            const cellSize = 250; // Smaller cells can look nice with more highlights
+            // --- UPDATED VARIABLES as per your request ---
+            const cellSize = 250;
+            const RANDOM_HIGHLIGHT_INTERVAL_TIME = 600; // Slower interval for each step
+
             let cells = [];
             let randomHighlightInterval = null;
 
@@ -114,38 +117,56 @@ document.addEventListener("DOMContentLoaded", () => {
             
             const stopRandomHighlight = () => {
                 clearInterval(randomHighlightInterval);
-                // Clear all active cells when stopping
                 document.querySelectorAll(".grid-cell.is-active").forEach(cell => cell.classList.remove("is-active"));
             };
 
-            // --- MODIFIED HIGHLIGHT LOGIC ---
+            // --- NEW "CHASER" HIGHLIGHT LOGIC ---
             const startRandomHighlight = () => {
                 stopRandomHighlight();
+                
+                const trailLength = 8; // The number of cells in the trail
+                let activeCellsQueue = []; // Use an array as a queue to track the trail
+
                 randomHighlightInterval = setInterval(() => {
-                    // Remove previous active classes
-                    const currentActiveCells = document.querySelectorAll(".grid-cell.is-active");
-                    currentActiveCells.forEach(cell => cell.classList.remove("is-active"));
+                    // If the trail isn't full yet, just add new cells
+                    if (activeCellsQueue.length < trailLength) {
+                        let randomIndex;
+                        let newCell;
+                        // Find a random cell that isn't already active
+                        do {
+                            randomIndex = Math.floor(Math.random() * cells.length);
+                            newCell = cells[randomIndex];
+                        } while (newCell && newCell.classList.contains('is-active'));
+                        
+                        if (newCell) {
+                            newCell.classList.add("is-active");
+                            activeCellsQueue.push(newCell);
+                        }
+                    } else {
+                        // If the trail is full, remove the oldest cell (fade out)
+                        const oldestCell = activeCellsQueue.shift(); // Dequeue the oldest cell
+                        if (oldestCell) {
+                            oldestCell.classList.remove("is-active");
+                        }
 
-                    // Select 3 unique random cells to highlight
-                    const numberOfHighlights = 5;
-                    const activeIndices = new Set(); // Use a Set to store unique indices
-
-                    // Ensure we don't get into an infinite loop if there are fewer cells than highlights
-                    if (cells.length > numberOfHighlights) {
-                        while (activeIndices.size < numberOfHighlights) {
-                            const randomIndex = Math.floor(Math.random() * cells.length);
-                            activeIndices.add(randomIndex);
+                        // And add a new one (fade in)
+                        let randomIndex;
+                        let newCell;
+                        let attempts = 0;
+                        // Find a random cell that isn't already in the trail
+                        do {
+                            randomIndex = Math.floor(Math.random() * cells.length);
+                            newCell = cells[randomIndex];
+                            attempts++;
+                        } while (newCell && activeCellsQueue.includes(newCell) && attempts < 50); // Prevent infinite loops
+                        
+                        if (newCell) {
+                            newCell.classList.add("is-active");
+                            activeCellsQueue.push(newCell); // Enqueue the new cell
                         }
                     }
 
-                    // Add the 'is-active' class to the new set of cells
-                    activeIndices.forEach(index => {
-                        if (cells[index]) {
-                            cells[index].classList.add("is-active");
-                        }
-                    });
-
-                }, 2000); // Adjusted interval time for a slightly slower twinkle
+                }, RANDOM_HIGHLIGHT_INTERVAL_TIME); // Interval for each step of the trail
             };
 
             heroGridContainer.addEventListener('mouseenter', stopRandomHighlight);
@@ -168,6 +189,8 @@ document.addEventListener("DOMContentLoaded", () => {
             window.addEventListener('resize', () => {
                 clearTimeout(resizeTimeout);
                 resizeTimeout = setTimeout(() => {
+                    // When resizing, stop the old animation, recreate the grid, and start a new animation
+                    stopRandomHighlight();
                     createGrid();
                     startRandomHighlight();
                 }, 250);
