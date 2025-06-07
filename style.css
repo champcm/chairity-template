@@ -436,7 +436,7 @@ header nav ul li a:hover::after {
     left: 0;
     width: 100%;
     height: 100%;
-    background-color: rgba(0, 0, 0, 0.55);
+    background-color: rgba(33, 52, 75, 0.75);
     z-index: 1;
 }
 .belief-content {
