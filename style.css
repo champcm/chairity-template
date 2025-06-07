@@ -676,11 +676,19 @@ footer .container {
 
 /* --- Scroll Animation Triggers --- */
 .animate-on-scroll,
-.animate-list-on-scroll > li,
+.animate-list-on-scroll > li {
+  opacity: 0;
+  transform: translateX(80px);
+  transition: opacity 0.6s ease-out, transform 0.6s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+}
+
 .animate-testimonial-on-scroll {
   opacity: 0;
-  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+  transform: translateY(120px);
+  transition: opacity 0.7s ease-out,
+    transform 0.7s cubic-bezier(0.68, -0.55, 0.265, 1.55);
 }
+
 .animate-on-scroll.from-left { transform: translateX(-50px); }
 .animate-on-scroll.from-bottom { transform: translateY(50px); }
 .animate-on-scroll.from-right { transform: translateX(50px); }
