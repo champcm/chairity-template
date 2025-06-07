@@ -1,44 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="th">
   <head>
     <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    
+    <!-- SEO Meta Tags -->
+    <meta name="description" content="Lady Wheeler - สื่อสร้างสรรค์เพื่อสร้างความเข้าใจที่ถูกต้องเกี่ยวกับคนพิการและความพิการ เรามุ่งมั่นขับเคลื่อนสังคมแห่งความเท่าเทียม ส่งเสริมการเข้าถึงสิทธิ และสร้างแรงบันดาลใจผ่านเรื่องราวที่เห็นคุณค่าของทุกชีวิต" />
+    <meta name="keywords" content="Lady Wheeler, คนพิการ, ความเท่าเทียม, สิทธิคนพิการ, สื่อสร้างสรรค์, ความเข้าใจ, สร้างแรงบันดาลใจ" />
+
     <title>
       Lady Wheeler : พื้นที่ที่สะท้อนความเข้าใจ ให้รับรู้ความต่างที่เท่าเทียม
     </title>
-    <link
-      rel="stylesheet"
-      href="style.css?v=3" />
+    <!-- Versioning helps bypass browser cache when you update your stylesheet -->
+    <link rel="stylesheet" href="style.css?v=1.1" /> 
   </head>
   <body>
+    <!-- Facebook SDK Script -->
     <div id="fb-root"></div>
-    <script
-      async
-      defer
-      crossorigin="anonymous"
-      src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v22.0&appId=1197586733586718"></script>
+    <script async defer crossorigin="anonymous" src="https://connect.facebook.net/en_US/sdk.js#xfbml=1&version=v22.0&appId=1197586733586718"></script>
+    
     <header>
       <div class="container">
         <h1 class="logo">
-          <img
-            src="logo.png"
-            alt="Lady Wheeler Logo" />
+          <!-- NOTE: Make sure the path to your logo and other assets is correct. 'assets' is a more common folder name than 'assest'. -->
+          <img src="assets/logo.png" alt="Lady Wheeler Logo" />
         </h1>
         <nav>
           <ul>
-            <li>
-              <a
-                href="#home"
-                class="active">
-                หน้าหลัก
-              </a>
-            </li>
+            <li><a href="#home" class="active">หน้าหลัก</a></li>
             <li><a href="#about">เกี่ยวกับเรา</a></li>
             <li><a href="#services">ช่องทางสื่อ</a></li>
-            <li><a href="#featured-content">ข่าวสารและบทความน่ารู้</a></li>
+            <li><a href="#belief">ความเชื่อของเรา</a></li>
             <li><a href="#portfolio">สื่อล่าสุด</a></li>
+            <li><a href="#join-us">ร่วมเดินทาง</a></li>
             <li><a href="#contact">ติดต่อเรา</a></li>
           </ul>
         </nav>
@@ -50,1305 +44,208 @@
       </div>
     </header>
 
-    <section
-      id="home"
-      class="hero">
-      <div class="hero-grid-overlay"></div>
-      <div class="hero-content">
-        <h1>" Lady Wheeler "</h1>
-        <h2 class="animate-equality-text">
-          พื้นที่ที่สะท้อนความเข้าใจ ให้รับรู้
-          <span class="hero-highlight-bold">
-            <span class="part1">ความต่าง</span>
-            <span class="part2">ที่เท่าเทียม</span>
-          </span>
-        </h2>
-      </div>
-    </section>
+    <main>
+      <section id="home" class="hero">
+        <div class="hero-grid-overlay"></div>
+        <div class="hero-content">
+          <h1>" Lady Wheeler "</h1>
+          <h2 class="animate-equality-text">
+            พื้นที่ที่สะท้อนความเข้าใจ ให้รับรู้
+            <span class="hero-highlight-bold">
+                <span class="part1">ความต่าง</span><span class="part2">ที่เท่าเทียม</span>
+            </span>
+          </h2>
+        </div>
+      </section>
 
-    <section
-      id="about"
-      class="about-us">
-      <div class="container">
-        <div class="about-content">
-          <div class="about-text">
-            <h2>ภารกิจของเรา</h2>
-            <!-- Added class 'animate-list-on-scroll' to trigger the animation -->
-            <ul class="activities-list animate-list-on-scroll">
-              <li>
-                <span class="activity-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
-                </span>
-                <span>
-                  <b>สร้างสรรค์สื่อ:</b>
-                  เพื่อเปิดมุมมองใหม่เกี่ยวกับคนพิการและความหลากหลายในสังคม เช่น
-                  รายการ “OH I SEE อ๋อ...มันเป็นอย่างนี้นี่เอง”
-                </span>
-              </li>
-              <li>
-                <span class="activity-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
-                </span>
-                <span>
-                  <b>ส่งเสริมการเข้าถึงสิทธิ:</b>
-                  เราทำงานเพื่อให้คนพิการและกลุ่มเปราะบางได้รับรู้และเข้าถึงสิทธิที่จำเป็น
-                  ทั้งด้านการรักษาพยาบาล การจ้างงาน และการคุ้มครองทางกฎหมาย
-                </span>
-              </li>
-              <li>
-                <span class="activity-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
-                </span>
-                <span>
-                  <b>ประสานความร่วมมือ:</b>
-                  เราเชื่อมโยงภาครัฐ เอกชน และชุมชน
-                  เพื่อร่วมกันสร้างสังคมแห่งความเข้าใจที่ทุกคนอยู่ร่วมกันได้อย่างมีศักดิ์ศรี
-                </span>
-              </li>
-              <li>
-                <span class="activity-icon">
-                  <svg
-                    xmlns="http://www.w3.org/2000/svg"
-                    width="24"
-                    height="24"
-                    viewBox="0 0 24 24"
-                    fill="none"
-                    stroke="currentColor"
-                    stroke-width="2"
-                    stroke-linecap="round"
-                    stroke-linejoin="round">
-                    <path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path>
-                    <polyline points="22 4 12 14.01 9 11.01"></polyline>
-                  </svg>
-                </span>
-                <span>
-                  <b>เล่าเรื่องราวสร้างแรงบันดาลใจ:</b>
-                  เราถ่ายทอดเรื่องราวของผู้คนเพื่อจุดประกายความหวัง
-                  และสะท้อนคุณค่าของทุกชีวิต ไม่เว้นแม้แต่ชีวิตเล็กๆ ของแมวจร
-                </span>
-              </li>
-            </ul>
+      <section id="about" class="about-us">
+        <div class="container">
+          <div class="about-content">
+            <div class="about-text">
+              <h2>ภารกิจของเรา</h2>
+              <ul class="activities-list animate-list-on-scroll">
+                <li>
+                  <span class="activity-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                  </span>
+                  <span><b>สร้างสรรค์สื่อ:</b> เพื่อเปิดมุมมองใหม่เกี่ยวกับคนพิการและความหลากหลายในสังคม เช่น รายการ “OH I SEE อ๋อ...มันเป็นอย่างนี้นี่เอง”</span>
+                </li>
+                <li>
+                  <span class="activity-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                  </span>
+                  <span><b>ส่งเสริมการเข้าถึงสิทธิ:</b> เราทำงานเพื่อให้คนพิการและกลุ่มเปราะบางได้รับรู้และเข้าถึงสิทธิที่จำเป็น ทั้งด้านการรักษาพยาบาล การจ้างงาน และการคุ้มครองทางกฎหมาย</span>
+                </li>
+                <li>
+                  <span class="activity-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                  </span>
+                  <span><b>ประสานความร่วมมือ:</b> เราเชื่อมโยงภาครัฐ เอกชน และชุมชน เพื่อร่วมกันสร้างสังคมแห่งความเข้าใจที่ทุกคนอยู่ร่วมกันได้อย่างมีศักดิ์ศรี</span>
+                </li>
+                <li>
+                  <span class="activity-icon">
+                    <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M22 11.08V12a10 10 0 1 1-5.93-9.14"></path><polyline points="22 4 12 14.01 9 11.01"></polyline></svg>
+                  </span>
+                  <span><b>เล่าเรื่องราวสร้างแรงบันดาลใจ:</b> เราถ่ายทอดเรื่องราวของผู้คนเพื่อจุดประกายความหวัง และสะท้อนคุณค่าของทุกชีวิต ไม่เว้นแม้แต่ชีวิตเล็กๆ ของแมวจร</span>
+                </li>
+              </ul>
+            </div>
+            <div class="about-image">
+              <img src="assets/about-us.jpg" alt="ทีมงาน Lady Wheeler กำลังทำกิจกรรมเพื่อสังคม" />
+            </div>
           </div>
-          <div class="about-image">
-            <img
-              src="assest/about-us.jpg"
-              alt="ทีมงาน Lady Wheeler กำลังทำกิจกรรมเพื่อสังคม" />
-          </div>
-        </div>
-        <blockquote class="about-quote">
-          <p>
-            “เราไม่ได้แค่มาเล่าเรื่อง…แต่มาบอกเล่าเรื่องราวเพื่อให้ทุกคนได้รับรู้
-            เห็นในคุณค่าชีวิตที่เท่าเทียม และเข้าอกเข้าใจกันและกัน”
-          </p>
-        </blockquote>
-      </div>
-    </section>
-
-    <section
-      id="services"
-      class="services">
-      <div class="container">
-        <h2>ช่องทางสื่อสารของเรา</h2>
-        <div class="services-grid">
-          <div class="service-item animate-on-scroll from-left">
-            <img
-              src="assest/facebook.png"
-              alt="Facebook Icon"
-              class="service-icon" />
-            <p>@Lady Wheeler</p>
-          </div>
-
-          <div class="service-item animate-on-scroll from-bottom">
-            <img
-              src="assest/youtube.png"
-              alt="YouTube Icon"
-              class="service-icon" />
-            <p>@Lady Wheeler Channel</p>
-          </div>
-
-          <div class="service-item animate-on-scroll from-right">
-            <img
-              src="assest/fcd-logo.png"
-              alt="FCD Logo Icon"
-              class="service-icon" />
-            <p>OH I SEE อ๋อ...มันเป็นอย่างนี้นี่เอง</p>
-          </div>
-        </div>
-      </div>
-    </section>
-    <!--
-    <section class="stats">
-      <div class="container stats-grid">
-        <div class="stat-item">
-          <h3>271+</h3>
-          <p>สื่อวิดีโอ</p>
-        </div>
-        <div class="stat-item">
-          <h3>170k+</h3>
-          <p>ผู้ติดตาม</p>
-        </div>
-        <div class="stat-item">
-          <h3>250k+</h3>
-          <p>ผู้รับชม</p>
-        </div>
-        <div class="stat-item">
-          <h3>50+</h3>
-          <p>กิจกรรมเพื่อผู้พิการ</p>
-        </div>
-      </div>
-    </section>-->
-
-    <section
-      id="belief"
-      class="belief-section parallax-bg">
-      <div class="container">
-        <div class="belief-content">
-          <h2>พลังของเสียงเล็ก ๆ</h2>
-          <blockquote>
-            <p>
-              เราเชื่อว่าพลังของการเปลี่ยนแปลง ไม่ได้วัดกันที่ความดังของเสียง...
-              หากแต่วัดกันที่ความกล้าหาญที่จะเปล่งเสียงนั้นออกมา
-            </p>
-            <p>
-              เสียงของเราอาจเป็นเพียงเสียงเล็กๆ
-              แต่เราปรารถนาให้มันเป็นดั่งสะพานที่แข็งแกร่ง
-              พอที่จะให้ใครสักคนใช้ก้าวข้ามหุบเหวแห่งความกลัว,
-              ทลายกำแพงของความไม่เข้าใจ และเยียวยาบาดแผลจากความเจ็บปวด
-            </p>
-            <p class="final-line">
-              นั่นคือเหตุผลที่เราจะ
-              <strong>“พูดต่อไป”</strong>
-            </p>
-            <cite>
-              — ด้วยความสุภาพ ให้เกียรติซึ่งกันและกัน ด้วยความตั้งใจ
-              และด้วยจุดยืนที่มั่นคง
-            </cite>
+          <blockquote class="about-quote">
+            <p>“เราไม่ได้แค่มาเล่าเรื่อง…แต่มาบอกเล่าเรื่องราวเพื่อให้ทุกคนได้รับรู้ เห็นในคุณค่าชีวิตที่เท่าเทียม และเข้าอกเข้าใจกันและกัน”</p>
           </blockquote>
         </div>
-      </div>
-    </section>
+      </section>
 
-    <!--
-    <section
-      id="featured-content"
-      class="content-cards-section">
-      <div class="container">
-        <h2>ข่าวสารและบทความน่ารู้</h2>
-
-        <div class="portfolio-slider-container">
-          <button
-            class="scroll-arrow scroll-feature prev-arrow"
-            id="featPrevArrow"
-            aria-label="Previous Articles">
-            &lt;
-          </button>
-          <div class="cards-grid">
-            <div class="content-card">
-              <a
-                href="YOUR_YOUTUBE_OR_FACEBOOK_LINK_HERE_1"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Read more about นวัตกรรมเพื่อคนตาบอด">
-                <div class="card-image-container">
-                  <img
-                    src="https://picsum.photos/seed/innovation/400/250"
-                    alt="นวัตกรรมเพื่อคนตาบอด Cover Image" />
-                </div>
-                <div class="card-text-content">
-                  <h3>นวัตกรรมเพื่อคนตาบอด</h3>
-                  <p>
-                    สำรวจนวัตกรรมและเทคโนโลยีใหม่ๆ
-                    ที่ช่วยเสริมสร้างคุณภาพชีวิตและโอกาสให้กับผู้พิการทางสายตา...
-                  </p>
-                  <span class="card-link-indicator">
-                    อ่านเพิ่มเติม หรือ ชมวิดีโอ &rarr;
-                  </span>
-                </div>
-              </a>
+      <section id="services" class="services">
+        <div class="container">
+          <h2>ช่องทางสื่อสารของเรา</h2>
+          <div class="services-grid">
+            <div class="service-item animate-on-scroll from-left">
+              <img src="assets/facebook.png" alt="Facebook Icon" class="service-icon" />
+              <p>@Lady Wheeler</p>
             </div>
-
-            <div class="content-card">
-              <a
-                href="YOUR_YOUTUBE_OR_FACEBOOK_LINK_HERE_2"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Read more about เจ็บป่วยฉุกเฉิน มีสิทธิรักษาทุกที่!">
-                <div class="card-image-container">
-                  <img
-                    src="https://picsum.photos/seed/emergency/400/250"
-                    alt="เจ็บป่วยฉุกเฉิน มีสิทธิรักษาทุกที่! Cover Image" />
-                </div>
-                <div class="card-text-content">
-                  <h3>เจ็บป่วยฉุกเฉิน มีสิทธิรักษาทุกที่!</h3>
-                  <p>
-                    ทำความเข้าใจสิทธิในการเข้ารับการรักษาพยาบาลฉุกเฉินได้ทุกโรงพยาบาล
-                    และขั้นตอนที่ควรรู้...
-                  </p>
-                  <span class="card-link-indicator">
-                    อ่านเพิ่มเติม หรือ ชมวิดีโอ &rarr;
-                  </span>
-                </div>
-              </a>
+            <div class="service-item animate-on-scroll from-bottom">
+              <img src="assets/youtube.png" alt="YouTube Icon" class="service-icon" />
+              <p>@Lady Wheeler Channel</p>
             </div>
-
-            <div class="content-card">
-              <a
-                href="YOUR_YOUTUBE_OR_FACEBOOK_LINK_HERE_3"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Read more about 30 บาท รักษาทุกที่ จริงหรือไม่?">
-                <div class="card-image-container">
-                  <img
-                    src="https://picsum.photos/seed/30baht/400/250"
-                    alt="30 บาท รักษาทุกที่ จริงหรือไม่? Cover Image" />
-                </div>
-                <div class="card-text-content">
-                  <h3>30 บาท รักษาทุกที่ จริงหรือไม่?</h3>
-                  <p>
-                    เจาะลึกนโยบาย "30 บาท รักษาทุกที่" ประโยชน์ ข้อจำกัด
-                    และสิ่งที่ประชาชนควรทราบ...
-                  </p>
-                  <span class="card-link-indicator">
-                    อ่านเพิ่มเติม หรือ ชมวิดีโอ &rarr;
-                  </span>
-                </div>
-              </a>
+            <div class="service-item animate-on-scroll from-right">
+              <img src="assets/fcd-logo.png" alt="FCD Logo Icon" class="service-icon" />
+              <p>OH I SEE อ๋อ...มันเป็นอย่างนี้นี่เอง</p>
             </div>
+          </div>
+        </div>
+      </section>
 
-            <div class="content-card">
-              <a
-                href="YOUR_YOUTUBE_OR_FACEBOOK_LINK_HERE_3"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Read more about 30 บาท รักษาทุกที่ จริงหรือไม่?">
-                <div class="card-image-container">
-                  <img
-                    src="https://picsum.photos/seed/echo/400/250"
-                    alt="30 บาท รักษาทุกที่ จริงหรือไม่? Cover Image" />
-                </div>
-                <div class="card-text-content">
-                  <h3>อย่าปล่อยให้ “สิทธิ” ของคุณหลุดลอยไป</h3>
-                  <p>
-                    คนพิการทางการได้ยิน
-                    หลายคนยังเข้าไม่ถึงสิทธิการรักษาพยาบาลของ สปสช. เพราะ
-                    ไม่รู้... ไม่เข้าใจ... และไม่เข้าถึง!
-                  </p>
-                  <span class="card-link-indicator">
-                    อ่านเพิ่มเติม หรือ ชมวิดีโอ &rarr;
-                  </span>
-                </div>
+      <section id="belief" class="belief-section parallax-bg">
+        <div class="container">
+          <div class="belief-content">
+            <h2>พลังของเสียงเล็ก ๆ</h2>
+            <blockquote>
+              <p>เราเชื่อว่าพลังของการเปลี่ยนแปลง ไม่ได้วัดกันที่ความดังของเสียง... หากแต่วัดกันที่ความกล้าหาญที่จะเปล่งเสียงนั้นออกมา</p>
+              <p>เสียงของเราอาจเป็นเพียงเสียงเล็กๆ แต่เราปรารถนาให้มันเป็นดั่งสะพานที่แข็งแกร่ง พอที่จะให้ใครสักคนใช้ก้าวข้ามหุบเหวแห่งความกลัว, ทลายกำแพงของความไม่เข้าใจ และเยียวยาบาดแผลจากความเจ็บปวด</p>
+              <p class="final-line">นั่นคือเหตุผลที่เราจะ <strong>“พูดต่อไป”</strong></p>
+              <cite>— ด้วยความสุภาพ ให้เกียรติซึ่งกันและกัน ด้วยความตั้งใจ และด้วยจุดยืนที่มั่นคง</cite>
+            </blockquote>
+          </div>
+        </div>
+      </section>
+
+      <section id="portfolio" class="portfolio video-showcase">
+        <div class="container">
+          <h2>สื่อล่าสุด</h2>
+          <div class="portfolio-slider-container">
+            <button id="videoPrevArrow" class="scroll-arrow prev-arrow" aria-label="Previous Videos">&lt;</button>
+            <div class="video-scroll-container"></div>
+            <button id="videoNextArrow" class="scroll-arrow next-arrow" aria-label="Next Videos">&gt;</button>
+          </div>
+        </div>
+      </section>
+
+      <section class="testimonials">
+        <div class="container">
+          <h2>เสียงจากพวกเรา</h2>
+          <div class="testimonial-slider">
+            <div class="testimonial-item animate-testimonial-on-scroll">
+              <div class="testimonial-text-content">
+                <p class="quote">"ความพิการอาจเป็นเพียงส่วนหนึ่งที่มองเห็นได้จากภายนอก แต่ลึกลงไป เรามีความสามารถ มีศักยภาพ และมีคุณค่าที่ไม่ต่างจากใคร สิ่งที่พวกเราต้องการไม่ใช่ความเวทนาสงสาร หากแต่เป็นความเข้าใจ และโอกาสที่จะได้พิสูจน์ตัวเอง ได้เข้าถึงสิทธิขั้นพื้นฐาน และสวัสดิการที่จำเป็น เพื่อให้สามารถดำรงชีวิตได้อย่างอิสระ และมีส่วนร่วมในการพัฒนาสังคมได้อย่างเต็มภาคภูมิ ความเท่าเทียมจึงไม่ใช่แค่คำพูดสวยหรู แต่คือการลงมือทำจริง"</p>
+              </div>
+              <div class="testimonial-client-profile">
+                <img src="assets/our-profile.png" alt="คุณสมศักดิ์ พันธุ์กาศว์" class="client-photo" />
+                <h4 class="client-name">คุณสมศักดิ์ พันธุ์กาศว์</h4>
+                <span class="client-info">ผู้พิการขาตั้งแต่กำเนิด</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section id="join-us" class="join-us-section">
+        <div class="container">
+          <div class="join-us-content">
+            <div class="join-us-text animate-on-scroll from-left">
+              <h2>ร่วมเดินทางกับ Lady Wheeler</h2>
+              <p>ไม่ว่าคุณจะเป็นใคร จะเป็นคนพิการหรือไม่พิการ เป็นนักเปลี่ยนแปลง หรือเพียงคนธรรมดาที่มีใจเห็นคุณค่าความเป็นคน ความเป็นชีวิตที่เท่าเทียม...</p>
+              <p class="join-us-subtext">นี่คือพื้นที่สำหรับความคิด กิจกรรม และภารกิจของผู้คนที่เห็นคุณค่าของความเข้าใจ มาร่วมกันขับเคลื่อนความแตกต่างหลากหลายสู่สังคมแห่งความเข้าใจที่อยู่เย็นเป็นสุขร่วมกัน</p>
+            </div>
+            <div class="join-us-actions">
+              <a href="#" class="action-card animate-on-scroll from-right delay-1">
+                <div class="action-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path><circle cx="8.5" cy="7" r="4"></circle><line x1="20" y1="8" x2="20" y2="14"></line><line x1="23" y1="11" x2="17" y2="11"></line></svg></div>
+                <div class="action-card-text"><h3>ติดตามเรา</h3><p>รับข่าวสารล่าสุดและเป็นส่วนหนึ่งของชุมชนเราผ่านช่องทางต่างๆ</p></div>
+              </a>
+              <a href="#" class="action-card animate-on-scroll from-right delay-2">
+                <div class="action-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M4 11a9 9 0 0 1 9 9"></path><path d="M4 4a16 16 0 0 1 16 16"></path><circle cx="5" cy="19" r="1"></circle></svg></div>
+                <div class="action-card-text"><h3>ร่วมกิจกรรม</h3><p>เข้าร่วมกิจกรรมและเวิร์คช็อปที่เราจัดขึ้นเพื่อสร้างความเปลี่ยนแปลง</p></div>
+              </a>
+              <a href="#" class="action-card animate-on-scroll from-right delay-3">
+                <div class="action-card-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path></svg></div>
+                <div class="action-card-text"><h3>สนับสนุนภารกิจ</h3><p>ร่วมเป็นส่วนหนึ่งในการสนับสนุนการดำเนินงานและภารกิจของเรา</p></div>
               </a>
             </div>
           </div>
-          <button
-            class="scroll-arrow scroll-feature next-arrow"
-            id="featNextArrow"
-            aria-label="Next Articles">
-            &gt;
-          </button>
         </div>
-      </div>
-    </section>
-    -->
-
-    <section
-      id="portfolio"
-      class="portfolio video-showcase">
-      <div class="container">
-        <h2>สื่อล่าสุด</h2>
-        <div class="portfolio-slider-container">
-          <button
-            id="videoPrevArrow"
-            class="scroll-arrow prev-arrow"
-            aria-label="Previous Videos">
-            &lt;
-          </button>
-          <div class="video-scroll-container"></div>
-          <button
-            id="videoNextArrow"
-            class="scroll-arrow next-arrow"
-            aria-label="Next Videos">
-            &gt;
-          </button>
-        </div>
-      </div>
-    </section>
-
-    <section class="testimonials">
-      <div class="container">
-        <h2>เสียงจากพวกเรา</h2>
-        <div class="testimonial-slider">
-          <div class="testimonial-item animate-testimonial-on-scroll">
-            <div class="testimonial-text-content">
-              <p class="quote">
-                "ความพิการอาจเป็นเพียงส่วนหนึ่งที่มองเห็นได้จากภายนอก แต่ลึกลงไป
-                เรามีความสามารถ มีศักยภาพ และมีคุณค่าที่ไม่ต่างจากใคร
-                สิ่งที่พวกเราต้องการไม่ใช่ความเวทนาสงสาร หากแต่เป็นความเข้าใจ
-                และโอกาสที่จะได้พิสูจน์ตัวเอง ได้เข้าถึงสิทธิขั้นพื้นฐาน
-                และสวัสดิการที่จำเป็น เพื่อให้สามารถดำรงชีวิตได้อย่างอิสระ
-                และมีส่วนร่วมในการพัฒนาสังคมได้อย่างเต็มภาคภูมิ
-                ความเท่าเทียมจึงไม่ใช่แค่คำพูดสวยหรู แต่คือการลงมือทำจริง"
-              </p>
+      </section>
+      
+      <!--
+      <section id="contact" class="contact">
+        <div class="container">
+          <h2>ติดต่อเรา</h2>
+          <div class="contact-flex">
+            <div class="contact-form">
+              <form action="#">
+                <input type="text" name="name" placeholder="ชื่อ-นามสกุล" required />
+                <input type="email" name="email" placeholder="อีเมล" required />
+                <input type="text" name="subject" placeholder="หัวข้อ" required />
+                <textarea name="message" placeholder="ข้อความของคุณ" rows="5" required></textarea>
+                <button type="submit" class="btn btn-primary">ส่งข้อความ</button>
+              </form>
             </div>
-            <div class="testimonial-client-profile">
-              <img
-                src="assest/our-profile.png"
-                alt="Client Name"
-                class="client-photo" />
-              <h4 class="client-name">คุณสมศักดิ์ พันธุ์กาศว์</h4>
-              <span class="client-info">ผู้พิการขาตั้งแต่กำเนิด</span>
+            <div class="contact-info">
+              <div class="fb-page"
+                   data-href="https://www.facebook.com/profile.php?id=100086565373684"
+                   data-tabs="timeline"
+                   data-height="500"
+                   data-small-header="false"
+                   data-adapt-container-width="true"
+                   data-hide-cover="false"
+                   data-show-facepile="true"
+                   data-lazy="true">
+                <blockquote cite="https://www.facebook.com/profile.php?id=100086565373684" class="fb-xfbml-parse-ignore">
+                  <a href="https://www.facebook.com/profile.php?id=100086565373684">Lady Wheeler</a>
+                </blockquote>
+              </div>
             </div>
           </div>
         </div>
-      </div>
-    </section>
+      </section>
+      -->
 
-    <!--
-    <section
-      id="image-gallery"
-      class="image-gallery-section">
-      <div class="container">
-        <h2>คลังรูปภาพ</h2>
-        <div class="portfolio-slider-container">
-          <button
-            class="scroll-arrow prev-arrow"
-            id="galleryPrevArrow"
-            aria-label="Previous Images">
-            &lt;
-          </button>
-          <div class="gallery-scroll-container">
-            <div class="gallery-item">
-              <img
-                src="https://picsum.photos/seed/gallery1/400/300"
-                alt="Scenic view of mountains" />
-              <div class="image-description-overlay">
-                <p>
-                  A breathtaking mountain landscape under a clear blue sky.
-                  Perfect for nature lovers.
-                </p>
-              </div>
-            </div>
-
-            <div class="gallery-item">
-              <img
-                src="https://picsum.photos/seed/gallery2/400/300"
-                alt="Close-up of a vibrant flower" />
-              <div class="image-description-overlay">
-                <p>
-                  Vibrant colors of a blooming flower, showcasing intricate
-                  details of its petals.
-                </p>
-              </div>
-            </div>
-
-            <div class="gallery-item">
-              <img
-                src="https://picsum.photos/seed/gallery3/400/300"
-                alt="Abstract architectural design" />
-              <div class="image-description-overlay">
-                <p>
-                  Modern architectural lines creating an abstract and intriguing
-                  pattern.
-                </p>
-              </div>
-            </div>
-
-            <div class="gallery-item">
-              <img
-                src="https://picsum.photos/seed/gallery4/400/300"
-                alt="Wildlife animal in its habitat" />
-              <div class="image-description-overlay">
-                <p>
-                  A candid shot of wildlife, capturing a serene moment in its
-                  natural habitat.
-                </p>
-              </div>
-            </div>
-
-            <div class="gallery-item">
-              <img
-                src="https://picsum.photos/seed/gallery5/400/300"
-                alt="Cityscape at night" />
-              <div class="image-description-overlay">
-                <p>
-                  The dazzling lights of a city skyline illuminating the night.
-                </p>
-              </div>
-            </div>
-
-            <div class="gallery-item">
-              <img
-                src="https://picsum.photos/seed/gallery6/400/300"
-                alt="Artistic food presentation" />
-              <div class="image-description-overlay">
-                <p>
-                  An artistic and colorful presentation of a delicious gourmet
-                  dish.
-                </p>
-              </div>
-            </div>
-          </div>
-          <button
-            class="scroll-arrow next-arrow"
-            id="galleryNextArrow"
-            aria-label="Next Images">
-            &gt;
-          </button>
-        </div>
-      </div>
-    </section>-->
-    <!--
-    <section
-      id="contact"
-      class="contact">
-      <div class="container">
-        <h2>ติดต่อเรา</h2>
-        <div class="contact-flex">
-          <div class="contact-form">
-            <form action="#">
-              <input
-                type="text"
-                name="name"
-                placeholder="Your Name"
-                required />
-              <input
-                type="email"
-                name="email"
-                placeholder="Your Email"
-                required />
-              <input
-                type="text"
-                name="subject"
-                placeholder="Subject"
-                required />
-              <textarea
-                name="message"
-                placeholder="Your Message"
-                rows="5"
-                required></textarea>
-              <button
-                type="submit"
-                class="btn btn-primary">
-                Send Message
-              </button>
-            </form>
-          </div>
-          <div class="contact-info">
-            <div class="facebook-plugin"></div>
-            <div
-              class="fb-page"
-              data-href="https://www.facebook.com/profile.php?id=100086565373684"
-              data-tabs="timeline"
-              data-width=""
-              data-height="500"
-              data-small-header="false"
-              data-adapt-container-width="true"
-              data-hide-cover="false"
-              data-show-facepile="true"
-              data-lazy="true">
-              <blockquote
-                cite="https://www.facebook.com/profile.php?id=100086565373684"
-                class="fb-xfbml-parse-ignore">
-                <a
-                  href="https://www.facebook.com/profile.php?id=100086565373684">
-                  Lady Wheeler
-                </a>
-              </blockquote>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>-->
-
-    <!-- ========================================= -->
-    <!-- ==     JOIN US / CALL TO ACTION        == -->
-    <!-- ========================================= -->
-    <section
-      id="join-us"
-      class="join-us-section">
-      <div class="container">
-        <div class="join-us-content">
-          <!-- Left Column: Text Content -->
-          <div class="join-us-text animate-on-scroll from-left">
-            <h2>ร่วมเดินทางกับ Lady Wheeler</h2>
-            <p>
-              ไม่ว่าคุณจะเป็นใคร จะเป็นคนพิการหรือไม่พิการ เป็นนักเปลี่ยนแปลง
-              หรือเพียงคนธรรมดาที่มีใจเห็นคุณค่าความเป็นคน
-              ความเป็นชีวิตที่เท่าเทียม...
-            </p>
-            <p class="join-us-subtext">
-              นี่คือพื้นที่สำหรับความคิด กิจกรรม
-              และภารกิจของผู้คนที่เห็นคุณค่าของความเข้าใจ
-              มาร่วมกันขับเคลื่อนความแตกต่างหลากหลายสู่สังคมแห่งความเข้าใจที่อยู่เย็นเป็นสุขร่วมกัน
-            </p>
-          </div>
-
-          <!-- Right Column: Action Cards -->
-          <div class="join-us-actions">
-            <!-- Action Card 1 -->
-            <a
-              href="#"
-              class="action-card animate-on-scroll from-right delay-1">
-              <div class="action-card-icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <path d="M16 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"></path>
-                  <circle
-                    cx="8.5"
-                    cy="7"
-                    r="4"></circle>
-                  <line
-                    x1="20"
-                    y1="8"
-                    x2="20"
-                    y2="14"></line>
-                  <line
-                    x1="23"
-                    y1="11"
-                    x2="17"
-                    y2="11"></line>
-                </svg>
-              </div>
-              <div class="action-card-text">
-                <h3>ติดตามเรา</h3>
-                <p>
-                  รับข่าวสารล่าสุดและเป็นส่วนหนึ่งของชุมชนเราผ่านช่องทางต่างๆ
-                </p>
-              </div>
-            </a>
-            <!-- Action Card 2 -->
-            <a
-              href="#"
-              class="action-card animate-on-scroll from-right delay-2">
-              <div class="action-card-icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <path d="M4 11a9 9 0 0 1 9 9"></path>
-                  <path d="M4 4a16 16 0 0 1 16 16"></path>
-                  <circle
-                    cx="5"
-                    cy="19"
-                    r="1"></circle>
-                </svg>
-              </div>
-              <div class="action-card-text">
-                <h3>ร่วมกิจกรรม</h3>
-                <p>
-                  เข้าร่วมกิจกรรมและเวิร์คช็อปที่เราจัดขึ้นเพื่อสร้างความเปลี่ยนแปลง
-                </p>
-              </div>
-            </a>
-            <!-- Action Card 3 -->
-            <a
-              href="#"
-              class="action-card animate-on-scroll from-right delay-3">
-              <div class="action-card-icon">
-                <svg
-                  xmlns="http://www.w3.org/2000/svg"
-                  width="24"
-                  height="24"
-                  viewBox="0 0 24 24"
-                  fill="none"
-                  stroke="currentColor"
-                  stroke-width="2"
-                  stroke-linecap="round"
-                  stroke-linejoin="round">
-                  <path
-                    d="M20.84 4.61a5.5 5.5 0 0 0-7.78 0L12 5.67l-1.06-1.06a5.5 5.5 0 0 0-7.78 7.78l1.06 1.06L12 21.23l7.78-7.78 1.06-1.06a5.5 5.5 0 0 0 0-7.78z"></path>
-                </svg>
-              </div>
-              <div class="action-card-text">
-                <h3>สนับสนุนภารกิจ</h3>
-                <p>ร่วมเป็นส่วนหนึ่งในการสนับสนุนการดำเนินงานและภารกิจของเรา</p>
-              </div>
-            </a>
-          </div>
-        </div>
-      </div>
-    </section>
+    </main>
 
     <footer>
       <div class="container">
         <div class="footer-content">
           <div class="footer-about">
             <h3>Lady Wheeler</h3>
-            <p>
-              สื่อสร้างสรรค์เพื่อสร้างความเข้าใจที่ถูก
-              ต้องเกี่ยวกับคนพิการและความพิการ
-            </p>
-            <p>&copy; 2025 Lady Wheeler. All Rights Reserved.</p>
+            <p>สื่อสร้างสรรค์เพื่อสร้างความเข้าใจที่ถูกต้องเกี่ยวกับคนพิการและความพิการ</p>
           </div>
-
           <div class="footer-contact">
             <h3>ติดต่อเรา</h3>
-            <p>
-              546 ซอยลาดพร้าว 47 ถนนลาดพร้าว แขวงสะพานสอง เขตวังทองหลาง กรุงเทพฯ
-              10310
-            </p>
+            <p>546 ซอยลาดพร้าว 47 ถนนลาดพร้าว แขวงสะพานสอง เขตวังทองหลาง กรุงเทพฯ 10310</p>
             <p>KBKLAUI001@gmail.com</p>
             <p>+662-539-2916, +662-539-9958</p>
           </div>
         </div>
+        <!-- Moved copyright to its own div for proper centering and layout -->
+        <div class="copyright">
+          <p>&copy; 2025 Lady Wheeler. All Rights Reserved.</p>
+        </div>
       </div>
     </footer>
 
-    <script>
-      // --- Existing Mobile Menu Toggle ---
-      const menuToggle = document.querySelector(".menu-toggle");
-      const nav = document.querySelector("header nav"); // Mobile navigation container
-      const header = document.querySelector("header");
-      // --- Hero Section Grid Animation ---
-      const heroGridContainer = document.querySelector(".hero-grid-overlay");
-      let randomHighlightInterval = null;
-      const RANDOM_HIGHLIGHT_INTERVAL_TIME = 2000; // milliseconds between random highlights
-
-      if (heroGridContainer) {
-        const cellSize = 250; // The size of each square cell in pixels
-        let cells = [];
-
-        // Function to create the grid cells
-        function createGrid() {
-          // Clear any existing grid cells
-          heroGridContainer.innerHTML = "";
-          cells = []; // Reset the cells array
-
-          const containerWidth = heroGridContainer.offsetWidth;
-          const containerHeight = heroGridContainer.offsetHeight;
-          const cols = Math.ceil(containerWidth / cellSize);
-          const rows = Math.ceil(containerHeight / cellSize);
-
-          // Set up CSS Grid columns and rows
-          heroGridContainer.style.gridTemplateColumns = `repeat(${cols}, 1fr)`;
-          heroGridContainer.style.gridTemplateRows = `repeat(${rows}, 1fr)`;
-
-          // Create and append grid cells
-          for (let i = 0; i < cols * rows; i++) {
-            const cell = document.createElement("div");
-            cell.classList.add("grid-cell");
-            heroGridContainer.appendChild(cell);
-            cells.push(cell);
-          }
-        }
-
-        // --- Intersection Observer to run the animation only when visible ---
-        const heroObserver = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                // Start the animation when the hero section is visible
-              } else {
-                // Stop the animation when it's not visible to save resources
-              }
-            });
-          },
-          {
-            threshold: 0, // Trigger as soon as any part is visible
-          }
-        );
-
-        // Initial grid creation and start observing
-        createGrid();
-        heroObserver.observe(heroGridContainer);
-
-        // Recreate grid on window resize to ensure it always fits
-        // Use a debounce function to limit how often resize is checked for performance
-        let resizeTimeout;
-        window.addEventListener("resize", () => {
-          clearTimeout(resizeTimeout);
-          resizeTimeout = setTimeout(createGrid, 250);
-        });
-      }
-
-      // --- Text Typing Effect for About Us Quote ---
-      document.addEventListener("DOMContentLoaded", () => {
-        // --- Chained Animation Logic for About Us Section (Reversed Order) ---
-        const animatedList = document.querySelector(".animate-list-on-scroll");
-        const quoteElement = document.querySelector(".about-quote");
-
-        // Ensure all necessary elements exist before proceeding
-        if (animatedList && quoteElement) {
-          // --- 1. Prepare a function to start the list animation ---
-          function startListAnimation() {
-            if (animatedList) {
-              animatedList.classList.add("in-view");
-            }
-          }
-
-          // --- 2. Prepare the Typing Effect ---
-          const textElement = quoteElement.querySelector("p");
-          if (textElement) {
-            const fullText = textElement.innerText;
-            let charIndex = 0;
-
-            // Hide the text initially
-            textElement.innerText = "";
-            textElement.style.visibility = "hidden";
-
-            // --- 3. Create a function to start the typing animation ---
-            function startTypingEffect() {
-              // Make the text element visible and add the typing class for the cursor
-              textElement.style.visibility = "visible";
-              textElement.classList.add("is-typing");
-
-              // Start typing character by character
-              // const typingInterval = setInterval(() => {
-              //   if (charIndex < fullText.length) {
-              //     textElement.textContent += fullText.charAt(charIndex);
-              //     charIndex++;
-              //   } else {
-              //     // Typing finished, clear the interval
-              //     clearInterval(typingInterval);
-
-              //     // --- TRIGGER THE NEXT ANIMATION ---
-              //     // Now that typing is complete, start the list animation.
-              //     startListAnimation();
-
-              //     // Optional: remove the blinking cursor after a delay
-              //     setTimeout(() => {
-              //       textElement.classList.remove("is-typing");
-              //     }, 30000); // Keep cursor blinking for 3 seconds after finishing
-              //   }
-              // }, 10); // Typing speed in milliseconds
-              textElement.textContent = fullText;
-              // setTimeout(() => {
-              //   textElement.classList.remove("is-typing");
-              // }, 30000);
-              startListAnimation();
-            }
-
-            // --- 4. Create an Intersection Observer to start the sequence ---
-            // This observer will watch the quote element.
-            const sequenceObserver = new IntersectionObserver(
-              (entries, observer) => {
-                entries.forEach((entry) => {
-                  if (entry.isIntersecting) {
-                    // a. When the quote is visible, start the typing effect.
-                    startTypingEffect();
-
-                    // b. Stop observing the element so the animation only runs once.
-                    observer.unobserve(entry.target);
-                  }
-                });
-              },
-              {
-                threshold: 0.5, // Start animation when 50% of the quote box is visible
-              }
-            );
-
-            // --- 5. Start observing the quote element to kick off the chain ---
-            sequenceObserver.observe(quoteElement);
-          }
-        }
-
-        // --- Your other existing JavaScript (menu toggle, sliders, etc.) can remain here ---
-      });
-
-      // --- Hero Text "Equality" Animation Trigger ---
-      const heroEqualityText = document.querySelector(".animate-equality-text");
-
-      if (heroEqualityText) {
-        // Use a short delay to ensure the page is fully settled before the animation begins
-        setTimeout(() => {
-          heroEqualityText.classList.add("start-animation");
-        }, 500); // Start animation 500ms after page load
-      }
-
-      // --- YouTube Video Showcase Logic ---
-      const videoScrollContainer = document.querySelector(
-        ".video-scroll-container"
-      );
-      const prevArrow = document.getElementById("videoPrevArrow");
-      const nextArrow = document.getElementById("videoNextArrow");
-
-      const featScrollContainer = document.querySelector(
-        "#featured-content .cards-grid"
-      ); // Target the specific cards-grid
-      const featPrevArrow = document.getElementById("featPrevArrow");
-      const featNextArrow = document.getElementById("featNextArrow");
-
-      // Replace with your actual YouTube Data API v3 Key and Channel ID
-      const YOUTUBE_API_KEY = "AIzaSyAY1JTyafrC4ebpfTxVjG8RfsnbZ0AIaFE"; // <-- REPLACE THIS
-      const YOUTUBE_CHANNEL_ID = "UCFBdaMNlTBUNWfXRxSMGJvA"; // <-- REPLACE THIS
-      const MAX_RESULTS = 10; // Number of videos to fetch
-
-      if (menuToggle && nav) {
-        menuToggle.addEventListener("click", () => {
-          nav.classList.toggle("active"); // This shows/hides the nav
-          menuToggle.classList.toggle("active"); // This animates the hamburger
-        });
-      }
-
-      // --- Existing Header Shrink on Scroll ---
-      const scrollThreshold = 300; // Shrink after scrolling this many pixels
-      window.addEventListener("scroll", function () {
-        if (window.scrollY > scrollThreshold) {
-          header.classList.add("scrolled");
-        } else {
-          header.classList.remove("scrolled");
-        }
-        // Call function to update active link on scroll (defined below)
-        updateActiveLinkOnScroll();
-      });
-
-      // --- NEW: Active Menu Item Logic ---
-      const navLinks = document.querySelectorAll("header nav ul li a");
-      const sections = document.querySelectorAll("section[id]"); // Get all sections with an ID
-
-      // Function to remove .active class from all nav links
-      function removeActiveClasses() {
-        navLinks.forEach((link) => {
-          link.classList.remove("active");
-        });
-      }
-
-      // 1. Handle click on navigation links
-      navLinks.forEach((link) => {
-        link.addEventListener("click", function (event) {
-          removeActiveClasses();
-          this.classList.add("active");
-
-          // Close mobile menu if active and it's a link click
-          if (nav.classList.contains("active")) {
-            nav.classList.remove("active");
-            menuToggle.classList.remove("active");
-          }
-          // Smooth scroll is handled by CSS (html { scroll-behavior: smooth; })
-          // If you were using JS for smooth scroll, it would go here.
-        });
-      });
-
-      // 2. Handle scroll to update active menu item (Scrollspy)
-      function updateActiveLinkOnScroll() {
-        let currentSectionId = "";
-        const headerHeight = header.offsetHeight; // Get current header height for offset
-
-        sections.forEach((section) => {
-          const sectionTop = section.offsetTop - headerHeight - 20; // Adjusted for header and a small buffer
-          const sectionBottom = sectionTop + section.offsetHeight;
-
-          // Check if current scroll position is within this section
-          if (window.scrollY >= sectionTop && window.scrollY < sectionBottom) {
-            currentSectionId = section.getAttribute("id");
-          }
-        });
-
-        // If no section is "active" (e.g., at the very top or very bottom beyond section content)
-        // you might want to default to "home" or the last known section.
-        // For the very top, let's ensure "home" is active if above the first actual section's trigger point.
-        if (
-          window.scrollY <
-          document.getElementById(sections[0].id)?.offsetTop - headerHeight - 20
-        ) {
-          currentSectionId = "home"; // Assuming your first link's href is #home
-        }
-
-        // Now update the active class on links
-        navLinks.forEach((link) => {
-          link.classList.remove("active");
-          // Check if the link's href matches the current section ID
-          // Or if it's the "home" link and currentSectionId is "home"
-          if (link.getAttribute("href") === "#" + currentSectionId) {
-            link.classList.add("active");
-          }
-        });
-
-        // Special case for when scrolled to the very bottom of the page
-        // If the bottom is reached, activate the last section's link
-        if (
-          window.innerHeight + window.scrollY + 5 >=
-          document.body.offsetHeight
-        ) {
-          // +5px buffer
-          const lastSectionId = sections[sections.length - 1].id;
-          removeActiveClasses();
-          document
-            .querySelector(`header nav ul li a[href="#${lastSectionId}"]`)
-            ?.classList.add("active");
-        }
-      }
-
-      // Initial call to set active link on page load (in case the page loads on a scrolled position)
-      updateActiveLinkOnScroll();
-
-      async function fetchYouTubeChannelVideos(apiKey, channelId, maxResults) {
-        if (!videoScrollContainer) return;
-        videoScrollContainer.innerHTML =
-          '<p style="padding: 20px; color: var(--text-dark);">Loading videos...</p>'; // Loading message
-
-        try {
-          // Step 1: Get the uploads playlist ID from the channel ID
-          const channelResponse = await fetch(
-            `https://www.googleapis.com/youtube/v3/channels?part=contentDetails&id=${channelId}&key=${apiKey}`
-          );
-          if (!channelResponse.ok) {
-            const errorData = await channelResponse.json();
-            throw new Error(
-              `YouTube API Error (Channel): ${errorData.error.message}`
-            );
-          }
-          const channelData = await channelResponse.json();
-
-          if (!channelData.items || channelData.items.length === 0) {
-            throw new Error(
-              "YouTube channel not found or has no content details."
-            );
-          }
-          const uploadsPlaylistId =
-            channelData.items[0].contentDetails.relatedPlaylists.uploads;
-
-          // Step 2: Get videos from the uploads playlist
-          const playlistResponse = await fetch(
-            `https://www.googleapis.com/youtube/v3/playlistItems?part=snippet&playlistId=${uploadsPlaylistId}&maxResults=${maxResults}&key=${apiKey}`
-          );
-          if (!playlistResponse.ok) {
-            const errorData = await playlistResponse.json();
-            throw new Error(
-              `YouTube API Error (Playlist): ${errorData.error.message}`
-            );
-          }
-          const playlistData = await playlistResponse.json();
-
-          displayVideos(playlistData.items);
-        } catch (error) {
-          console.error("Error fetching YouTube videos:", error);
-          if (videoScrollContainer) {
-            videoScrollContainer.innerHTML = `<p style="padding: 20px; color: red;">Failed to load videos: ${error.message}. Please check your API key and Channel ID.</p>`;
-          }
-        }
-      }
-
-      function displayVideos(videos) {
-        if (!videoScrollContainer) return;
-        videoScrollContainer.innerHTML = ""; // Clear loading message or previous videos
-
-        if (!videos || videos.length === 0) {
-          videoScrollContainer.innerHTML =
-            '<p style="padding: 20px; color: var(--text-dark);">No videos found.</p>';
-          return;
-        }
-
-        videos.forEach((video) => {
-          const snippet = video.snippet;
-          const videoId = snippet.resourceId.videoId;
-          const title = snippet.title;
-          // Using mqdefault (320x180) for decent quality and size. Others: default, hqdefault, sddefault, maxresdefault
-          const thumbnailUrl = snippet.thumbnails.medium
-            ? snippet.thumbnails.medium.url
-            : "https://via.placeholder.com/320x180?text=No+Thumbnail";
-
-          const videoItemHTML = `
-            <div class="video-item">
-                <a href="https://www.youtube.com/watch?v=${videoId}" target="_blank" rel="noopener noreferrer" title="${title}">
-                    <img src="${thumbnailUrl}" alt="${title}">
-                    <div class="video-info">
-                        <h4>${title}</h4>
-                    </div>
-                </a>
-            </div>
-        `;
-          videoScrollContainer.innerHTML += videoItemHTML;
-        });
-      }
-
-      // Call the function to fetch videos when the page loads
-      // Ensure API Key and Channel ID are set before calling
-      if (
-        YOUTUBE_API_KEY !== "YOUR_YOUTUBE_API_KEY" &&
-        YOUTUBE_CHANNEL_ID !== "YOUR_YOUTUBE_CHANNEL_ID"
-      ) {
-        fetchYouTubeChannelVideos(
-          YOUTUBE_API_KEY,
-          YOUTUBE_CHANNEL_ID,
-          MAX_RESULTS
-        );
-      } else if (videoScrollContainer) {
-        videoScrollContainer.innerHTML =
-          '<p style="padding: 20px; color: var(--text-dark);">Please configure YouTube API Key and Channel ID in the script.</p>';
-      }
-
-      // Scroll Arrow Functionality
-      if (prevArrow && nextArrow && videoScrollContainer) {
-        const scrollAmount = 300; // Amount to scroll in pixels, adjust as needed (e.g., video item width + margin)
-
-        nextArrow.addEventListener("click", () => {
-          videoScrollContainer.scrollLeft += scrollAmount;
-        });
-
-        prevArrow.addEventListener("click", () => {
-          videoScrollContainer.scrollLeft -= scrollAmount;
-        });
-      }
-
-      if (featPrevArrow && featNextArrow && featScrollContainer) {
-        const featScrollAmount = 330; // Amount to scroll in pixels (approx. card width + margin)
-        // Card width (310px) + margin-right (20px) = 330px
-
-        featNextArrow.addEventListener("click", () => {
-          featScrollContainer.scrollLeft += featScrollAmount;
-        });
-
-        featPrevArrow.addEventListener("click", () => {
-          featScrollContainer.scrollLeft -= featScrollAmount;
-        });
-      }
-
-      document.addEventListener("DOMContentLoaded", () => {
-        // --- Image Gallery: Click Arrows, Autoplay, and Loop ---
-        const galleryScrollContainer = document.querySelector(
-          "#image-gallery .gallery-scroll-container"
-        );
-        const galleryPrevArrow = document.getElementById("galleryPrevArrow");
-        const galleryNextArrow = document.getElementById("galleryNextArrow");
-        const gallerySliderWrapper = galleryScrollContainer
-          ? galleryScrollContainer.closest(".portfolio-slider-container")
-          : null;
-
-        let galleryAutoplayInterval = null;
-        const GALLERY_AUTOPLAY_INTERVAL_TIME = 10; // Milliseconds: smaller = faster/smoother continuous scroll
-        const GALLERY_SCROLL_STEP = 1; // Pixels to scroll each interval
-        const USER_INTERACTION_PAUSE_DURATION = 0; // 5 seconds before resuming autoplay
-        let galleryAutoplayResumeTimer = null;
-
-        if (
-          galleryPrevArrow &&
-          galleryNextArrow &&
-          galleryScrollContainer &&
-          gallerySliderWrapper
-        ) {
-          // --- Autoplay Functions ---
-          function stopGalleryAutoplay() {
-            clearInterval(galleryAutoplayInterval);
-            galleryAutoplayInterval = null;
-          }
-
-          function startGalleryAutoplay() {
-            stopGalleryAutoplay(); // Clear any existing interval
-
-            // Only start if the mouse isn't currently over the slider wrapper
-            if (!gallerySliderWrapper.matches(":hover")) {
-              galleryAutoplayInterval = setInterval(() => {
-                // Check if we are at the very end of the scroll
-                // (scrollLeft + clientWidth) can sometimes be slightly off from scrollWidth due to subpixels
-                if (
-                  galleryScrollContainer.scrollLeft +
-                    galleryScrollContainer.clientWidth >=
-                  galleryScrollContainer.scrollWidth - GALLERY_SCROLL_STEP - 1
-                ) {
-                  // Loop back to the beginning smoothly
-                  galleryScrollContainer.scrollTo({
-                    left: 0,
-                    behavior: "smooth",
-                  });
-                } else {
-                  galleryScrollContainer.scrollLeft += GALLERY_SCROLL_STEP;
-                }
-              }, GALLERY_AUTOPLAY_INTERVAL_TIME);
-            }
-          }
-
-          function resetGalleryAutoplayTimer(immediateStart = false) {
-            stopGalleryAutoplay();
-            clearTimeout(galleryAutoplayResumeTimer);
-            if (immediateStart) {
-              startGalleryAutoplay();
-            } else {
-              galleryAutoplayResumeTimer = setTimeout(
-                startGalleryAutoplay,
-                USER_INTERACTION_PAUSE_DURATION
-              );
-            }
-          }
-
-          // --- Arrow Click Functionality (No Hover Scroll) ---
-          const galleryItemReference =
-            galleryScrollContainer.querySelector(".gallery-item");
-          const galleryClickScrollAmount = galleryItemReference
-            ? galleryItemReference.offsetWidth +
-              parseFloat(getComputedStyle(galleryItemReference).marginRight)
-            : 300; // Fallback scroll amount
-
-          galleryNextArrow.addEventListener("click", () => {
-            galleryScrollContainer.scrollBy({
-              left: galleryClickScrollAmount,
-              behavior: "smooth",
-            });
-            resetGalleryAutoplayTimer(); // Pause autoplay and schedule resume
-          });
-
-          galleryPrevArrow.addEventListener("click", () => {
-            galleryScrollContainer.scrollBy({
-              left: -galleryClickScrollAmount,
-              behavior: "smooth",
-            });
-            resetGalleryAutoplayTimer(); // Pause autoplay and schedule resume
-          });
-
-          // --- Pause Autoplay on Hovering over the Slider Area ---
-          gallerySliderWrapper.addEventListener("mouseenter", () => {
-            stopGalleryAutoplay();
-            clearTimeout(galleryAutoplayResumeTimer); // Clear any pending resume
-          });
-
-          gallerySliderWrapper.addEventListener("mouseleave", () => {
-            resetGalleryAutoplayTimer(); // Schedule autoplay to resume
-          });
-
-          // --- Pause Autoplay on manual scroll attempt (e.g. mouse wheel, touch drag) ---
-          let manualScrollTimeout;
-          galleryScrollContainer.addEventListener(
-            "scroll",
-            () => {
-              if (!galleryAutoplayInterval) return; // Do nothing if autoplay is already stopped (e.g., by mouseenter)
-
-              // If a scroll event happens and it wasn't triggered by autoplay stepping,
-              // assume it's user interaction. This is a heuristic.
-              // A more robust way involves checking if a click/touch event is active.
-              stopGalleryAutoplay();
-              clearTimeout(galleryAutoplayResumeTimer);
-              galleryAutoplayResumeTimer = setTimeout(
-                startGalleryAutoplay,
-                USER_INTERACTION_PAUSE_DURATION
-              );
-            },
-            { passive: true }
-          );
-
-          // Start autoplay initially when the section might become visible
-          const galleryObserver = new IntersectionObserver(
-            (entries) => {
-              entries.forEach((entry) => {
-                if (entry.isIntersecting) {
-                  resetGalleryAutoplayTimer(true); // Start autoplay immediately when visible
-                } else {
-                  stopGalleryAutoplay(); // Stop autoplay when not visible
-                }
-              });
-            },
-            { threshold: 0.1 }
-          ); // Trigger when 10% visible
-
-          galleryObserver.observe(galleryScrollContainer);
-        } else {
-          if (!galleryScrollContainer)
-            console.error("Gallery scroll container not found for autoplay.");
-          if (!galleryPrevArrow)
-            console.error("Gallery previous arrow not found.");
-          if (!galleryNextArrow) console.error("Gallery next arrow not found.");
-          if (!gallerySliderWrapper)
-            console.error("Gallery slider wrapper not found.");
-        }
-        // ... (your other JavaScript for menu, header scroll, other sliders, etc.)
-      });
-
-      document.addEventListener("DOMContentLoaded", () => {
-        const animatedElements =
-          document.querySelectorAll(".animate-on-scroll");
-
-        const observer = new IntersectionObserver(
-          (entries) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("in-view");
-                // Optional: Stop observing once it's visible if you only want the animation once
-                // observer.unobserve(entry.target);
-              } else {
-                // Optional: Remove 'in-view' if you want the animation to replay if it scrolls out and back in
-                // entry.target.classList.remove("in-view");
-              }
-            });
-          },
-          {
-            threshold: 0.1, // Trigger when 10% of the element is visible
-          }
-        );
-
-        animatedElements.forEach((element) => {
-          observer.observe(element);
-        });
-      });
-
-      const testimonialItemsToAnimate = document.querySelectorAll(
-        ".animate-testimonial-on-scroll"
-      );
-
-      if (testimonialItemsToAnimate.length > 0) {
-        const testimonialObserver = new IntersectionObserver(
-          (entries, observer) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                entry.target.classList.add("in-view");
-                // Optional: Stop observing the element after it has animated in once
-                observer.unobserve(entry.target);
-              }
-              // Optional: If you want the animation to replay if the user scrolls out and back in
-              // else {
-              //   entry.target.classList.remove("in-view");
-              // }
-            });
-          },
-          {
-            root: null, // Use the viewport as the root
-            threshold: 0.2, // Trigger when 20% of the element is visible
-            // rootMargin: "0px 0px -50px 0px" // Optional: Adjust when the trigger happens (e.g. 50px before it's fully in view from bottom)
-          }
-        );
-
-        testimonialItemsToAnimate.forEach((item) => {
-          testimonialObserver.observe(item);
-        });
-      }
-    </script>
+    <script src="script.js"></script>
   </body>
 </html>
