@@ -308,6 +308,8 @@ header nav ul li a:hover::after {
   color: var(--text-light); /* This is #FFFFFF */
   padding: 100px 20px 20px 20px;
   position: relative;
+  position: relative; /* This is crucial for the absolute positioned overlay */
+  overflow: hidden; /* Recommended to contain any grid artifacts */
 }
 
 .hero-content {
@@ -352,7 +354,7 @@ header nav ul li a:hover::after {
   /* font-weight: 600; */ /* Optional: make highlighted text bolder */
 }
 
-.hero-content h3 .hero-highlight-bold {
+.hero-content h2 .hero-highlight-bold {
   color: #fffacd; /* LemonChiffon - a soft, light gold/yellow. Adjust as needed. */
   font-weight: 600;
   /* Alternatively, try a very light cyan for a cooler highlight: */
@@ -408,6 +410,37 @@ header nav ul li a:hover::after {
   padding: 14px 30px;
   font-size: 0.95em;
   /* text-shadow: none; /* Uncomment if buttons are undesirably inheriting the glow */
+}
+
+/* --- Hero Section Grid Effect --- */
+
+/* The grid overlay container */
+.hero-grid-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  display: grid;
+  z-index: 0; /* Place it behind the .hero-content */
+}
+
+/* Individual cells within the grid */
+.grid-cell {
+  /* The background will be transparent by default */
+  transition: background-color 0.2s ease; /* Smooth transition for hover/active states */
+  border: 1px solid rgba(60, 84, 114, 0.158); /* Semi-transparent white border */
+}
+
+/* The style for a highlighted cell (on hover or from the random animation) */
+.grid-cell:hover,
+.grid-cell.is-active {
+  background-color: rgba(
+    207,
+    207,
+    207,
+    0.502
+  ); /* White overlay with 50% opacity */
 }
 
 .mobile-break {
@@ -469,6 +502,78 @@ header nav ul li a:hover::after {
      - 15px to 25px for more noticeably rounded corners
      - 50% for a circle/ellipse (will be a circle if the image's rendered width and height are equal)
   */
+}
+
+/* --- Styling for the updated About Us Section --- */
+
+/* Remove default list styling */
+.activities-list {
+  list-style: none;
+  padding: 0;
+  margin: 25px 0; /* Space above and below the list */
+}
+
+/* Style for each list item (icon + text) */
+.activities-list li {
+  display: flex; /* Use flexbox for alignment */
+  align-items: flex-start; /* Aligns icon to the top of the text block */
+  margin-bottom: 18px; /* Space between list items */
+  font-size: 1.05em; /* Slightly larger text for readability */
+  color: var(--text-dark);
+  line-height: 1.6;
+}
+
+/* Style for the checkmark icon */
+.activity-icon {
+  flex-shrink: 0; /* Prevents the icon from shrinking */
+  margin-right: 15px; /* Space between icon and text */
+  width: 22px;
+  height: 22px;
+  color: var(--primary-blue); /* Use theme's primary blue for the icon */
+  margin-top: 3px; /* Fine-tune vertical alignment with the text */
+}
+
+/* Style for the blockquote at the end */
+.about-quote {
+  margin-top: 30px; /* Space above the quote */
+  padding: 20px;
+  background-color: var(
+    --bg-off-white
+  ); /* Use the theme's off-white background */
+  border-left: 4px solid var(--primary-blue); /* A highlight bar using the theme's blue */
+  font-style: italic; /* Italicize the quote text */
+}
+
+.about-quote p {
+  margin: 0;
+  color: var(--primary-blue-darker); /* Use a darker blue for emphasis */
+  font-size: 1.1em; /* Slightly larger font size for the quote */
+  line-height: 1.7;
+}
+
+/* This class will be added by JavaScript to the <p> tag */
+.about-quote p.is-typing {
+  position: relative;
+  /* Ensures the blinking cursor pseudo-element is positioned correctly */
+}
+
+/* The blinking cursor effect */
+.about-quote p.is-typing::after {
+  content: "|"; /* Using a pipe character as the cursor */
+  font-weight: 300; /* Make the cursor a bit thinner */
+  margin-left: 3px;
+  animation: blink 1s infinite;
+}
+
+/* The animation that makes the cursor blink */
+@keyframes blink {
+  0%,
+  100% {
+    opacity: 1;
+  }
+  50% {
+    opacity: 0;
+  }
 }
 
 /* --- Services / What We Do Section --- */
@@ -623,6 +728,98 @@ header nav ul li a:hover::after {
   text-transform: uppercase;
   letter-spacing: 0.5px;
   font-weight: 400;
+}
+
+/* --- Styling for Belief Section --- */
+
+.belief-section.parallax-bg {
+  position: relative;
+  padding: 100px 0; /* More padding for a spacious feel */
+  color: var(--text-light); /* White text for readability on dark background */
+
+  /* Parallax Background Image Properties */
+  /* ===> REPLACE THIS URL with your chosen background image <=== */
+  background-image: url("assest/background.jpg");
+  background-attachment: fixed; /* This creates the parallax effect */
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
+/* Add a semi-transparent dark overlay to ensure text is always readable */
+.belief-section.parallax-bg::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(33, 52, 75, 0.75); /* Dark overlay with 55% opacity */
+  z-index: 1;
+}
+
+.belief-content {
+  position: relative;
+  z-index: 2; /* Ensure content is on top of the overlay */
+  text-align: center;
+  max-width: 900px; /* Constrain width for better readability */
+  margin: 0 auto; /* Center the content block */
+}
+
+.belief-content h2 {
+  color: rgb(246, 255, 205); /* Changed to a soft gold highlight color */
+  opacity: 1; /* Set to full opacity to make the color stand out */
+  font-size: 1.5em;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+  margin-bottom: 30px;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5); /* Add a subtle shadow for better readability */
+}
+
+.belief-content blockquote {
+  border: none; /* Remove any default blockquote styling */
+  padding: 0;
+  margin: 0;
+  font-size: 1.8em; /* Large, impactful font size */
+  line-height: 1.7;
+  font-weight: 500;
+}
+
+.belief-content blockquote p {
+  margin-bottom: 1em;
+  text-shadow: 0 2px 5px rgba(0, 0, 0, 0.5); /* Add shadow for better readability */
+}
+
+/* Style for the final impactful line */
+.belief-content blockquote p.final-line {
+  font-weight: 600; /* Make it slightly bolder */
+  color: #fffacd; /* Use the same highlight color as hero section */
+}
+
+/* Style for the attribution line */
+.belief-content blockquote cite {
+  display: block;
+  margin-top: 30px;
+  font-size: 0.7em; /* Smaller font size */
+  font-style: normal;
+  opacity: 0.85;
+}
+
+/* Responsive adjustments for smaller screens */
+@media (max-width: 768px) {
+  .belief-section.parallax-bg {
+    background-attachment: scroll; /* Disable parallax on mobile for better performance */
+    padding: 80px 0;
+  }
+  .belief-content blockquote {
+    font-size: 1.5em; /* Adjust font size for mobile */
+  }
+}
+
+@media (max-width: 480px) {
+  .belief-content blockquote {
+    font-size: 1.2em;
+  }
 }
 
 /* --- How You Can Help / CTA Section (Optional) --- */
@@ -1218,6 +1415,104 @@ header nav ul li a:hover::after {
 .portfolio-slider-container .prev-arrow { left: 10px; }
 .portfolio-slider-container .next-arrow { right: 10px; }
 */
+
+/* --- Styling for Join Us Section --- */
+
+.join-us-section {
+  background-color: var(
+    --bg-off-white
+  ); /* Light grey background to distinguish it */
+  padding: 80px 0;
+}
+
+.join-us-content {
+  display: grid;
+  grid-template-columns: 1fr 1fr; /* Two equal columns */
+  gap: 50px; /* Space between the two columns */
+  align-items: center;
+}
+
+/* --- Left Column: Text --- */
+.join-us-text {
+  /* Animation classes will handle initial state */
+}
+
+.join-us-text h2 {
+  text-align: left; /* Align section title to the left */
+  font-size: 2.4em;
+  margin-bottom: 20px;
+}
+
+.join-us-text p {
+  font-size: 1.1em;
+  line-height: 1.7;
+  color: var(--text-dark);
+  margin-bottom: 15px;
+}
+
+.join-us-text .join-us-subtext {
+  font-size: 1em;
+  opacity: 0.85;
+}
+
+/* --- Right Column: Action Cards --- */
+.join-us-actions {
+  display: flex;
+  flex-direction: column;
+  gap: 20px; /* Space between the cards */
+}
+
+.action-card {
+  display: flex;
+  align-items: center;
+  background-color: var(--bg-white);
+  padding: 20px;
+  border: 1px solid var(--border-light);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.05);
+  text-decoration: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  /* No border-radius for sharp corners */
+}
+
+.action-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 8px 20px rgba(103, 128, 159, 0.15); /* Themed shadow */
+}
+
+.action-card-icon {
+  flex-shrink: 0;
+  width: 40px;
+  height: 40px;
+  margin-right: 20px;
+  color: var(--primary-blue);
+  /* Icon SVG size is set in HTML (width/height="24"), this container just holds it */
+}
+
+.action-card-text h3 {
+  margin: 0 0 5px 0;
+  color: var(--primary-blue-darker);
+  font-size: 1.25em;
+}
+
+.action-card-text p {
+  margin: 0;
+  color: var(--text-dark);
+  opacity: 0.8;
+  font-size: 0.9em;
+  line-height: 1.5;
+}
+
+/* --- Responsive adjustments for Join Us Section --- */
+@media (max-width: 992px) {
+  .join-us-content {
+    grid-template-columns: 1fr; /* Stack to a single column on tablets */
+    gap: 40px;
+  }
+
+  .join-us-text h2 {
+    text-align: center; /* Center title when stacked */
+  }
+}
 
 /* --- Footer --- */
 footer {
