@@ -427,11 +427,35 @@ document.addEventListener("DOMContentLoaded", () => {
         }
     }
 
+    function initAboutUsSlider() {
+        const sliderContainer = document.querySelector('.about-image');
+        if (!sliderContainer) return;
+
+        const images = sliderContainer.querySelectorAll('.slider-image');
+        if (images.length <= 1) return; // Don't start slider if there's only one image or none
+
+        let currentIndex = 0;
+        const slideInterval = 4500; // 4.5 seconds per slide
+
+        setInterval(() => {
+            // Fade out the current image
+            images[currentIndex].classList.remove('is-visible');
+
+            // Calculate the index of the next image, looping back to 0
+            currentIndex = (currentIndex + 1) % images.length;
+
+            // Fade in the new current image
+            images[currentIndex].classList.add('is-visible');
+
+        }, slideInterval);
+    }
+
     // --- Initialize All Components ---
     initMobileMenu();
     initHeaderScrollAndNav();
     initScrollAnimations();
     initHeroAnimations();
     initAboutUsAnimation();
-    initYouTubeSlider(); // Call this to start the YouTube API fetch
+    initYouTubeSlider();
+    initAboutUsSlider();
 });
