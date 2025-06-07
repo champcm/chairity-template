@@ -468,6 +468,77 @@ header nav ul li a:hover::after {
   display: none;
 }
 
+/* This will be the container for the animated words */
+.animate-equality-text .hero-highlight-bold {
+  position: relative; /* Needed for the underline pseudo-element */
+  display: inline-block;
+  white-space: nowrap; /* Prevent words from wrapping during animation */
+}
+
+/* Initial state of the two parts of the text */
+.animate-equality-text .part1,
+.animate-equality-text .part2 {
+  opacity: 0; /* Start invisible */
+  display: inline-block; /* Ensure transform works correctly */
+}
+
+/* Keyframe animations for fading in from left and right */
+@keyframes fadeInFromLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInFromRight {
+  from {
+    opacity: 0;
+    transform: translateX(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+/* Keyframe animation for the underline effect */
+@keyframes drawLine {
+  from {
+    width: 0%;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+/* Apply animations when the parent h2 has the 'start-animation' class */
+.start-animation .part1 {
+  /* "ความต่าง" fades in from the left */
+  animation: fadeInFromLeft 1.2s cubic-bezier(0.25, 0.46, 0.45, 0.94) forwards;
+}
+
+.start-animation .part2 {
+  /* "ที่เท่าเทียม" fades in from the right, with a delay */
+  animation: fadeInFromRight 1.3s cubic-bezier(0.25, 0.46, 0.45, 0.94) 0.7s
+    forwards;
+}
+
+/* The uniting underline that appears after the words have animated in */
+.start-animation .hero-highlight-bold::after {
+  content: "";
+  position: absolute;
+  width: 0%; /* Starts with no width */
+  height: 2px;
+  background-color: #fffacd; /* Highlight color */
+  bottom: -5px; /* Position below the text */
+  left: 0;
+  animation: drawLine 1.9s ease-out 1.5s forwards; /* Starts after both words appear */
+}
+
 /* --- About Us Section --- */
 .about-us {
   background-color: var(--bg-white);

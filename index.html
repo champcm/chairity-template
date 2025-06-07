@@ -56,16 +56,16 @@
       <div class="hero-grid-overlay"></div>
       <div class="hero-content">
         <h1>" Lady Wheeler "</h1>
-        <h2>
+        <h2 class="animate-equality-text">
           พื้นที่ที่สะท้อนความเข้าใจ ให้รับรู้
-          <span class="hero-highlight-bold">ความต่างที่เท่าเทียม</span>
+          <span class="hero-highlight-bold">
+            <span class="part1">ความต่าง</span>
+            <span class="part2">ที่เท่าเทียม</span>
+          </span>
         </h2>
       </div>
     </section>
 
-    <!-- ========================================= -->
-    <!-- ==     UPDATED ABOUT US SECTION        == -->
-    <!-- ========================================= -->
     <section
       id="about"
       class="about-us">
@@ -855,6 +855,16 @@
 
         // Start observing the blockquote element
         quoteObserver.observe(quoteElement);
+      }
+
+      // --- Hero Text "Equality" Animation Trigger ---
+      const heroEqualityText = document.querySelector(".animate-equality-text");
+
+      if (heroEqualityText) {
+        // Use a short delay to ensure the page is fully settled before the animation begins
+        setTimeout(() => {
+          heroEqualityText.classList.add("start-animation");
+        }, 500); // Start animation 500ms after page load
       }
 
       // --- YouTube Video Showcase Logic ---
