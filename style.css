@@ -433,6 +433,7 @@ header nav ul li a:hover::after {
     background-image: url('assets/belief-bg.jpg');
     background-attachment: fixed;
     background-position: center;
+    background-repeat: no-repeat;
     background-size: cover;
 }
 .belief-section.parallax-bg::before {
@@ -449,7 +450,7 @@ header nav ul li a:hover::after {
     position: relative;
     z-index: 2;
     text-align: center;
-    max-width: 800px;
+    max-width: 900px;
     margin: 0 auto;
 }
 .belief-content h2 {
