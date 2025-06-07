@@ -73,7 +73,8 @@
         <div class="about-content">
           <div class="about-text">
             <h2>ภารกิจของเรา</h2>
-            <ul class="activities-list">
+            <!-- Added class 'animate-list-on-scroll' to trigger the animation -->
+            <ul class="activities-list animate-list-on-scroll">
               <li>
                 <span class="activity-icon">
                   <svg
@@ -811,51 +812,88 @@
       }
 
       // --- Text Typing Effect for About Us Quote ---
-      const quoteElement = document.querySelector(".about-quote");
+      document.addEventListener("DOMContentLoaded", () => {
+        // --- Chained Animation Logic for About Us Section (Reversed Order) ---
+        const animatedList = document.querySelector(".animate-list-on-scroll");
+        const quoteElement = document.querySelector(".about-quote");
 
-      if (quoteElement) {
-        const textElement = quoteElement.querySelector("p");
-        const fullText = textElement.innerText;
-        let charIndex = 0;
-
-        // Hide the text initially until it's ready to be typed
-        textElement.innerText = "";
-        textElement.style.visibility = "hidden";
-
-        const quoteObserver = new IntersectionObserver(
-          (entries, observer) => {
-            entries.forEach((entry) => {
-              if (entry.isIntersecting) {
-                // Make the element visible and start the effect
-                textElement.style.visibility = "visible";
-                textElement.classList.add("is-typing");
-
-                const typingInterval = setInterval(() => {
-                  if (charIndex < fullText.length) {
-                    textElement.textContent += fullText.charAt(charIndex);
-                    charIndex++;
-                  } else {
-                    clearInterval(typingInterval);
-                    // Optional: remove the blinking cursor after a delay
-                    setTimeout(() => {
-                      textElement.classList.remove("is-typing");
-                    }, 10000); // Keep cursor blinking for 3 seconds after finishing
-                  }
-                }, 30); // Typing speed in milliseconds (e.g., 80ms per character)
-
-                // Stop observing the element so the animation only runs once
-                observer.unobserve(entry.target);
-              }
-            });
-          },
-          {
-            threshold: 0.5, // Start animation when 50% of the quote box is visible
+        // Ensure all necessary elements exist before proceeding
+        if (animatedList && quoteElement) {
+          // --- 1. Prepare a function to start the list animation ---
+          function startListAnimation() {
+            if (animatedList) {
+              animatedList.classList.add("in-view");
+            }
           }
-        );
 
-        // Start observing the blockquote element
-        quoteObserver.observe(quoteElement);
-      }
+          // --- 2. Prepare the Typing Effect ---
+          const textElement = quoteElement.querySelector("p");
+          if (textElement) {
+            const fullText = textElement.innerText;
+            let charIndex = 0;
+
+            // Hide the text initially
+            textElement.innerText = "";
+            textElement.style.visibility = "hidden";
+
+            // --- 3. Create a function to start the typing animation ---
+            function startTypingEffect() {
+              // Make the text element visible and add the typing class for the cursor
+              textElement.style.visibility = "visible";
+              textElement.classList.add("is-typing");
+
+              // Start typing character by character
+              // const typingInterval = setInterval(() => {
+              //   if (charIndex < fullText.length) {
+              //     textElement.textContent += fullText.charAt(charIndex);
+              //     charIndex++;
+              //   } else {
+              //     // Typing finished, clear the interval
+              //     clearInterval(typingInterval);
+
+              //     // --- TRIGGER THE NEXT ANIMATION ---
+              //     // Now that typing is complete, start the list animation.
+              //     startListAnimation();
+
+              //     // Optional: remove the blinking cursor after a delay
+              //     setTimeout(() => {
+              //       textElement.classList.remove("is-typing");
+              //     }, 30000); // Keep cursor blinking for 3 seconds after finishing
+              //   }
+              // }, 10); // Typing speed in milliseconds
+              textElement.textContent = fullText;
+              // setTimeout(() => {
+              //   textElement.classList.remove("is-typing");
+              // }, 30000);
+              startListAnimation();
+            }
+
+            // --- 4. Create an Intersection Observer to start the sequence ---
+            // This observer will watch the quote element.
+            const sequenceObserver = new IntersectionObserver(
+              (entries, observer) => {
+                entries.forEach((entry) => {
+                  if (entry.isIntersecting) {
+                    // a. When the quote is visible, start the typing effect.
+                    startTypingEffect();
+
+                    // b. Stop observing the element so the animation only runs once.
+                    observer.unobserve(entry.target);
+                  }
+                });
+              },
+              {
+                threshold: 0.5, // Start animation when 50% of the quote box is visible
+              }
+            );
+
+            // --- 5. Start observing the quote element to kick off the chain ---
+            sequenceObserver.observe(quoteElement);
+          }
+        }
+
+        // --- Your other existing JavaScript (menu toggle, sliders, etc.) can remain here ---
+      });
 
       // --- Hero Text "Equality" Animation Trigger ---
       const heroEqualityText = document.querySelector(".animate-equality-text");

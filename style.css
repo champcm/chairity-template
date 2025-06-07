@@ -668,6 +668,41 @@ header nav ul li a:hover::after {
   }
 }
 
+/* Target the individual list items inside the animated list */
+.animate-list-on-scroll > li {
+  /* Initial hidden state */
+  opacity: 0;
+  transform: translateX(50px); /* Start positioned 50px to the right */
+  /* You can also increase the transition duration for a slower individual animation */
+  transition: opacity 0.6s ease-out, transform 0.6s ease-out;
+}
+
+/* When the parent <ul> gets the '.in-view' class from JavaScript,
+   this style will apply to the list items, triggering the animation. */
+.animate-list-on-scroll.in-view > li {
+  opacity: 1;
+  transform: translateX(0); /* Move to final position */
+}
+
+/* Staggered Delay: Each list item will start its animation slightly after the previous one.
+   The delay values have been increased for a slower effect. */
+.animate-list-on-scroll.in-view > li:nth-child(1) {
+  transition-delay: 0.2s; /* Was 0.1s */
+}
+.animate-list-on-scroll.in-view > li:nth-child(2) {
+  transition-delay: 1.4s; /* Was 0.2s */
+}
+.animate-list-on-scroll.in-view > li:nth-child(3) {
+  transition-delay: 2.6s; /* Was 0.3s */
+}
+.animate-list-on-scroll.in-view > li:nth-child(4) {
+  transition-delay: 3.8s; /* Was 0.4s */
+}
+/* If you add more list items, continue this pattern */
+.animate-list-on-scroll.in-view > li:nth-child(5) {
+  transition-delay: 4s; /* Was 0.5s */
+}
+
 /* --- Services / What We Do Section --- */
 .services {
   background-color: var(--bg-off-white);
