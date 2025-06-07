@@ -93,9 +93,12 @@ document.addEventListener("DOMContentLoaded", () => {
         // Grid Animation
         const heroGridContainer = document.querySelector(".hero-grid-overlay");
         if (heroGridContainer) {
-            // --- UPDATED VARIABLES as per your request ---
-            const cellSize = 250;
-            const RANDOM_HIGHLIGHT_INTERVAL_TIME = 600; // Slower interval for each step
+            // --- OPTIMIZATION: Check if the device is likely mobile ---
+            const isMobile = window.innerWidth <= 768;
+
+            // --- UPDATED VARIABLES based on device type ---
+            const cellSize = isMobile ? 100 : 250; // Use larger, fewer cells on mobile
+            const RANDOM_HIGHLIGHT_INTERVAL_TIME = 1200;
 
             let cells = [];
             let randomHighlightInterval = null;
@@ -120,19 +123,23 @@ document.addEventListener("DOMContentLoaded", () => {
                 document.querySelectorAll(".grid-cell.is-active").forEach(cell => cell.classList.remove("is-active"));
             };
 
-            // --- NEW "CHASER" HIGHLIGHT LOGIC ---
+            // --- "CHASER" HIGHLIGHT LOGIC ---
             const startRandomHighlight = () => {
                 stopRandomHighlight();
                 
-                const trailLength = 8; // The number of cells in the trail
-                let activeCellsQueue = []; // Use an array as a queue to track the trail
+                // OPTIMIZATION: On mobile, we won't run the complex JS animation.
+                // The hover effect via CSS will still work.
+                if (isMobile) {
+                    return;
+                }
+                
+                const trailLength = 8;
+                let activeCellsQueue = [];
 
                 randomHighlightInterval = setInterval(() => {
-                    // If the trail isn't full yet, just add new cells
                     if (activeCellsQueue.length < trailLength) {
                         let randomIndex;
                         let newCell;
-                        // Find a random cell that isn't already active
                         do {
                             randomIndex = Math.floor(Math.random() * cells.length);
                             newCell = cells[randomIndex];
@@ -143,30 +150,26 @@ document.addEventListener("DOMContentLoaded", () => {
                             activeCellsQueue.push(newCell);
                         }
                     } else {
-                        // If the trail is full, remove the oldest cell (fade out)
-                        const oldestCell = activeCellsQueue.shift(); // Dequeue the oldest cell
+                        const oldestCell = activeCellsQueue.shift();
                         if (oldestCell) {
                             oldestCell.classList.remove("is-active");
                         }
 
-                        // And add a new one (fade in)
                         let randomIndex;
                         let newCell;
                         let attempts = 0;
-                        // Find a random cell that isn't already in the trail
                         do {
                             randomIndex = Math.floor(Math.random() * cells.length);
                             newCell = cells[randomIndex];
                             attempts++;
-                        } while (newCell && activeCellsQueue.includes(newCell) && attempts < 50); // Prevent infinite loops
+                        } while (newCell && activeCellsQueue.includes(newCell) && attempts < 50);
                         
                         if (newCell) {
                             newCell.classList.add("is-active");
-                            activeCellsQueue.push(newCell); // Enqueue the new cell
+                            activeCellsQueue.push(newCell);
                         }
                     }
-
-                }, RANDOM_HIGHLIGHT_INTERVAL_TIME); // Interval for each step of the trail
+                }, RANDOM_HIGHLIGHT_INTERVAL_TIME);
             };
 
             heroGridContainer.addEventListener('mouseenter', stopRandomHighlight);
@@ -189,10 +192,14 @@ document.addEventListener("DOMContentLoaded", () => {
             window.addEventListener('resize', () => {
                 clearTimeout(resizeTimeout);
                 resizeTimeout = setTimeout(() => {
-                    // When resizing, stop the old animation, recreate the grid, and start a new animation
                     stopRandomHighlight();
-                    createGrid();
-                    startRandomHighlight();
+                    // Re-check mobile status on resize
+                    const wasMobile = window.innerWidth <= 768;
+                    createGrid(); // Will use the appropriate cell size
+                    // Only restart animation if not on mobile
+                    if (!wasMobile) {
+                        startRandomHighlight();
+                    }
                 }, 250);
             });
         }
